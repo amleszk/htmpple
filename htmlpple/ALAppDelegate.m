@@ -14,7 +14,7 @@
 
 -(NSAttributedString*) hppleParsedString
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"test-data" ofType:@"html"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"test-data-3" ofType:@"html"];
     return [ALHtmlToAttributedStringParser attributedStringWithHTMLData:[[NSData alloc] initWithContentsOfFile:path]];
 }
 

@@ -24,6 +24,7 @@
 		61E8E44F1695CA1B00DC5C83 /* test-data.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E44D1695CA1B00DC5C83 /* test-data.html */; };
 		61E8E4611695D16D00DC5C83 /* ALHtmlTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4601695D16D00DC5C83 /* ALHtmlTextView.m */; };
 		61E8E47B1696ED1000DC5C83 /* test-data-2.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E47A1696ED1000DC5C83 /* test-data-2.html */; };
+		61E8E4C31697459800DC5C83 /* test-data-3.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4C21697459800DC5C83 /* test-data-3.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		61E8E4601695D16D00DC5C83 /* ALHtmlTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALHtmlTextView.m; path = Classes/ALHtmlTextView.m; sourceTree = "<group>"; };
 		61E8E47A1696ED1000DC5C83 /* test-data-2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-2.html"; sourceTree = "<group>"; };
 		61E8E47D16970CDD00DC5C83 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		61E8E4C21697459800DC5C83 /* test-data-3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-3.html"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				61E8E47D16970CDD00DC5C83 /* README.md */,
 				61E8E44D1695CA1B00DC5C83 /* test-data.html */,
 				61E8E47A1696ED1000DC5C83 /* test-data-2.html */,
+				61E8E4C21697459800DC5C83 /* test-data-3.html */,
 				61E8E4061695C5B600DC5C83 /* htmlpple-Info.plist */,
 				61E8E40A1695C5B600DC5C83 /* main.m */,
 				61E8E40C1695C5B600DC5C83 /* htmlpple-Prefix.pch */,
@@ -213,6 +216,7 @@
 				61E8E4151695C5B600DC5C83 /* Default-568h@2x.png in Resources */,
 				61E8E44F1695CA1B00DC5C83 /* test-data.html in Resources */,
 				61E8E47B1696ED1000DC5C83 /* test-data-2.html in Resources */,
+				61E8E4C31697459800DC5C83 /* test-data-3.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +336,7 @@
 				61E8E42F1695C5B600DC5C83 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

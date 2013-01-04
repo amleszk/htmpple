@@ -8,12 +8,13 @@ Similar to [DTCoreText](https://github.com/Cocoanetics/DTCoreText) with
 NOT DONE
 --------
 
-* Support for non iOS6 string attributes
-* Unit Tests
-* Removing excess white space from tags that are not <pre>
-* Nested indentation for ul/blockquote (NSParagraphStyle)
-* NSParagraphStyle loses its indent when using a <br/>
-* Bold font attributes
-* Additional HTML tag support
-** ordered lists (ul)
+* Feature: Support for non iOS6 string attributes
+* Feature: Unit Tests
+* Bug: Nested indentation for ul/blockquote (NSParagraphStyle)
+* Bug: NSParagraphStyle loses its indent when using a <br/>
+* Feature: Bold font attributes versus new fonts
+* Performance: replace regex with string matching for tags
+--
+* Feature: Additional HTML tag support
+** ordered lists are treated as unordered (ol)
 ** horizontal rule (hr)
