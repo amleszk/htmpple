@@ -10,28 +10,21 @@
 		61E8E3FF1695C5B600DC5C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E3FE1695C5B600DC5C83 /* UIKit.framework */; };
 		61E8E4011695C5B600DC5C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4001695C5B600DC5C83 /* Foundation.framework */; };
 		61E8E4031695C5B600DC5C83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4021695C5B600DC5C83 /* CoreGraphics.framework */; };
-		61E8E4091695C5B600DC5C83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4071695C5B600DC5C83 /* InfoPlist.strings */; };
 		61E8E40B1695C5B600DC5C83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E40A1695C5B600DC5C83 /* main.m */; };
 		61E8E40F1695C5B600DC5C83 /* ALAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E40E1695C5B600DC5C83 /* ALAppDelegate.m */; };
 		61E8E4111695C5B600DC5C83 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4101695C5B600DC5C83 /* Default.png */; };
 		61E8E4131695C5B600DC5C83 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4121695C5B600DC5C83 /* Default@2x.png */; };
 		61E8E4151695C5B600DC5C83 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4141695C5B600DC5C83 /* Default-568h@2x.png */; };
-		61E8E41D1695C5B600DC5C83 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E41C1695C5B600DC5C83 /* SenTestingKit.framework */; };
-		61E8E41E1695C5B600DC5C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E3FE1695C5B600DC5C83 /* UIKit.framework */; };
-		61E8E41F1695C5B600DC5C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4001695C5B600DC5C83 /* Foundation.framework */; };
-		61E8E4271695C5B600DC5C83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4251695C5B600DC5C83 /* InfoPlist.strings */; };
-		61E8E42A1695C5B600DC5C83 /* htmlppleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4291695C5B600DC5C83 /* htmlppleTests.m */; };
+		61E8E4391695C77700DC5C83 /* ALHtmlToAttributedStringParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4381695C77700DC5C83 /* ALHtmlToAttributedStringParser.m */; };
+		61E8E4411695C81E00DC5C83 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43C1695C81E00DC5C83 /* TFHpple.m */; };
+		61E8E4431695C81E00DC5C83 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43E1695C81E00DC5C83 /* TFHppleElement.m */; };
+		61E8E4451695C81E00DC5C83 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4401695C81E00DC5C83 /* XPathQuery.m */; };
+		61E8E4491695C98C00DC5C83 /* NSDictionary+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4481695C98C00DC5C83 /* NSDictionary+Merge.m */; };
+		61E8E44C1695C9EB00DC5C83 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E44B1695C9EB00DC5C83 /* libxml2.2.dylib */; };
+		61E8E44F1695CA1B00DC5C83 /* test-data.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E44D1695CA1B00DC5C83 /* test-data.html */; };
+		61E8E4611695D16D00DC5C83 /* ALHtmlTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4601695D16D00DC5C83 /* ALHtmlTextView.m */; };
+		61E8E47B1696ED1000DC5C83 /* test-data-2.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E47A1696ED1000DC5C83 /* test-data-2.html */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		61E8E4201695C5B600DC5C83 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 61E8E3F11695C5B600DC5C83 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 61E8E3F91695C5B600DC5C83;
-			remoteInfo = htmlpple;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		61E8E3FA1695C5B600DC5C83 /* htmlpple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = htmlpple.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,7 +32,6 @@
 		61E8E4001695C5B600DC5C83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		61E8E4021695C5B600DC5C83 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		61E8E4061695C5B600DC5C83 /* htmlpple-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "htmlpple-Info.plist"; sourceTree = "<group>"; };
-		61E8E4081695C5B600DC5C83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		61E8E40A1695C5B600DC5C83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		61E8E40C1695C5B600DC5C83 /* htmlpple-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "htmlpple-Prefix.pch"; sourceTree = "<group>"; };
 		61E8E40D1695C5B600DC5C83 /* ALAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALAppDelegate.h; sourceTree = "<group>"; };
@@ -47,12 +39,22 @@
 		61E8E4101695C5B600DC5C83 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		61E8E4121695C5B600DC5C83 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		61E8E4141695C5B600DC5C83 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		61E8E41B1695C5B600DC5C83 /* htmlppleTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = htmlppleTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E8E41C1695C5B600DC5C83 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		61E8E4241695C5B600DC5C83 /* htmlppleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "htmlppleTests-Info.plist"; sourceTree = "<group>"; };
-		61E8E4261695C5B600DC5C83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		61E8E4281695C5B600DC5C83 /* htmlppleTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = htmlppleTests.h; sourceTree = "<group>"; };
-		61E8E4291695C5B600DC5C83 /* htmlppleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = htmlppleTests.m; sourceTree = "<group>"; };
+		61E8E4371695C77700DC5C83 /* ALHtmlToAttributedStringParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALHtmlToAttributedStringParser.h; path = Classes/ALHtmlToAttributedStringParser.h; sourceTree = "<group>"; };
+		61E8E4381695C77700DC5C83 /* ALHtmlToAttributedStringParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALHtmlToAttributedStringParser.m; path = Classes/ALHtmlToAttributedStringParser.m; sourceTree = "<group>"; };
+		61E8E43B1695C81E00DC5C83 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHpple.h; path = ThirdParty/TFHpple/TFHpple.h; sourceTree = SOURCE_ROOT; };
+		61E8E43C1695C81E00DC5C83 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHpple.m; path = ThirdParty/TFHpple/TFHpple.m; sourceTree = SOURCE_ROOT; };
+		61E8E43D1695C81E00DC5C83 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHppleElement.h; path = ThirdParty/TFHpple/TFHppleElement.h; sourceTree = SOURCE_ROOT; };
+		61E8E43E1695C81E00DC5C83 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHppleElement.m; path = ThirdParty/TFHpple/TFHppleElement.m; sourceTree = SOURCE_ROOT; };
+		61E8E43F1695C81E00DC5C83 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = ThirdParty/TFHpple/XPathQuery.h; sourceTree = SOURCE_ROOT; };
+		61E8E4401695C81E00DC5C83 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = ThirdParty/TFHpple/XPathQuery.m; sourceTree = SOURCE_ROOT; };
+		61E8E4471695C98C00DC5C83 /* NSDictionary+Merge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Merge.h"; path = "Classes/NSDictionary+Merge.h"; sourceTree = "<group>"; };
+		61E8E4481695C98C00DC5C83 /* NSDictionary+Merge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Merge.m"; path = "Classes/NSDictionary+Merge.m"; sourceTree = "<group>"; };
+		61E8E44B1695C9EB00DC5C83 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		61E8E44D1695CA1B00DC5C83 /* test-data.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data.html"; sourceTree = "<group>"; };
+		61E8E45F1695D16D00DC5C83 /* ALHtmlTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALHtmlTextView.h; path = Classes/ALHtmlTextView.h; sourceTree = "<group>"; };
+		61E8E4601695D16D00DC5C83 /* ALHtmlTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALHtmlTextView.m; path = Classes/ALHtmlTextView.m; sourceTree = "<group>"; };
+		61E8E47A1696ED1000DC5C83 /* test-data-2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-2.html"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,19 +62,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61E8E44C1695C9EB00DC5C83 /* libxml2.2.dylib in Frameworks */,
 				61E8E3FF1695C5B600DC5C83 /* UIKit.framework in Frameworks */,
 				61E8E4011695C5B600DC5C83 /* Foundation.framework in Frameworks */,
 				61E8E4031695C5B600DC5C83 /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		61E8E4171695C5B600DC5C83 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				61E8E41D1695C5B600DC5C83 /* SenTestingKit.framework in Frameworks */,
-				61E8E41E1695C5B600DC5C83 /* UIKit.framework in Frameworks */,
-				61E8E41F1695C5B600DC5C83 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				61E8E4041695C5B600DC5C83 /* htmlpple */,
-				61E8E4221695C5B600DC5C83 /* htmlppleTests */,
 				61E8E3FD1695C5B600DC5C83 /* Frameworks */,
 				61E8E3FB1695C5B600DC5C83 /* Products */,
 			);
@@ -93,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				61E8E3FA1695C5B600DC5C83 /* htmlpple.app */,
-				61E8E41B1695C5B600DC5C83 /* htmlppleTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +92,7 @@
 		61E8E3FD1695C5B600DC5C83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61E8E44B1695C9EB00DC5C83 /* libxml2.2.dylib */,
 				61E8E3FE1695C5B600DC5C83 /* UIKit.framework */,
 				61E8E4001695C5B600DC5C83 /* Foundation.framework */,
 				61E8E4021695C5B600DC5C83 /* CoreGraphics.framework */,
@@ -112,6 +104,10 @@
 		61E8E4041695C5B600DC5C83 /* htmlpple */ = {
 			isa = PBXGroup;
 			children = (
+				61E8E43A1695C78B00DC5C83 /* TFHpple */,
+				61E8E4361695C73400DC5C83 /* Parser */,
+				61E8E45F1695D16D00DC5C83 /* ALHtmlTextView.h */,
+				61E8E4601695D16D00DC5C83 /* ALHtmlTextView.m */,
 				61E8E40D1695C5B600DC5C83 /* ALAppDelegate.h */,
 				61E8E40E1695C5B600DC5C83 /* ALAppDelegate.m */,
 				61E8E4051695C5B600DC5C83 /* Supporting Files */,
@@ -122,8 +118,9 @@
 		61E8E4051695C5B600DC5C83 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				61E8E44D1695CA1B00DC5C83 /* test-data.html */,
+				61E8E47A1696ED1000DC5C83 /* test-data-2.html */,
 				61E8E4061695C5B600DC5C83 /* htmlpple-Info.plist */,
-				61E8E4071695C5B600DC5C83 /* InfoPlist.strings */,
 				61E8E40A1695C5B600DC5C83 /* main.m */,
 				61E8E40C1695C5B600DC5C83 /* htmlpple-Prefix.pch */,
 				61E8E4101695C5B600DC5C83 /* Default.png */,
@@ -133,23 +130,28 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		61E8E4221695C5B600DC5C83 /* htmlppleTests */ = {
+		61E8E4361695C73400DC5C83 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
-				61E8E4281695C5B600DC5C83 /* htmlppleTests.h */,
-				61E8E4291695C5B600DC5C83 /* htmlppleTests.m */,
-				61E8E4231695C5B600DC5C83 /* Supporting Files */,
+				61E8E4471695C98C00DC5C83 /* NSDictionary+Merge.h */,
+				61E8E4481695C98C00DC5C83 /* NSDictionary+Merge.m */,
+				61E8E4371695C77700DC5C83 /* ALHtmlToAttributedStringParser.h */,
+				61E8E4381695C77700DC5C83 /* ALHtmlToAttributedStringParser.m */,
 			);
-			path = htmlppleTests;
+			name = Parser;
 			sourceTree = "<group>";
 		};
-		61E8E4231695C5B600DC5C83 /* Supporting Files */ = {
+		61E8E43A1695C78B00DC5C83 /* TFHpple */ = {
 			isa = PBXGroup;
 			children = (
-				61E8E4241695C5B600DC5C83 /* htmlppleTests-Info.plist */,
-				61E8E4251695C5B600DC5C83 /* InfoPlist.strings */,
+				61E8E43B1695C81E00DC5C83 /* TFHpple.h */,
+				61E8E43C1695C81E00DC5C83 /* TFHpple.m */,
+				61E8E43D1695C81E00DC5C83 /* TFHppleElement.h */,
+				61E8E43E1695C81E00DC5C83 /* TFHppleElement.m */,
+				61E8E43F1695C81E00DC5C83 /* XPathQuery.h */,
+				61E8E4401695C81E00DC5C83 /* XPathQuery.m */,
 			);
-			name = "Supporting Files";
+			name = TFHpple;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,25 +173,6 @@
 			productName = htmlpple;
 			productReference = 61E8E3FA1695C5B600DC5C83 /* htmlpple.app */;
 			productType = "com.apple.product-type.application";
-		};
-		61E8E41A1695C5B600DC5C83 /* htmlppleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 61E8E4301695C5B600DC5C83 /* Build configuration list for PBXNativeTarget "htmlppleTests" */;
-			buildPhases = (
-				61E8E4161695C5B600DC5C83 /* Sources */,
-				61E8E4171695C5B600DC5C83 /* Frameworks */,
-				61E8E4181695C5B600DC5C83 /* Resources */,
-				61E8E4191695C5B600DC5C83 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				61E8E4211695C5B600DC5C83 /* PBXTargetDependency */,
-			);
-			name = htmlppleTests;
-			productName = htmlppleTests;
-			productReference = 61E8E41B1695C5B600DC5C83 /* htmlppleTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -214,7 +197,6 @@
 			projectRoot = "";
 			targets = (
 				61E8E3F91695C5B600DC5C83 /* htmlpple */,
-				61E8E41A1695C5B600DC5C83 /* htmlppleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -224,38 +206,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61E8E4091695C5B600DC5C83 /* InfoPlist.strings in Resources */,
 				61E8E4111695C5B600DC5C83 /* Default.png in Resources */,
 				61E8E4131695C5B600DC5C83 /* Default@2x.png in Resources */,
 				61E8E4151695C5B600DC5C83 /* Default-568h@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		61E8E4181695C5B600DC5C83 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				61E8E4271695C5B600DC5C83 /* InfoPlist.strings in Resources */,
+				61E8E44F1695CA1B00DC5C83 /* test-data.html in Resources */,
+				61E8E47B1696ED1000DC5C83 /* test-data-2.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		61E8E4191695C5B600DC5C83 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		61E8E3F61695C5B600DC5C83 /* Sources */ = {
@@ -264,45 +223,16 @@
 			files = (
 				61E8E40B1695C5B600DC5C83 /* main.m in Sources */,
 				61E8E40F1695C5B600DC5C83 /* ALAppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		61E8E4161695C5B600DC5C83 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				61E8E42A1695C5B600DC5C83 /* htmlppleTests.m in Sources */,
+				61E8E4391695C77700DC5C83 /* ALHtmlToAttributedStringParser.m in Sources */,
+				61E8E4411695C81E00DC5C83 /* TFHpple.m in Sources */,
+				61E8E4431695C81E00DC5C83 /* TFHppleElement.m in Sources */,
+				61E8E4451695C81E00DC5C83 /* XPathQuery.m in Sources */,
+				61E8E4491695C98C00DC5C83 /* NSDictionary+Merge.m in Sources */,
+				61E8E4611695D16D00DC5C83 /* ALHtmlTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		61E8E4211695C5B600DC5C83 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 61E8E3F91695C5B600DC5C83 /* htmlpple */;
-			targetProxy = 61E8E4201695C5B600DC5C83 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		61E8E4071695C5B600DC5C83 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				61E8E4081695C5B600DC5C83 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		61E8E4251695C5B600DC5C83 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				61E8E4261695C5B600DC5C83 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		61E8E42B1695C5B600DC5C83 /* Debug */ = {
@@ -362,6 +292,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "htmlpple/htmlpple-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "htmlpple/htmlpple-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -373,43 +304,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "htmlpple/htmlpple-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "htmlpple/htmlpple-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		61E8E4311695C5B600DC5C83 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/htmlpple.app/htmlpple";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "htmlpple/htmlpple-Prefix.pch";
-				INFOPLIST_FILE = "htmlppleTests/htmlppleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		61E8E4321695C5B600DC5C83 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/htmlpple.app/htmlpple";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "htmlpple/htmlpple-Prefix.pch";
-				INFOPLIST_FILE = "htmlppleTests/htmlppleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -430,14 +328,6 @@
 			buildConfigurations = (
 				61E8E42E1695C5B600DC5C83 /* Debug */,
 				61E8E42F1695C5B600DC5C83 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		61E8E4301695C5B600DC5C83 /* Build configuration list for PBXNativeTarget "htmlppleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				61E8E4311695C5B600DC5C83 /* Debug */,
-				61E8E4321695C5B600DC5C83 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

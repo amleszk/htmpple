@@ -1,0 +1,3 @@
+[submodule "ThirdParty/TFHpple"]
+	path = ThirdParty/TFHpple
+	url = https://github.com/topfunky/hpple
