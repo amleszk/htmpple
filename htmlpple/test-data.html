@@ -10,13 +10,19 @@
         <li>List item 2</li>
         <li><a href="http://www.reddit.com">List item 3</a></li>
         <ul>
-            <li>List item 3.1</li>
+            <li>List item 3.1 nesting not supported</li>
             <li>List item 3.2</li>
         </ul>
     </ul>
-    <blockquote>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.<p><a href="http://www.google.com">quoted link</a></p><ul><li>quoted list item</li></ul>
-    </blockquote>
-    
+    <blockquote>Quote 1:<p>paragraph 1 loses indent</p><p>paragraph 2</p><a href="http://www.google.com">quoted link has indent</a></blockquote>
+    <blockquote>Quote 2:<p>Contains linebreak <br/>which screws formatting</p></blockquote>
+    <blockquote>Quote 3:<p>Contains list</p><ul><li>quoted list item</li></ul></blockquote>
+    <pre>if (preformattedText == YES)
+{
+  unfortunately not
+  monospaced on ios
+}
+</pre>
     <div class="md">
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
@@ -33,7 +39,5 @@
     </div>
     
     <p>Paragraph with <b>bold</b> and <i>italics</i> and <em>emphasis</em> and <del>deleted</del> and <ins>inserted</ins></p>
-    <h1>Heading 3</h1>
-    <p>Paragraph with <blockquote>blockquote</blockquote></p>
     
 </div>

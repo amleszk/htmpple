@@ -55,6 +55,7 @@
 		61E8E45F1695D16D00DC5C83 /* ALHtmlTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALHtmlTextView.h; path = Classes/ALHtmlTextView.h; sourceTree = "<group>"; };
 		61E8E4601695D16D00DC5C83 /* ALHtmlTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALHtmlTextView.m; path = Classes/ALHtmlTextView.m; sourceTree = "<group>"; };
 		61E8E47A1696ED1000DC5C83 /* test-data-2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-2.html"; sourceTree = "<group>"; };
+		61E8E47D16970CDD00DC5C83 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +119,7 @@
 		61E8E4051695C5B600DC5C83 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				61E8E47D16970CDD00DC5C83 /* README.md */,
 				61E8E44D1695CA1B00DC5C83 /* test-data.html */,
 				61E8E47A1696ED1000DC5C83 /* test-data-2.html */,
 				61E8E4061695C5B600DC5C83 /* htmlpple-Info.plist */,

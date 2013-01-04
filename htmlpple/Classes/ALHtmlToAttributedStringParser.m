@@ -106,7 +106,11 @@ typedef NSDictionary* (^AttributesBlock)(NSDictionary* tagAttributes);
         @"(b|strong)" : @{ NSFontAttributeName : [UIFont boldSystemFontOfSize:14]},
         @"blockquote" : @{
             NSParagraphStyleAttributeName : [self blockQuoteParagraphStyle],
-            NSFontAttributeName : [UIFont italicSystemFontOfSize:14]
+            NSFontAttributeName : [UIFont italicSystemFontOfSize:14],
+            NSBackgroundColorAttributeName : [[UIColor lightGrayColor] colorWithAlphaComponent:0.2]
+        },
+        @"pre" : @{
+            NSFontAttributeName : [UIFont fontWithName:@"Courier" size:14]
         },
         @"(u|ins)" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)},
         @"del" : @{ NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle) },
@@ -143,7 +147,8 @@ typedef NSDictionary* (^AttributesBlock)(NSDictionary* tagAttributes);
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         afterStringForTagRegex = @{
-            @"(p|h1|h2|h3|h4|h5|h6|li|blockquote|br)" : @"\n"
+            @"(p|h1|h2|h3|h4|h5|h6|li|br)" : @"\n",
+            @"blockquote" : @"\n"
         };
     });
     return afterStringForTagRegex;
