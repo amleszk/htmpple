@@ -39,16 +39,17 @@
     UITextRange *textRange = [self textRangeFromPosition:begin toPosition:end];
     NSArray *rects = [self selectionRectsForRange:textRange];
     
-    //selectionRectsForRange returns multiple rects for the same line
-    //for very long text strings. hack to ignore the white space rect the gets sent
-    //the second time round (if Y position has not changed since previous iteration)
     CGFloat previouslyAddedyPosition = -1;
-    
     for (UITextSelectionRect* selectionRect in rects) {
+        
+        //selectionRectsForRange returns multiple rects for the same line
+        //for very long text strings. hack to ignore the white space rect the gets sent
+        //the second time round (if Y position has not changed since previous iteration)
         CGRect rect = selectionRect.rect;
         if (rect.origin.y == previouslyAddedyPosition) {
             continue;
         }
+        
         previouslyAddedyPosition = rect.origin.y;
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = rect;
@@ -72,8 +73,7 @@
 -(void)linkButtonTapped:(UIButton*)buttonLink
 {
     [self setActiveLink:NO forRange:[self.linkRanges[buttonLink.tag][0] rangeValue]];
-    NSURL* url = [NSURL URLWithString:self.linkRanges[buttonLink.tag][1]];
-    [[UIApplication sharedApplication] openURL:url];
+    [self.linkDelegate textView:self didTapLinkWithHref:self.linkRanges[buttonLink.tag][1]];
 }
 
 -(void)linkButtonActive:(UIButton*)buttonLink
