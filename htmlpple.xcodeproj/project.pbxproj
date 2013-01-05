@@ -25,6 +25,7 @@
 		61E8E4611695D16D00DC5C83 /* ALHtmlTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4601695D16D00DC5C83 /* ALHtmlTextView.m */; };
 		61E8E47B1696ED1000DC5C83 /* test-data-2.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E47A1696ED1000DC5C83 /* test-data-2.html */; };
 		61E8E4C31697459800DC5C83 /* test-data-3.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4C21697459800DC5C83 /* test-data-3.html */; };
+		61E8E4C61697CF2900DC5C83 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4C51697CF2900DC5C83 /* README.markdown */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,8 +57,8 @@
 		61E8E45F1695D16D00DC5C83 /* ALHtmlTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALHtmlTextView.h; path = Classes/ALHtmlTextView.h; sourceTree = "<group>"; };
 		61E8E4601695D16D00DC5C83 /* ALHtmlTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALHtmlTextView.m; path = Classes/ALHtmlTextView.m; sourceTree = "<group>"; };
 		61E8E47A1696ED1000DC5C83 /* test-data-2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-2.html"; sourceTree = "<group>"; };
-		61E8E47D16970CDD00DC5C83 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		61E8E4C21697459800DC5C83 /* test-data-3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-3.html"; sourceTree = "<group>"; };
+		61E8E4C51697CF2900DC5C83 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +122,7 @@
 		61E8E4051695C5B600DC5C83 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				61E8E47D16970CDD00DC5C83 /* README.markdown */,
+				61E8E4C51697CF2900DC5C83 /* README.markdown */,
 				61E8E44D1695CA1B00DC5C83 /* test-data.html */,
 				61E8E47A1696ED1000DC5C83 /* test-data-2.html */,
 				61E8E4C21697459800DC5C83 /* test-data-3.html */,
@@ -217,6 +218,7 @@
 				61E8E44F1695CA1B00DC5C83 /* test-data.html in Resources */,
 				61E8E47B1696ED1000DC5C83 /* test-data-2.html in Resources */,
 				61E8E4C31697459800DC5C83 /* test-data-3.html in Resources */,
+				61E8E4C61697CF2900DC5C83 /* README.markdown in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
