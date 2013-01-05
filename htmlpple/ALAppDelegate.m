@@ -14,7 +14,7 @@
 
 -(NSAttributedString*) hppleParsedString
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"test-data-3" ofType:@"html"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"test-data" ofType:@"html"];
     return [ALHtmlToAttributedStringParser attributedStringWithHTMLData:[[NSData alloc] initWithContentsOfFile:path]];
 }
 
@@ -23,7 +23,7 @@
     ALHtmlTextView *exampleLabel = [[ALHtmlTextView alloc] initWithFrame:CGRectInset([[UIScreen mainScreen] bounds], 20, 20)];
     exampleLabel.editable = NO;
     exampleLabel.textAlignment = NSTextAlignmentLeft;
-    exampleLabel.attributedText = [self hppleParsedString];
+    [exampleLabel setLinkifiedAttributedText:[self hppleParsedString]];
     self.view = exampleLabel;
 }
 @end
