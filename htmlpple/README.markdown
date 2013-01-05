@@ -2,7 +2,7 @@ htmpple
 =======
 
 Lightweight translation layer from HTML to iOS6 NSAttributedString built ontop of hpple XML parser: https://github.com/topfunky/hpple
-**No CoreText code in this project**
+There is **no** CoreText code in this project
 
 If you still support pre iOS6 you may want [DTCoreText](https://github.com/Cocoanetics/DTCoreText)
 
