@@ -29,13 +29,15 @@
 -(void) layoutSubviews
 {
     [super layoutSubviews];
-    CGRect bounds = self.bounds;
-    if (CGRectEqualToRect(bounds, self.linkButtonsAddedForBounds) ||
-        CGRectEqualToRect(bounds, CGRectZero)) {
+    
+    //UIScrollview layoutSubviews optimisation
+    CGRect frame = self.frame;
+    if (CGRectEqualToRect(frame, self.linkButtonsAddedForBounds) ||
+        CGRectEqualToRect(frame, CGRectZero)) {
         return;
     }
     [self addButtonsForHtmlLinks];
-    self.linkButtonsAddedForBounds = self.bounds;
+    self.linkButtonsAddedForBounds = self.frame;
 }
 
 #pragma mark - Hyperlink management

@@ -57,11 +57,26 @@
     self.nextDataset = 0;
     [self newDataSet];
     
+    
+    //[self runPerformanceTest];
+    
     self.nextDataButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.nextDataButton addTarget:self action:@selector(newDataSet) forControlEvents:UIControlEventTouchUpInside];
     [self.nextDataButton setTitle:@"Next" forState:UIControlStateNormal];
     [self.view addSubview:self.nextDataButton];
 }
+
+-(void) runPerformanceTest
+{
+    NSDate* startTime = [NSDate date];
+    for (int i=0; i<200; i++) {
+        [self newDataSet];
+    }
+    NSLog(@"Time %.2f",[[NSDate date] timeIntervalSinceDate:startTime]);
+}
+
+
+#pragma mark - Delegate
 
 -(void) textView:(ALLinkTextView *)textView didTapLinkWithHref:(NSString *)href
 {
