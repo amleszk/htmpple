@@ -39,6 +39,8 @@
     self.nextDataButton.frame = (CGRect){.origin={0,bounds.size.height-50},.size={bounds.size.width,50}};
 }
 
+-(NSString*) title { return @"ALLinkTextView"; };
+
 -(void) loadView
 {
     self.view = [[UIView alloc] initWithFrame:CGRectZero];
@@ -59,10 +61,6 @@
     [self.nextDataButton addTarget:self action:@selector(newDataSet) forControlEvents:UIControlEventTouchUpInside];
     [self.nextDataButton setTitle:@"Next" forState:UIControlStateNormal];
     [self.view addSubview:self.nextDataButton];
-// Auto loading test data
-//    for (int i=1; i<=5; i++) {
-//        [self performSelector:@selector(newDataSet:) withObject:@(i) afterDelay:i];
-//    }
 }
 
 -(void) textView:(ALLinkTextView *)textView didTapLinkWithHref:(NSString *)href
@@ -76,11 +74,17 @@
 
 -(void) textView:(ALLinkTextView*)textView didLongPressLinkWithHref:(NSString*)href view:(UIView*)view;
 {
-    [[[UIAlertView alloc] initWithTitle:@"Long press"
-                                message:href
-                               delegate:nil
-                      cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Long press"
+                                                             delegate:nil
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:href,nil];
+    
+    CGRect viewRect = [view convertRect:view.bounds toView:nil];
+    [actionSheet showFromRect:viewRect
+                       inView:[[UIApplication sharedApplication] keyWindow]
+                     animated:YES];
+
 }
 
 @end

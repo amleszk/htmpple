@@ -15,10 +15,13 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor darkGrayColor];
 
-    //self.window.rootViewController = [[ALDemoTextViewController alloc] init];
-    self.window.rootViewController = [[ALDemoLabelViewController alloc] init];
+    UITabBarController* tabbar = [[UITabBarController alloc] init];
+    tabbar.viewControllers = @[
+        [[ALDemoTextViewController alloc] init],
+        [[ALDemoLabelViewController alloc] init]
+    ];
+    self.window.rootViewController = tabbar;
     
-
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

@@ -34,6 +34,8 @@
     self.nextDataButton.frame = (CGRect){.origin={0,bounds.size.height-50},.size={bounds.size.width,50}};
 }
 
+-(NSString*) title { return @"UILabel"; };
+
 -(void) loadView
 {
     self.view = [[UIView alloc] initWithFrame:CGRectZero];
