@@ -27,13 +27,15 @@ Todo
 
 Performance
 --------
-There's considerable performance hit when using a UITextView over UILabel. 
-results of performanceTest method on iPhone4s device after 200 iterations
+There's considerable performance hit when using a UITextView over UILabel. Results of performanceTest method on iPhone4s device after 200 iterations
 
 ALLinkTextView: 19.02sec
+
 UITextView:  18.95sec
+
 UILabel : 11.56sec (40% faster)
 
-the only reason to use a UITetView is to detect the location of link attributes. If anyone
+
+the only reason to use a UITextView is to detect the location of link attributes. If anyone
 knows a way to do the same thing in UILabel without using CoreText I would be interested to hear.
 
