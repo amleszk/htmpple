@@ -8,11 +8,12 @@ If you still support pre iOS6 you may want [DTCoreText](https://github.com/Cocoa
 
 Invoke parser with `[ALHtmlToAttributedStringParser attributedStringWithHTMLData:htmlData];`
 
-NOT DONE
+Todo 
 --------
 
+* Bug: Blue link highlight persists when cycling 
 * Bug: Nested indentation for ul/blockquote (NSParagraphStyle)
-* Bug: NSParagraphStyle loses its indent when using a <br/>
+* Bug: NSParagraphStyle loses its indent when using a \<br\/\>
 * Bug: Adding \n and multiple spaces should not be allowed in any tag except 'pre' and 'code'
 
 * Feature: Bold font attributes versus using new fonts

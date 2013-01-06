@@ -1,0 +1,4 @@
+
+@interface ALDemoLabelViewController : UIViewController
+
+@end

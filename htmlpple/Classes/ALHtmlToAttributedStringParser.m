@@ -16,30 +16,8 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 +(NSAttributedString*) attributedStringWithHTMLData:(NSData*)data
                                                trim:(BOOL)trim
 {
-    NSAttributedString* attrString =
-    [[[[self class] alloc] init] attributedStringWithHTMLData:data];
-    
-    if(trim) {
-        NSString *trimmedString = [attrString.string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if (trimmedString.length == attrString.string.length) {
-            return attrString;
-        }
-        
-        NSMutableAttributedString *mutableAttrStr = [attrString mutableCopy];
-        NSRange subRange = [attrString.string rangeOfString:trimmedString];
-        [mutableAttrStr beginEditing];
-        if (subRange.location>0) {
-            [mutableAttrStr deleteCharactersInRange:(NSRange){0,subRange.location}];
-        }
-        NSUInteger afterLocation = subRange.length-subRange.location;
-        if (afterLocation<mutableAttrStr.string.length-subRange.location) {
-            NSUInteger afterLength = mutableAttrStr.string.length-afterLocation;
-            [mutableAttrStr deleteCharactersInRange:(NSRange){afterLocation,afterLength}];
-        }
-        [mutableAttrStr endEditing];
-        attrString = mutableAttrStr;
-    }
-    return attrString;
+    NSAttributedString* attrString = [[[[self class] alloc] init] attributedStringWithHTMLData:data];    
+    return (trim ? [self trimmedAttributedString:attrString] : attrString);
 }
 
 -(NSAttributedString*) attributedStringWithHTMLData:(NSData*)data
@@ -72,6 +50,28 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     }
     
     return match ? matchers[match] : nil;
+}
+
++(NSAttributedString*) trimmedAttributedString:(NSAttributedString*)attrString
+{
+    NSString *trimmedString = [attrString.string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (trimmedString.length == attrString.string.length) {
+        return attrString;
+    }
+    
+    NSMutableAttributedString *mutableAttrStr = [attrString mutableCopy];
+    NSRange subRange = [attrString.string rangeOfString:trimmedString];
+    [mutableAttrStr beginEditing];
+    if (subRange.location>0) {
+        [mutableAttrStr deleteCharactersInRange:(NSRange){0,subRange.location}];
+    }
+    NSUInteger afterLocation = subRange.length-subRange.location;
+    if (afterLocation<mutableAttrStr.string.length-subRange.location) {
+        NSUInteger afterLength = mutableAttrStr.string.length-afterLocation;
+        [mutableAttrStr deleteCharactersInRange:(NSRange){afterLocation,afterLength}];
+    }
+    [mutableAttrStr endEditing];
+    return mutableAttrStr;
 }
 
 #pragma mark - Tag to Attributes mapping
