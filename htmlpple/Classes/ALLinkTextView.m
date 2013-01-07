@@ -21,7 +21,6 @@
         self.linkColorActive = [self.linkColorDefault colorWithAlphaComponent:0.5];
         self.backgroundColor = [UIColor clearColor];
         self.allowInteractionOtherThanLinks = YES;
-        //[self setUserInteractionEnabled:NO];
     }
     return self;
 }

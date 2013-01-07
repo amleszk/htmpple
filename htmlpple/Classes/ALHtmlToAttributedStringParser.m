@@ -31,6 +31,13 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     return hppleParsedString;
 }
 
++(BOOL) doesHtmlDataContainLinks:(NSData*)data
+{
+    TFHpple *hpple = [TFHpple hppleWithXMLData:data];
+    NSArray *root = [hpple searchWithXPathQuery:@"/"];
+    return [[[[self class] alloc] init] recursiveContainsLinkWithElements:root];
+}
+
 #pragma mark - Helpers
 
 -(id) matcher:(NSDictionary*)matchers forTag:(NSString*)tag
@@ -87,8 +94,8 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 -(NSParagraphStyle*) listParagraphStyle
 {
     NSMutableParagraphStyle* blockQuoteParagraphStyle = [[NSMutableParagraphStyle alloc] init];
-    blockQuoteParagraphStyle.firstLineHeadIndent = 30.;
-    blockQuoteParagraphStyle.headIndent = 30.;
+    blockQuoteParagraphStyle.firstLineHeadIndent = 20.;
+    blockQuoteParagraphStyle.headIndent = 20.;
     return blockQuoteParagraphStyle;
 }
 
@@ -99,26 +106,25 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     return pParagraphStyle;
 }
 
--(NSDictionary*) dynamicAttributesForTagRegex
-{
-    static NSDictionary* options = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
-        options = @{
-        @"a" : [^NSDictionary*(NSDictionary* tagAttributes) {
-            return @{
-                NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
-                NSForegroundColorAttributeName : [UIColor blueColor],
-                kALHtmlToAttributedParsedHref : tagAttributes[@"href"],
-                //Required to uniquely identify the text, otherwise if 2 links are side by side they get combined
-                kALHtmlToAttributedId : [NSDate date]
-            };
-        } copy],
-        };
-    });
-    return options;    
+-(NSString*) bodyFontName {
+    return @"Helvetica";
 }
-typedef NSDictionary* (^AttributesBlock)(NSDictionary* tagAttributes);
+-(NSString*) boldFontName {
+    return @"Helvetica-Bold";
+}
+-(NSString*) italicsFontName {
+    return @"Helvetica-Oblique";
+}
+-(NSString*) headingFontName {
+    return @"HelveticaNeue";
+}
+-(NSString*) preFontName {
+    return @"Courier";
+}
+
+-(CGFloat) fontSizeModifier {
+    return 1.;
+}
 
 -(NSDictionary*) staticAttributesForTagRegex
 {
@@ -128,36 +134,56 @@ typedef NSDictionary* (^AttributesBlock)(NSDictionary* tagAttributes);
         options = @{
             @"p" : @{
                 NSParagraphStyleAttributeName : [self pParagraphStyle],
-                NSFontAttributeName : [UIFont systemFontOfSize:14]
+                NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]]
             },
             @"(i|em)" : @{
-                NSFontAttributeName : [UIFont italicSystemFontOfSize:16] },
-            @"thead" : @{ NSFontAttributeName : [UIFont boldSystemFontOfSize:12]},
-            @"tbody" : @{ NSFontAttributeName : [UIFont systemFontOfSize:12]},
+                NSFontAttributeName : [UIFont fontWithName:[self italicsFontName] size:14*[self fontSizeModifier]]},
+            @"thead" : @{ NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:12*[self fontSizeModifier]]},
+            @"tbody" : @{ NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:12*[self fontSizeModifier]]},
             @"(b|strong|thead)" : @{
-                NSFontAttributeName : [UIFont boldSystemFontOfSize:16]},
+                NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:14*[self fontSizeModifier]]},
             @"blockquote" : @{
                 NSParagraphStyleAttributeName : [self blockQuoteParagraphStyle],
-                NSFontAttributeName : [UIFont italicSystemFontOfSize:16],
                 NSBackgroundColorAttributeName : [UIColor colorWithRed:0 green:0 blue:1. alpha:0.1]
             },
             @"pre" : @{
-                NSFontAttributeName : [UIFont fontWithName:@"Courier" size:14]
+                NSFontAttributeName : [UIFont fontWithName:[self preFontName] size:14*[self fontSizeModifier]]
             },
             @"(u|ins)" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)},
             @"del" : @{ NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle) },
-            @"h1" : @{ NSFontAttributeName : [UIFont systemFontOfSize:22]},
-            @"h2" : @{ NSFontAttributeName : [UIFont systemFontOfSize:21]},
-            @"h3" : @{ NSFontAttributeName : [UIFont systemFontOfSize:20]},
-            @"h4" : @{ NSFontAttributeName : [UIFont systemFontOfSize:19]},
-            @"h5" : @{ NSFontAttributeName : [UIFont systemFontOfSize:18]},
-            @"h6" : @{ NSFontAttributeName : [UIFont systemFontOfSize:17]},
+            @"h1" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:22*[self fontSizeModifier]]},
+            @"h2" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:21*[self fontSizeModifier]]},
+            @"h3" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:20*[self fontSizeModifier]]},
+            @"h4" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:19*[self fontSizeModifier]]},
+            @"h5" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:18*[self fontSizeModifier]]},
+            @"h6" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:17*[self fontSizeModifier]]},
             @"(ul|ol)" : @{ NSParagraphStyleAttributeName : [self listParagraphStyle]},
         };
     });
     
     return options;
 }
+
+-(NSDictionary*) dynamicAttributesForTagRegex
+{
+    static NSDictionary* options = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        options = @{
+        @"a" : [^NSDictionary*(NSDictionary* tagAttributes) {
+            return @{
+            NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
+            NSForegroundColorAttributeName : [UIColor blueColor],
+            kALHtmlToAttributedParsedHref : tagAttributes[@"href"],
+            //Required to uniquely identify the text, otherwise if 2 links are side by side they get combined
+            kALHtmlToAttributedId : [NSDate date]
+            };
+        } copy],
+        };
+    });
+    return options;
+}
+typedef NSDictionary* (^AttributesBlock)(NSDictionary* tagAttributes);
 
 -(NSDictionary *) attributesForTag:(NSString*)tag tagAttributes:(NSDictionary*)tagAttributes {
     NSDictionary *staticAttributes = [self matcher:[self staticAttributesForTagRegex] forTag:tag];
@@ -321,6 +347,7 @@ static TrimCharactersType kTrimCharactersTypeDefault = kTrimCharactersAllWhiteSp
                    hppleParsedString:(NSMutableAttributedString*)hppleParsedString
                     parentAttributes:(NSDictionary*)parentAttributes
 {
+    //Apply collected NSAttributes from recursive descent
     if ([element isTextNode]) {
         NSString* text = [self trimmedElementWithTag:element.parent.tagName content:element.content];
         if (text.length) {
@@ -334,21 +361,29 @@ static TrimCharactersType kTrimCharactersTypeDefault = kTrimCharactersAllWhiteSp
         NSDictionary* childAttributes = parentAttributes;
         NSString* tagName = element.tagName;
         if (tagName) {
+            
+            //NSAttributes for this tag
             NSDictionary* attributesForTag = [self attributesForTag:tagName tagAttributes:element.attributes];
             childAttributes = [attributesForTag dictionaryByMergingWith:parentAttributes];
-
+            
+            //Actions to prepend for this tag
             NSString* preTag = [self beforeStringForTag:tagName];
             if (preTag) {
                 [hppleParsedString appendAttributedString:
                  [[NSAttributedString alloc] initWithString:preTag
                                                  attributes:childAttributes]];
             }
+            
         }
+        
+        //Recursion
         for (TFHppleElement *child in element.children) {
             [self recursiveXMLParseWithElement:child
                               hppleParsedString:hppleParsedString
                                parentAttributes:childAttributes];
         }
+        
+        //Actions to post-append for this tag - newlines
         if (tagName) {
             NSString* postTag = [self newLineActionForTag:tagName content:hppleParsedString.string];
             if (postTag) {
@@ -371,5 +406,26 @@ static TrimCharactersType kTrimCharactersTypeDefault = kTrimCharactersAllWhiteSp
     }
 }
 
+-(BOOL) recursiveContainsLinkWithElements:(NSArray*)elements
+{
+    for (TFHppleElement *element in elements) {
+        BOOL containsLink = [self recursiveContainsLinkWithElement:element];
+        if (containsLink) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
+-(BOOL) recursiveContainsLinkWithElement:(TFHppleElement *)element
+{
+    if(element.tagName &&
+       [element.tagName isEqualToString:@"a"] &&
+       [element.attributes[@"href"] length] > 0 )
+    {
+        return YES;
+    }
+    return [self recursiveContainsLinkWithElements:element.children];
+    return NO;
+}
 @end
