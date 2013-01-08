@@ -8,15 +8,29 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 
 @implementation ALHtmlToAttributedStringParser
 
-+(NSAttributedString*) attributedStringWithHTMLData:(NSData*)data
+-(id) init
 {
-    return [self attributedStringWithHTMLData:data trim:NO];
+    self = [super init];
+    if (self) {
+        self.fontSizeModifier = 1.0;
+        self.bodyFontName = @"Helvetica";
+        self.boldFontName = @"Helvetica-Bold";
+        self.italicsFontName = @"Helvetica-Oblique";
+        self.headingFontName = @"HelveticaNeue";
+        self.preFontName = @"Courier";
+
+    }
+    return self;
 }
 
-+(NSAttributedString*) attributedStringWithHTMLData:(NSData*)data
-                                               trim:(BOOL)trim
++(ALHtmlToAttributedStringParser*) parser
 {
-    NSAttributedString* attrString = [[[[self class] alloc] init] attributedStringWithHTMLData:data];    
+    return [[[self class] alloc] init];
+}
+
+-(NSAttributedString*) attributedStringWithHTMLData:(NSData*)data trim:(BOOL)trim
+{
+    NSAttributedString* attrString = [self attributedStringWithHTMLData:data];
     return (trim ? [self trimmedAttributedString:attrString] : attrString);
 }
 
@@ -31,11 +45,11 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     return hppleParsedString;
 }
 
-+(BOOL) doesHtmlDataContainLinks:(NSData*)data
+-(BOOL) doesHtmlDataContainLinks:(NSData*)data
 {
     TFHpple *hpple = [TFHpple hppleWithXMLData:data];
     NSArray *root = [hpple searchWithXPathQuery:@"/"];
-    return [[[[self class] alloc] init] recursiveContainsLinkWithElements:root];
+    return [self recursiveContainsLinkWithElements:root];
 }
 
 #pragma mark - Helpers
@@ -59,7 +73,7 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     return match ? matchers[match] : nil;
 }
 
-+(NSAttributedString*) trimmedAttributedString:(NSAttributedString*)attrString
+-(NSAttributedString*) trimmedAttributedString:(NSAttributedString*)attrString
 {
     NSString *trimmedString = [attrString.string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (trimmedString.length == attrString.string.length) {
@@ -94,7 +108,6 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 -(NSParagraphStyle*) listParagraphStyle
 {
     NSMutableParagraphStyle* blockQuoteParagraphStyle = [[NSMutableParagraphStyle alloc] init];
-    blockQuoteParagraphStyle.firstLineHeadIndent = 20.;
     blockQuoteParagraphStyle.headIndent = 20.;
     return blockQuoteParagraphStyle;
 }
@@ -104,26 +117,6 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     NSMutableParagraphStyle* pParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     pParagraphStyle.paragraphSpacing = 5.;
     return pParagraphStyle;
-}
-
--(NSString*) bodyFontName {
-    return @"Helvetica";
-}
--(NSString*) boldFontName {
-    return @"Helvetica-Bold";
-}
--(NSString*) italicsFontName {
-    return @"Helvetica-Oblique";
-}
--(NSString*) headingFontName {
-    return @"HelveticaNeue";
-}
--(NSString*) preFontName {
-    return @"Courier";
-}
-
--(CGFloat) fontSizeModifier {
-    return 1.;
 }
 
 -(NSDictionary*) staticAttributesForTagRegex
