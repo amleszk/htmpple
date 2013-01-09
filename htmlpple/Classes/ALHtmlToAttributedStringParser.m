@@ -45,7 +45,7 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     return hppleParsedString;
 }
 
--(BOOL) doesHtmlDataContainLinks:(NSData*)data
+-(BOOL) htmlDataContainsLinks:(NSData*)data
 {
     TFHpple *hpple = [TFHpple hppleWithXMLData:data];
     NSArray *root = [hpple searchWithXPathQuery:@"/"];
