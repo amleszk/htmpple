@@ -4,7 +4,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface ALDemoTextViewController : UIViewController <ALLinkTextViewDelegate>
-@property (retain) ALLinkTextView *exampleLabel;
+@property (retain) ALLinkTextView *exampleTextView;
 @property NSInteger nextDataset;
 @property (retain) UIButton *nextDataButton;
 
@@ -16,16 +16,17 @@
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"test-data-%d",self.nextDataset] ofType:@"html"];
     NSData* data = [[NSData alloc] initWithContentsOfFile:path];
-    NSAttributedString* newString = [[ALHtmlToAttributedStringParser parser] attributedStringWithHTMLData:data trim:YES];
-    [self.exampleLabel setLinkifiedAttributedText:newString];
-    CGSize size = [self.exampleLabel sizeThatFits:self.view.frame.size];
-    self.exampleLabel.frame = (CGRect){.origin=CGPointZero,size=size};
+    NSAttributedString* newString = [[ALHtmlToAttributedStringParser parser] attributedStringWithHTMLData:data trim:YES];    
+    [self.exampleTextView setLinkifiedAttributedText:newString];
+
+    CGSize size = [self.exampleTextView sizeThatFits:self.view.frame.size];
+    self.exampleTextView.frame = (CGRect){.origin=CGPointZero,size=size};
     self.nextDataset = (self.nextDataset+1)%5;
 }
 
 -(void) dealloc
 {
-    self.exampleLabel.linkDelegate = nil;
+    self.exampleTextView.linkDelegate = nil;
 }
 
 -(void) viewDidLayoutSubviews
@@ -33,8 +34,8 @@
     CGRect bounds = self.view.bounds;
     CGRect boundsWithInset = CGRectInset(bounds, 20, 20);
     
-    CGSize size = [self.exampleLabel sizeThatFits:boundsWithInset.size];
-    self.exampleLabel.frame = (CGRect){.origin=boundsWithInset.origin,size=size};
+    CGSize size = [self.exampleTextView sizeThatFits:boundsWithInset.size];
+    self.exampleTextView.frame = (CGRect){.origin=boundsWithInset.origin,size=size};
     
     self.nextDataButton.frame = (CGRect){.origin={0,bounds.size.height-50},.size={bounds.size.width,50}};
 }
@@ -45,13 +46,13 @@
 {
     self.view = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.exampleLabel = [[ALLinkTextView alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:self.exampleLabel];
-    self.exampleLabel.editable = NO;
-    self.exampleLabel.linkDelegate = self;
-	self.exampleLabel.layer.cornerRadius = 5.0f;
-	self.exampleLabel.layer.borderColor = [[UIColor darkGrayColor] CGColor];
-	self.exampleLabel.layer.borderWidth = 1.0f;
+    self.exampleTextView = [[ALLinkTextView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:self.exampleTextView];
+    self.exampleTextView.editable = NO;
+    self.exampleTextView.linkDelegate = self;
+	self.exampleTextView.layer.cornerRadius = 5.0f;
+	self.exampleTextView.layer.borderColor = [[UIColor darkGrayColor] CGColor];
+	self.exampleTextView.layer.borderWidth = 1.0f;
     
     
     self.nextDataset = 0;

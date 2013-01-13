@@ -127,7 +127,8 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
         options = @{
             @"p" : @{
                 NSParagraphStyleAttributeName : [self pParagraphStyle],
-                NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]]
+                NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]],
+                NSForegroundColorAttributeName : [UIColor blackColor]
             },
             @"(i|em)" : @{
                 NSFontAttributeName : [UIFont fontWithName:[self italicsFontName] size:14*[self fontSizeModifier]]},
