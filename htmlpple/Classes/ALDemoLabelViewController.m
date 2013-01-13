@@ -16,7 +16,7 @@
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"test-data-%d",self.nextDataset] ofType:@"html"];
     NSData* data = [[NSData alloc] initWithContentsOfFile:path];
-    NSAttributedString* newString = [ALHtmlToAttributedStringParser attributedStringWithHTMLData:data trim:YES];
+    NSAttributedString* newString = [[ALHtmlToAttributedStringParser parser] attributedStringWithHTMLData:data trim:YES];
     self.exampleLabel.attributedText =  newString;
     CGSize size = [self.exampleLabel sizeThatFits:self.view.frame.size];
     self.exampleLabel.frame = (CGRect){.origin=CGPointZero,size=size};
