@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>UnitTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>htmlpple.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>6104D19716B28CD500B5E464</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>61E8E3F91695C5B600DC5C83</key>
 		<dict>
 			<key>primary</key>

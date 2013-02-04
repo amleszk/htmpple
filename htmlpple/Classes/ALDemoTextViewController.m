@@ -12,6 +12,16 @@
 
 @implementation ALDemoTextViewController
 
+-(void) nextDataSetFileIndex
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"test-data-%d",self.nextDataset+1] ofType:@"html"];
+    if (path) {
+        self.nextDataset = self.nextDataset+1;
+    } else {
+        self.nextDataset = 0;
+    }
+}
+
 -(void) newDataSet
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"test-data-%d",self.nextDataset] ofType:@"html"];
@@ -20,8 +30,9 @@
     [self.exampleTextView setLinkifiedAttributedText:newString];
 
     CGSize size = [self.exampleTextView sizeThatFits:self.view.frame.size];
+    NSLog(@"size: %@",NSStringFromCGSize(size));
     self.exampleTextView.frame = (CGRect){.origin=CGPointZero,size=size};
-    self.nextDataset = (self.nextDataset+1)%5;
+    [self nextDataSetFileIndex];
 }
 
 -(void) dealloc
@@ -56,15 +67,16 @@
     
     
     self.nextDataset = 0;
-    [self newDataSet];
-    
-    
-    //[self runPerformanceTest];
     
     self.nextDataButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.nextDataButton addTarget:self action:@selector(newDataSet) forControlEvents:UIControlEventTouchUpInside];
     [self.nextDataButton setTitle:@"Next" forState:UIControlStateNormal];
     [self.view addSubview:self.nextDataButton];
+}
+
+-(void) viewDidLoad
+{
+    [self newDataSet];
 }
 
 -(void) runPerformanceTest
@@ -88,7 +100,7 @@
                       otherButtonTitles:nil] show];
 }
 
--(void) textView:(ALLinkTextView*)textView didLongPressLinkWithHref:(NSString*)href view:(UIView*)view;
+-(void) textView:(ALLinkTextView*)textView didLongPressLinkWithHref:(NSString*)href textRect:(CGRect)textRect
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Long press"
                                                              delegate:nil
@@ -96,7 +108,7 @@
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:href,nil];
     
-    CGRect viewRect = [view convertRect:view.bounds toView:nil];
+    CGRect viewRect = [textView convertRect:textRect toView:nil];
     [actionSheet showFromRect:viewRect
                        inView:[[UIApplication sharedApplication] keyWindow]
                      animated:YES];

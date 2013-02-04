@@ -6,6 +6,11 @@
 NSString *kALHtmlToAttributedParsedHref = @"ALHtmlToAttributedParsedHref";
 NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 
+@interface ALHtmlToAttributedStringParser ()
+@property NSDictionary* staticAttributesStorage;
+@property dispatch_once_t staticAttributesOncePredicate;
+@end
+
 @implementation ALHtmlToAttributedStringParser
 
 -(id) init
@@ -18,7 +23,9 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
         self.italicsFontName = @"Helvetica-Oblique";
         self.headingFontName = @"HelveticaNeue";
         self.preFontName = @"Courier";
-
+        self.textColorDefault = [UIColor blackColor];
+        self.textColorLink = [UIColor blueColor];
+        self.staticAttributesStorage = nil;
     }
     return self;
 }
@@ -45,6 +52,12 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     return hppleParsedString;
 }
 
+-(void) reloadData
+{
+    self.staticAttributesStorage = nil;
+    self.staticAttributesOncePredicate = nil;
+}
+
 -(BOOL) htmlDataContainsLinks:(NSData*)data
 {
     TFHpple *hpple = [TFHpple hppleWithXMLData:data];
@@ -57,17 +70,15 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 -(id) matcher:(NSDictionary*)matchers forTag:(NSString*)tag
 {
     NSString* match = nil;
-    NSError *error;
-
-    for (NSString *regexPattern in matchers) {
-        NSRegularExpression *tagRegex = [NSRegularExpression regularExpressionWithPattern:regexPattern
-                                                                                  options:0
-                                                                                    error:&error];
-        NSRange range = [tagRegex rangeOfFirstMatchInString:tag options:0 range:(NSRange){0,tag.length}];
-        if(range.location == 0 && range.length == tag.length) {
-            match = regexPattern;
-            break;
+    for (NSString *tagsToMatchString in matchers) {
+        NSArray * tagsToMatch = [tagsToMatchString componentsSeparatedByString:@"|"];
+        for (NSString *tagToMatch in tagsToMatch) {
+            if([tagToMatch isEqualToString:tag]) {
+                match = tagsToMatchString;
+                break;
+            }
         }
+        if (match) break;
     }
     
     return match ? matchers[match] : nil;
@@ -82,14 +93,18 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     
     NSMutableAttributedString *mutableAttrStr = [attrString mutableCopy];
     NSRange subRange = [attrString.string rangeOfString:trimmedString];
+    //Empty string after trimming
+    if (subRange.location== NSNotFound) {
+        return [[NSAttributedString alloc] init];
+    }
+    
     [mutableAttrStr beginEditing];
-    if (subRange.location>0) {
+    if (subRange.location!= NSNotFound && subRange.location>0) {
         [mutableAttrStr deleteCharactersInRange:(NSRange){0,subRange.location}];
     }
-    NSUInteger afterLocation = subRange.length-subRange.location;
-    if (afterLocation<mutableAttrStr.string.length-subRange.location) {
-        NSUInteger afterLength = mutableAttrStr.string.length-afterLocation;
-        [mutableAttrStr deleteCharactersInRange:(NSRange){afterLocation,afterLength}];
+    if (subRange.length<mutableAttrStr.string.length) {
+        NSUInteger afterTrim = mutableAttrStr.string.length-subRange.length;
+        [mutableAttrStr deleteCharactersInRange:(NSRange){subRange.length,afterTrim}];
     }
     [mutableAttrStr endEditing];
     return mutableAttrStr;
@@ -121,20 +136,19 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 
 -(NSDictionary*) staticAttributesForTagRegex
 {
-    static NSDictionary* options = nil;
-    static dispatch_once_t oncePredicate;
+    dispatch_once_t oncePredicate = self.staticAttributesOncePredicate;
     dispatch_once(&oncePredicate, ^{
-        options = @{
+        self.staticAttributesStorage = @{
             @"p" : @{
                 NSParagraphStyleAttributeName : [self pParagraphStyle],
                 NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]],
-                NSForegroundColorAttributeName : [UIColor blackColor]
+                NSForegroundColorAttributeName : self.textColorDefault
             },
-            @"(i|em)" : @{
+            @"i|em" : @{
                 NSFontAttributeName : [UIFont fontWithName:[self italicsFontName] size:14*[self fontSizeModifier]]},
             @"thead" : @{ NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:12*[self fontSizeModifier]]},
             @"tbody" : @{ NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:12*[self fontSizeModifier]]},
-            @"(b|strong|thead)" : @{
+            @"b|strong|thead" : @{
                 NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:14*[self fontSizeModifier]]},
             @"blockquote" : @{
                 NSParagraphStyleAttributeName : [self blockQuoteParagraphStyle],
@@ -143,19 +157,19 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
             @"pre" : @{
                 NSFontAttributeName : [UIFont fontWithName:[self preFontName] size:14*[self fontSizeModifier]]
             },
-            @"(u|ins)" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)},
+            @"u|ins" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)},
             @"del" : @{ NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle) },
-            @"h1" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:22*[self fontSizeModifier]]},
-            @"h2" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:21*[self fontSizeModifier]]},
-            @"h3" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:20*[self fontSizeModifier]]},
-            @"h4" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:19*[self fontSizeModifier]]},
-            @"h5" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:18*[self fontSizeModifier]]},
-            @"h6" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:17*[self fontSizeModifier]]},
-            @"(ul|ol)" : @{ NSParagraphStyleAttributeName : [self listParagraphStyle]},
+            @"h1" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:19*[self fontSizeModifier]]},
+            @"h2" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:16*[self fontSizeModifier]]},
+            @"h3" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:14*[self fontSizeModifier]]},
+            @"h4" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:13*[self fontSizeModifier]]},
+            @"h5" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:12*[self fontSizeModifier]]},
+            @"h6" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:11*[self fontSizeModifier]]},
+            @"ul|ol" : @{ NSParagraphStyleAttributeName : [self listParagraphStyle]},
         };
     });
     
-    return options;
+    return self.staticAttributesStorage;
 }
 
 -(NSDictionary*) dynamicAttributesForTagRegex
@@ -166,11 +180,11 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
         options = @{
         @"a" : [^NSDictionary*(NSDictionary* tagAttributes) {
             return @{
-            NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
-            NSForegroundColorAttributeName : [UIColor blueColor],
-            kALHtmlToAttributedParsedHref : tagAttributes[@"href"],
-            //Required to uniquely identify the text, otherwise if 2 links are side by side they get combined
-            kALHtmlToAttributedId : [NSDate date]
+                NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
+                NSForegroundColorAttributeName : self.textColorLink,
+                kALHtmlToAttributedParsedHref : tagAttributes[@"href"],
+                //Required to uniquely identify the text, otherwise if 2 links are side by side they get combined
+                kALHtmlToAttributedId : [NSDate date]
             };
         } copy],
         };
@@ -209,8 +223,8 @@ static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersN
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         options = @{
-            @"(br|tr|table)" : @(kNewLineCharactersAlways),
-            @"(p|h1|h2|h3|h4|h5|h6|li|blockquote)" : @(kNewLineCharactersOneNewLineOnly),
+            @"br|tr|table|ul|ol" : @(kNewLineCharactersAlways),
+            @"p|h1|h2|h3|h4|h5|h6|li|blockquote" : @(kNewLineCharactersOneNewLineOnly),
         };
     });
     return options;
@@ -251,7 +265,7 @@ static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersN
     dispatch_once(&oncePredicate, ^{
         beforeStringForTagRegex = @{
             @"li" : @"• ",
-            @"(td|th)" : @" | "
+            @"td|th" : @" | "
         };
     });
     return beforeStringForTagRegex;
@@ -278,9 +292,9 @@ static TrimCharactersType kTrimCharactersTypeDefault = kTrimCharactersAllWhiteSp
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         trimTagRegex = @{
-            @"(pre|code|i|em|b|strong|u|ins|del)" : @(kTrimCharactersNone),
-            @"(p|h1|h2|h3|h4|h5|h6|li|br|a)" : @(kTrimCharactersAllWhiteSpaceAndLeaveOneSpace),
-            @"(div|blockquote)" : @(kTrimCharactersAllWhiteSpace),
+            @"pre|code|i|em|b|strong|u|ins|del" : @(kTrimCharactersNone),
+            @"p|h1|h2|h3|h4|h5|h6|li|br|a" : @(kTrimCharactersAllWhiteSpaceAndLeaveOneSpace),
+            @"div|blockquote" : @(kTrimCharactersAllWhiteSpace),
         };
     });
     return trimTagRegex;

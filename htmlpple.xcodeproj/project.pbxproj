@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6104D19916B28CD500B5E464 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E41C1695C5B600DC5C83 /* SenTestingKit.framework */; };
+		6104D19A16B28CD500B5E464 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E3FE1695C5B600DC5C83 /* UIKit.framework */; };
+		6104D19B16B28CD500B5E464 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4001695C5B600DC5C83 /* Foundation.framework */; };
+		6104D1A116B28CD500B5E464 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6104D19F16B28CD500B5E464 /* InfoPlist.strings */; };
+		6104D1A416B28CD500B5E464 /* ALHtmlToAttributedStringParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6104D1A316B28CD500B5E464 /* ALHtmlToAttributedStringParserTests.m */; };
+		6104D1AA16B28ED000B5E464 /* ALHtmlToAttributedStringParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4381695C77700DC5C83 /* ALHtmlToAttributedStringParser.m */; };
+		6104D1AB16B28EDC00B5E464 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43C1695C81E00DC5C83 /* TFHpple.m */; };
+		6104D1AC16B28EDC00B5E464 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43E1695C81E00DC5C83 /* TFHppleElement.m */; };
+		6104D1AD16B28EDC00B5E464 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4401695C81E00DC5C83 /* XPathQuery.m */; };
+		6104D1AE16B28EE100B5E464 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E44B1695C9EB00DC5C83 /* libxml2.2.dylib */; };
+		6104D1AF16B28F8000B5E464 /* NSDictionary+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4481695C98C00DC5C83 /* NSDictionary+Merge.m */; };
+		6178FBBB16BD283A00C1BAAC /* test-data-5.html in Resources */ = {isa = PBXBuildFile; fileRef = 6178FBBA16BD283A00C1BAAC /* test-data-5.html */; };
+		6178FBBE16BD2BDA00C1BAAC /* test-data-6.html in Resources */ = {isa = PBXBuildFile; fileRef = 6178FBBD16BD2BDA00C1BAAC /* test-data-6.html */; };
 		6195EB251699810400995DFF /* test-data-3.html in Resources */ = {isa = PBXBuildFile; fileRef = 6195EB241699810400995DFF /* test-data-3.html */; };
 		6195EB2B1699849C00995DFF /* ALDemoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6195EB2A1699849C00995DFF /* ALDemoTextViewController.m */; };
 		6195EB2D16998AC200995DFF /* test-data-4.html in Resources */ = {isa = PBXBuildFile; fileRef = 6195EB2C16998AC200995DFF /* test-data-4.html */; };
@@ -32,7 +45,24 @@
 		61E8E4C61697CF2900DC5C83 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4C51697CF2900DC5C83 /* README.markdown */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6104D1B016B290BA00B5E464 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61E8E3F11695C5B600DC5C83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 61E8E3F91695C5B600DC5C83;
+			remoteInfo = htmlpple;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		6104D19816B28CD500B5E464 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6104D19E16B28CD500B5E464 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		6104D1A016B28CD500B5E464 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6104D1A316B28CD500B5E464 /* ALHtmlToAttributedStringParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALHtmlToAttributedStringParserTests.m; sourceTree = "<group>"; };
+		6104D1A516B28CD500B5E464 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
+		6178FBBA16BD283A00C1BAAC /* test-data-5.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-5.html"; sourceTree = "<group>"; };
+		6178FBBD16BD2BDA00C1BAAC /* test-data-6.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-6.html"; sourceTree = "<group>"; };
 		6195EB241699810400995DFF /* test-data-3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-3.html"; sourceTree = "<group>"; };
 		6195EB291699849C00995DFF /* ALDemoTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALDemoTextViewController.h; path = Classes/ALDemoTextViewController.h; sourceTree = "<group>"; };
 		6195EB2A1699849C00995DFF /* ALDemoTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALDemoTextViewController.m; path = Classes/ALDemoTextViewController.m; sourceTree = "<group>"; };
@@ -72,6 +102,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6104D19416B28CD500B5E464 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6104D19916B28CD500B5E464 /* SenTestingKit.framework in Frameworks */,
+				6104D19A16B28CD500B5E464 /* UIKit.framework in Frameworks */,
+				6104D19B16B28CD500B5E464 /* Foundation.framework in Frameworks */,
+				6104D1AE16B28EE100B5E464 /* libxml2.2.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61E8E3F71695C5B600DC5C83 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -86,10 +127,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6104D19C16B28CD500B5E464 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				6104D1A316B28CD500B5E464 /* ALHtmlToAttributedStringParserTests.m */,
+				6104D19D16B28CD500B5E464 /* Supporting Files */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		6104D19D16B28CD500B5E464 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6104D19E16B28CD500B5E464 /* UnitTests-Info.plist */,
+				6104D19F16B28CD500B5E464 /* InfoPlist.strings */,
+				6104D1A516B28CD500B5E464 /* UnitTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		61E8E3EF1695C5B600DC5C83 = {
 			isa = PBXGroup;
 			children = (
 				61E8E4041695C5B600DC5C83 /* htmlpple */,
+				6104D19C16B28CD500B5E464 /* UnitTests */,
 				61E8E3FD1695C5B600DC5C83 /* Frameworks */,
 				61E8E3FB1695C5B600DC5C83 /* Products */,
 			);
@@ -99,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				61E8E3FA1695C5B600DC5C83 /* htmlpple.app */,
+				6104D19816B28CD500B5E464 /* UnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +204,8 @@
 				61E8E4C21697459800DC5C83 /* test-data-2.html */,
 				6195EB241699810400995DFF /* test-data-3.html */,
 				6195EB2C16998AC200995DFF /* test-data-4.html */,
+				6178FBBA16BD283A00C1BAAC /* test-data-5.html */,
+				6178FBBD16BD2BDA00C1BAAC /* test-data-6.html */,
 				61E8E4061695C5B600DC5C83 /* htmlpple-Info.plist */,
 				61E8E40A1695C5B600DC5C83 /* main.m */,
 				61E8E40C1695C5B600DC5C83 /* htmlpple-Prefix.pch */,
@@ -179,6 +243,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6104D19716B28CD500B5E464 /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6104D1A816B28CD500B5E464 /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				6104D19316B28CD500B5E464 /* Sources */,
+				6104D19416B28CD500B5E464 /* Frameworks */,
+				6104D19516B28CD500B5E464 /* Resources */,
+				6104D19616B28CD500B5E464 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6104D1B116B290BA00B5E464 /* PBXTargetDependency */,
+			);
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = 6104D19816B28CD500B5E464 /* UnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		61E8E3F91695C5B600DC5C83 /* htmlpple */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61E8E42D1695C5B600DC5C83 /* Build configuration list for PBXNativeTarget "htmlpple" */;
@@ -219,11 +302,20 @@
 			projectRoot = "";
 			targets = (
 				61E8E3F91695C5B600DC5C83 /* htmlpple */,
+				6104D19716B28CD500B5E464 /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6104D19516B28CD500B5E464 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6104D1A116B28CD500B5E464 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61E8E3F81695C5B600DC5C83 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,12 +329,43 @@
 				61E8E4C61697CF2900DC5C83 /* README.markdown in Resources */,
 				6195EB251699810400995DFF /* test-data-3.html in Resources */,
 				6195EB2D16998AC200995DFF /* test-data-4.html in Resources */,
+				6178FBBB16BD283A00C1BAAC /* test-data-5.html in Resources */,
+				6178FBBE16BD2BDA00C1BAAC /* test-data-6.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6104D19616B28CD500B5E464 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		6104D19316B28CD500B5E464 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6104D1A416B28CD500B5E464 /* ALHtmlToAttributedStringParserTests.m in Sources */,
+				6104D1AA16B28ED000B5E464 /* ALHtmlToAttributedStringParser.m in Sources */,
+				6104D1AB16B28EDC00B5E464 /* TFHpple.m in Sources */,
+				6104D1AC16B28EDC00B5E464 /* TFHppleElement.m in Sources */,
+				6104D1AD16B28EDC00B5E464 /* XPathQuery.m in Sources */,
+				6104D1AF16B28F8000B5E464 /* NSDictionary+Merge.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61E8E3F61695C5B600DC5C83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -262,7 +385,62 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6104D1B116B290BA00B5E464 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 61E8E3F91695C5B600DC5C83 /* htmlpple */;
+			targetProxy = 6104D1B016B290BA00B5E464 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6104D19F16B28CD500B5E464 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6104D1A016B28CD500B5E464 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		6104D1A616B28CD500B5E464 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/htmlpple.app/htmlpple";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		6104D1A716B28CD500B5E464 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/htmlpple.app/htmlpple";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
+				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		61E8E42B1695C5B600DC5C83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -342,6 +520,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6104D1A816B28CD500B5E464 /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6104D1A616B28CD500B5E464 /* Debug */,
+				6104D1A716B28CD500B5E464 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		61E8E3F41695C5B600DC5C83 /* Build configuration list for PBXProject "htmlpple" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

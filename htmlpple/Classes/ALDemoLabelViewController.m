@@ -12,6 +12,16 @@
 
 @implementation ALDemoLabelViewController
 
+-(void) nextDataSetFileIndex
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"test-data-%d",self.nextDataset+1] ofType:@"html"];
+    if (path) {
+        self.nextDataset = self.nextDataset+1;
+    } else {
+        self.nextDataset = 0;
+    }
+}
+
 -(void) newDataSet
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"test-data-%d",self.nextDataset] ofType:@"html"];
@@ -19,8 +29,9 @@
     NSAttributedString* newString = [[ALHtmlToAttributedStringParser parser] attributedStringWithHTMLData:data trim:YES];
     self.exampleLabel.attributedText =  newString;
     CGSize size = [self.exampleLabel sizeThatFits:self.view.frame.size];
+    //NSLog(@"size: %@",NSStringFromCGSize(size));
     self.exampleLabel.frame = (CGRect){.origin=CGPointZero,size=size};
-    self.nextDataset = (self.nextDataset+1)%5;
+    [self nextDataSetFileIndex];
 }
 
 -(void) viewDidLayoutSubviews
@@ -49,8 +60,6 @@
     
     self.nextDataset = 0;
     [self newDataSet];
-    
-    //[self runPerformanceTest];
     
     self.nextDataButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.nextDataButton addTarget:self action:@selector(newDataSet) forControlEvents:UIControlEventTouchUpInside];

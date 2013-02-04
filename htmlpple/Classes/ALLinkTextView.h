@@ -3,7 +3,7 @@
 @protocol ALLinkTextViewDelegate
 @required
 -(void) textView:(ALLinkTextView*)textView didTapLinkWithHref:(NSString*)href;
--(void) textView:(ALLinkTextView*)textView didLongPressLinkWithHref:(NSString*)href view:(UIView*)view;
+-(void) textView:(ALLinkTextView*)textView didLongPressLinkWithHref:(NSString*)href textRect:(CGRect)textRect;
 @end
 
 
@@ -13,6 +13,5 @@
 @property UIColor *linkColorActive;
 @property UIColor *linkColorDefault;
 @property (unsafe_unretained) id<ALLinkTextViewDelegate> linkDelegate;
-@property (readonly) BOOL isLinkActive;
 @property BOOL allowInteractionOtherThanLinks;
 @end
