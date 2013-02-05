@@ -26,11 +26,11 @@
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"test-data-%d",self.nextDataset] ofType:@"html"];
     NSData* data = [[NSData alloc] initWithContentsOfFile:path];
-    NSAttributedString* newString = [[ALHtmlToAttributedStringParser parser] attributedStringWithHTMLData:data trim:YES];    
+    NSAttributedString* newString = [[ALHtmlToAttributedStringParser parser] attributedStringWithHTMLData:data trim:YES];
     [self.exampleTextView setLinkifiedAttributedText:newString];
 
     CGSize size = [self.exampleTextView sizeThatFits:self.view.frame.size];
-    NSLog(@"size: %@",NSStringFromCGSize(size));
+//    NSLog(@"size: %@",NSStringFromCGSize(size));
     self.exampleTextView.frame = (CGRect){.origin=CGPointZero,size=size};
     [self nextDataSetFileIndex];
 }

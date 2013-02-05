@@ -24,12 +24,8 @@
         self.linkColorActive = [self.linkColorDefault colorWithAlphaComponent:0.5];
         self.backgroundColor = [UIColor clearColor];
         self.allowInteractionOtherThanLinks = YES;
-        self.contentInset = (UIEdgeInsets){.top=-4,.right=-4,.bottom=-5,.left=-5};
         self.multipleTouchEnabled = NO;
         self.delaysContentTouches = NO;
-        self.scrollEnabled = NO;
-        self.panGestureRecognizer.cancelsTouchesInView = NO;
-        
         self.touchInterceptView = [[UIView alloc] initWithFrame:frame];
         self.touchInterceptView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:self.touchInterceptView];
@@ -59,8 +55,10 @@
 
 - (void)handleTap:(UITapGestureRecognizer *)gesture {
     
-    if(gesture.state == UIGestureRecognizerStateEnded && self.activeLinkIndex != NSNotFound) {
-        [self.linkDelegate textView:self didTapLinkWithHref:self.linkRanges[self.activeLinkIndex][1]];
+    CGPoint point = [gesture locationInView:self];
+    NSInteger linkIndex = [self linkIndexForPoint:point textRect:nil];
+    if(linkIndex != NSNotFound) {
+        [self.linkDelegate textView:self didTapLinkWithHref:self.linkRanges[linkIndex][1]];
     }
 }
 
@@ -84,12 +82,6 @@
     self.activeLinkIndex = NSNotFound;
     NSLog(@"unHighlightActiveLink");
 }
-
-//-(void)linkButtonTapped:(UIButton*)buttonLink
-//{
-//    [self highlightLink:NO forRange:[self.linkRanges[buttonLink.tag][0] rangeValue]];
-//    [self.linkDelegate textView:self didTapLinkWithHref:self.linkRanges[buttonLink.tag][1]];
-//}
 
 -(NSInteger)linkIndexForPoint:(CGPoint)point textRect:(CGRect*)textRect
 {
@@ -123,7 +115,7 @@
 
 -(void) setLinkifiedAttributedText:(NSAttributedString *)attributedText
 {
-    [super setAttributedText:attributedText];
+    [self setAttributedText:attributedText];
     [self.linkRanges removeAllObjects];
     [attributedText enumerateAttribute:kALHtmlToAttributedParsedHref
                                inRange:(NSRange){0,self.text.length}
@@ -155,9 +147,6 @@
     } else {
         return nil;
     }
-    
-//    if (hitView == self) return nil;
-//    else return hitView;
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -167,7 +156,6 @@
     for (UITouch *touch in allTouches)
     {
         CGPoint point = [touch locationInView:touch.view];
-        NSLog(@"touchesBegan: %@",NSStringFromCGPoint(point));
         CGRect textRect;
         NSInteger linkIndex = [self linkIndexForPoint:point textRect:&textRect];
         if (linkIndex!= NSNotFound) {
@@ -185,7 +173,6 @@
     for (UITouch *touch in allTouches)
     {
         CGPoint point = [touch locationInView:touch.view];
-        NSLog(@"touchesMoved: %@",NSStringFromCGPoint(point));
         NSInteger linkIndex = [self linkIndexForPoint:point textRect:nil];
         if (linkIndex== NSNotFound && self.activeLinkIndex != NSNotFound) {
             [self unHighlightActiveLink];
@@ -197,14 +184,12 @@
 {
     [super touchesEnded:touches withEvent:event];
     [self unHighlightActiveLink];
-    NSLog(@"touchesEnded");
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesCancelled:touches withEvent:event];
-    [self unHighlightActiveLink];    
-    NSLog(@"touchesCancelled");
+    [self unHighlightActiveLink];
 }
 
 @end

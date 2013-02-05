@@ -19,6 +19,6 @@ extern NSString *kALHtmlToAttributedParsedHref;
 -(BOOL) htmlDataContainsLinks:(NSData*)data;
 -(NSAttributedString*) attributedStringWithHTMLData:(NSData*)data;
 -(NSAttributedString*) attributedStringWithHTMLData:(NSData*)data trim:(BOOL)trim;
--(void) reloadData;
+-(void) reloadTagData;
 
 @end
