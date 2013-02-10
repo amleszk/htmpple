@@ -13,12 +13,16 @@ extern NSString *kALHtmlToAttributedParsedHref;
 @property NSString* headingFontName;
 @property NSString* preFontName;
 
+@property UIColor* backgroundColorQuote;
 @property UIColor* textColorDefault;
 @property UIColor* textColorLink;
 
 -(BOOL) htmlDataContainsLinks:(NSData*)data;
+-(NSArray*) htmlData:(NSData*)data linksMatchingPredicate:(BOOL (^)(NSString *href))predicate;
+
 -(NSAttributedString*) attributedStringWithHTMLData:(NSData*)data;
 -(NSAttributedString*) attributedStringWithHTMLData:(NSData*)data trim:(BOOL)trim;
+
 -(void) reloadTagData;
 
 @end

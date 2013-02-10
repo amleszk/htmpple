@@ -11,7 +11,6 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 @property NSDictionary* dynamicAttributesForTag;
 @property CGFloat currentIndentLevel;
 @property NSMutableArray* indentLevelStack;
-@property dispatch_once_t staticAttributesOncePredicate;
 @end
 
 @implementation ALHtmlToAttributedStringParser
@@ -26,6 +25,7 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
         self.italicsFontName = @"Helvetica-Oblique";
         self.headingFontName = @"HelveticaNeue";
         self.preFontName = @"Courier";
+        self.backgroundColorQuote = [UIColor colorWithRed:0 green:0 blue:1. alpha:0.1];
         self.textColorDefault = [UIColor blackColor];
         self.textColorLink = [UIColor blueColor];
         self.indentLevelStack = [NSMutableArray array];
@@ -66,20 +66,28 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 {    
     self.staticAttributesForTag = @{
         @"p" : @{
-             NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]],
-             NSForegroundColorAttributeName : self.textColorDefault
+                NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]],
+                NSForegroundColorAttributeName : self.textColorDefault
         },
         @"i|em" : @{
-             NSFontAttributeName : [UIFont fontWithName:[self italicsFontName] size:14*[self fontSizeModifier]]},
-        @"thead" : @{ NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:12*[self fontSizeModifier]]},
-        @"tbody" : @{ NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:12*[self fontSizeModifier]]},
+                NSFontAttributeName : [UIFont fontWithName:[self italicsFontName] size:14*[self fontSizeModifier]],
+                NSForegroundColorAttributeName : self.textColorDefault
+        },
+        @"thead" : @{
+                NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:12*[self fontSizeModifier]],
+                NSForegroundColorAttributeName : self.textColorDefault
+        },
+        @"tbody" : @{
+                NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:12*[self fontSizeModifier]],
+                NSForegroundColorAttributeName : self.textColorDefault
+        },
         @"b|strong|thead" : @{
              NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:14*[self fontSizeModifier]]},
         @"blockquote" : @{
-             NSBackgroundColorAttributeName : [UIColor colorWithRed:0 green:0 blue:1. alpha:0.1]
+             NSBackgroundColorAttributeName : self.backgroundColorQuote
         },
         @"pre" : @{
-             NSFontAttributeName : [UIFont fontWithName:[self preFontName] size:14*[self fontSizeModifier]]
+             NSFontAttributeName : [UIFont fontWithName:[self preFontName] size:12*[self fontSizeModifier]]
         },
         @"u|ins" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)},
         @"del" : @{ NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle) },
@@ -109,7 +117,10 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
             return @{NSParagraphStyleAttributeName : [blockSelf blockQuoteParagraphStyle]};
         } copy],
         @"ul|ol" : [^NSDictionary*(NSDictionary* tagAttributes) {
-            return @{NSParagraphStyleAttributeName : [blockSelf listParagraphStyle]};
+            return @{
+                NSParagraphStyleAttributeName : [blockSelf listParagraphStyle],
+                NSForegroundColorAttributeName : self.textColorDefault
+            };
         } copy]
     };
 }
@@ -118,7 +129,34 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 {
     TFHpple *hpple = [TFHpple hppleWithXMLData:data];
     NSArray *root = [hpple searchWithXPathQuery:@"/"];
-    return [self recursiveContainsLinkWithElements:root];
+    __block BOOL containsLinks = NO;
+    [self collectElements:root withBlock:^id(TFHppleElement *element, BOOL *stop) {
+        if(element.tagName &&
+           [element.tagName isEqualToString:@"a"] &&
+           ((NSString*)element.attributes[@"href"]).length)
+        {
+            containsLinks = YES;
+            (*stop) = YES;
+        }
+        return nil;
+    }];
+    return containsLinks;
+}
+
+-(NSArray*) htmlData:(NSData*)data linksMatchingPredicate:(BOOL (^)(NSString *href))predicate
+{
+    TFHpple *hpple = [TFHpple hppleWithXMLData:data];
+    NSArray *root = [hpple searchWithXPathQuery:@"/"];
+    return
+    [self collectElements:root withBlock:^id(TFHppleElement *element, BOOL *stop) {
+        if(element.tagName && [element.tagName isEqualToString:@"a"]) {
+            NSString *href = element.attributes[@"href"];
+            if (predicate(href)) {
+                return href;
+            }
+        }
+        return nil;
+    }];
 }
 
 #pragma mark - Helpers
@@ -440,26 +478,30 @@ static TrimCharactersType kTrimCharactersTypeDefault = kTrimCharactersAllWhiteSp
     }
 }
 
--(BOOL) recursiveContainsLinkWithElements:(NSArray*)elements
+
+-(NSArray*) collectElements:(NSArray*)elements stop:(BOOL*)stop withBlock:(id (^)(TFHppleElement *element, BOOL *stop))collectBlock
 {
+    NSMutableArray *collected = [NSMutableArray array];
     for (TFHppleElement *element in elements) {
-        BOOL containsLink = [self recursiveContainsLinkWithElement:element];
-        if (containsLink) {
-            return YES;
+        if ((*stop)) {
+            break;
         }
+        id collectedElement = collectBlock(element,stop);
+        if (collectedElement) {
+            [collected addObject:collectedElement];
+        }
+        if ((*stop)) {
+            break;
+        }
+        [collected addObjectsFromArray:[self collectElements:element.children stop:stop withBlock:collectBlock]];
     }
-    return NO;
+    return collected;    
 }
 
--(BOOL) recursiveContainsLinkWithElement:(TFHppleElement *)element
+-(NSArray*) collectElements:(NSArray*)elements withBlock:(id (^)(TFHppleElement *element, BOOL *stop))collectBlock
 {
-    if(element.tagName &&
-       [element.tagName isEqualToString:@"a"] &&
-       [element.attributes[@"href"] length] > 0 )
-    {
-        return YES;
-    }
-    return [self recursiveContainsLinkWithElements:element.children];
-    return NO;
+    BOOL stop = NO;
+    return [self collectElements:elements stop:&stop withBlock:collectBlock];
 }
+
 @end
