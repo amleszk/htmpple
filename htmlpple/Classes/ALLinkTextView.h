@@ -7,11 +7,13 @@
 @end
 
 
-@interface ALLinkTextView : UITextView
+@interface ALLinkTextView : UITextView <UIAppearanceContainer>
 
 -(void) setLinkifiedAttributedText:(NSAttributedString *)attributedText;
 @property UIColor *linkColorActive;
+-(void) setLinkColorActive:(UIColor *)linkColorActive UI_APPEARANCE_SELECTOR;
 @property UIColor *linkColorDefault;
+-(void) setLinkColorDefault:(UIColor *)linkColorDefault UI_APPEARANCE_SELECTOR;
 @property (unsafe_unretained) id<ALLinkTextViewDelegate> linkDelegate;
 @property BOOL allowInteractionOtherThanLinks;
 @end

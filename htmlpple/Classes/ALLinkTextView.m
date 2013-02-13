@@ -14,14 +14,20 @@
 
 @implementation ALLinkTextView : UITextView
 
+static UIColor *linkColorActiveAppearance;
+static UIColor *linkColorDefaultAppearance;
++(void) initialize
+{
+    linkColorActiveAppearance = [[UIColor blueColor] colorWithAlphaComponent:0.5];
+    linkColorDefaultAppearance = [UIColor blueColor];
+}
+
 -(id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.linkRanges = [NSMutableArray array];
         self.activeLinkIndex = NSNotFound;
-        self.linkColorDefault = [UIColor blueColor];
-        self.linkColorActive = [self.linkColorDefault colorWithAlphaComponent:0.5];
         self.backgroundColor = [UIColor clearColor];
         self.allowInteractionOtherThanLinks = YES;
         self.multipleTouchEnabled = NO;
@@ -60,6 +66,16 @@
     if(linkIndex != NSNotFound) {
         [self.linkDelegate textView:self didTapLinkWithHref:self.linkRanges[linkIndex][1]];
     }
+}
+
+#pragma mark - UIAppearance
+
+-(UIColor*) linkColorActive {
+    return _linkColorActive ?: linkColorActiveAppearance;
+}
+
+-(UIColor*) linkColorDefault {
+    return _linkColorDefault ?: linkColorDefaultAppearance;
 }
 
 #pragma mark - Hyperlink management
