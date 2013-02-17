@@ -24,6 +24,7 @@
 		6195EB2B1699849C00995DFF /* ALDemoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6195EB2A1699849C00995DFF /* ALDemoTextViewController.m */; };
 		6195EB2D16998AC200995DFF /* test-data-4.html in Resources */ = {isa = PBXBuildFile; fileRef = 6195EB2C16998AC200995DFF /* test-data-4.html */; };
 		6195EB411699A8E900995DFF /* ALDemoLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6195EB401699A8E800995DFF /* ALDemoLabelViewController.m */; };
+		61C84BA816D0573E00D22C05 /* NSDictionary_MergeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C84BA716D0573D00D22C05 /* NSDictionary_MergeTests.m */; };
 		61E8E3FF1695C5B600DC5C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E3FE1695C5B600DC5C83 /* UIKit.framework */; };
 		61E8E4011695C5B600DC5C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4001695C5B600DC5C83 /* Foundation.framework */; };
 		61E8E4031695C5B600DC5C83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4021695C5B600DC5C83 /* CoreGraphics.framework */; };
@@ -69,6 +70,7 @@
 		6195EB2C16998AC200995DFF /* test-data-4.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-4.html"; sourceTree = "<group>"; };
 		6195EB3F1699A8E800995DFF /* ALDemoLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALDemoLabelViewController.h; path = Classes/ALDemoLabelViewController.h; sourceTree = "<group>"; };
 		6195EB401699A8E800995DFF /* ALDemoLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALDemoLabelViewController.m; path = Classes/ALDemoLabelViewController.m; sourceTree = "<group>"; };
+		61C84BA716D0573D00D22C05 /* NSDictionary_MergeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_MergeTests.m; sourceTree = "<group>"; };
 		61E8E3FA1695C5B600DC5C83 /* htmlpple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = htmlpple.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E8E3FE1695C5B600DC5C83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		61E8E4001695C5B600DC5C83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,6 +132,7 @@
 		6104D19C16B28CD500B5E464 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				61C84BA716D0573D00D22C05 /* NSDictionary_MergeTests.m */,
 				6104D1A316B28CD500B5E464 /* ALHtmlToAttributedStringParserTests.m */,
 				6104D19D16B28CD500B5E464 /* Supporting Files */,
 			);
@@ -363,6 +366,7 @@
 				6104D1AC16B28EDC00B5E464 /* TFHppleElement.m in Sources */,
 				6104D1AD16B28EDC00B5E464 /* XPathQuery.m in Sources */,
 				6104D1AF16B28F8000B5E464 /* NSDictionary+Merge.m in Sources */,
+				61C84BA816D0573E00D22C05 /* NSDictionary_MergeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

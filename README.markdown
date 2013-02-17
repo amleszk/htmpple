@@ -11,19 +11,12 @@ Invoke parser with `[ALHtmlToAttributedStringParser attributedStringWithHTMLData
 Todo 
 --------
 
-* Bug: Blue link highlight persists when cycling 
-* Bug: Nested indentation for ul/blockquote (NSParagraphStyle)
 * Bug: NSParagraphStyle loses its indent when using a \<br\/\>
-* Bug: Adding \n and multiple spaces should not be allowed in any tag except 'pre' and 'code'
-
 * Feature: Bold font attributes versus using new fonts
 * Feature: HTML tag support for ordered list 'ol' - currently treated as 'ul'
 * Feature: HTML tag support for 'table' - currently messy
 * Feature: HTML tag support for horizontal rule 'hr'
-* Feature: Unit Tests
 * Feature: Support for link tapping inside UILabel
-
-* Performance: replace regex with string matching for tags
 
 Performance
 --------

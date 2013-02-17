@@ -3,24 +3,27 @@
 
 @implementation NSDictionary (Merge)
 
-+ (NSDictionary *) dictionaryByMerging: (NSDictionary *) dict1 with: (NSDictionary *) dict2 {
-    NSMutableDictionary * result = [NSMutableDictionary dictionaryWithDictionary:dict1];
-    
-    [dict2 enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
-        if (![dict1 objectForKey:key]) {
-            if ([obj isKindOfClass:[NSDictionary class]]) {
-                NSDictionary * newVal = [[dict1 objectForKey: key] dictionaryByMergingWith: (NSDictionary *) obj];
-                [result setObject: newVal forKey: key];
-            } else {
-                [result setObject: obj forKey: key];
-            }
+- (NSDictionary *) dictionaryByMergingWith:(NSDictionary *)dict overWriteExistingKeys:(BOOL)overWriteExistingKeys
+{    
+    NSMutableDictionary * result = [NSMutableDictionary dictionaryWithDictionary:self];
+    [dict enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
+        if (self[key] && !overWriteExistingKeys)
+            return;
+        
+        if ([obj isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *newMergedDictionary = [self[key] dictionaryByMergingWith:(NSDictionary *)obj];
+            obj = newMergedDictionary;
         }
+        result[key] = obj;
     }];
     
-    return (NSDictionary *) [result mutableCopy];
+    return (NSDictionary *) [NSDictionary dictionaryWithDictionary:result];
+
 }
-- (NSDictionary *) dictionaryByMergingWith: (NSDictionary *) dict {
-    return [[self class] dictionaryByMerging: self with: dict];
+
+- (NSDictionary *) dictionaryByMergingWith:(NSDictionary *)dict
+{
+    return [self dictionaryByMergingWith:dict overWriteExistingKeys:YES];
 }
 
 @end

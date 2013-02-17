@@ -9,6 +9,7 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 @interface ALHtmlToAttributedStringParser ()
 @property NSDictionary* staticAttributesForTag;
 @property NSDictionary* dynamicAttributesForTag;
+@property NSDictionary* rootAttributes;
 @property CGFloat currentIndentLevel;
 @property NSMutableArray* indentLevelStack;
 @end
@@ -29,6 +30,7 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
         self.textColorDefault = [UIColor blackColor];
         self.textColorLink = [UIColor blueColor];
         self.indentLevelStack = [NSMutableArray array];
+        self.rootAttributes = @{ NSForegroundColorAttributeName : self.textColorDefault };
         [self reloadTagData];
 
     }
@@ -58,7 +60,7 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     NSArray *root = [hpple searchWithXPathQuery:@"/"];
     [self recursiveXMLParseWithElements:root
                       hppleParsedString:hppleParsedString
-                       parentAttributes:@{}];
+                       parentAttributes:self.rootAttributes];
     return hppleParsedString;
 }
 
@@ -67,19 +69,15 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     self.staticAttributesForTag = @{
         @"p" : @{
                 NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]],
-                NSForegroundColorAttributeName : self.textColorDefault
         },
         @"i|em" : @{
                 NSFontAttributeName : [UIFont fontWithName:[self italicsFontName] size:14*[self fontSizeModifier]],
-                NSForegroundColorAttributeName : self.textColorDefault
         },
         @"thead" : @{
                 NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:12*[self fontSizeModifier]],
-                NSForegroundColorAttributeName : self.textColorDefault
         },
         @"tbody" : @{
                 NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:12*[self fontSizeModifier]],
-                NSForegroundColorAttributeName : self.textColorDefault
         },
         @"b|strong|thead" : @{
              NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:14*[self fontSizeModifier]]},
@@ -119,7 +117,6 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
         @"ul|ol" : [^NSDictionary*(NSDictionary* tagAttributes) {
             return @{
                 NSParagraphStyleAttributeName : [blockSelf listParagraphStyle],
-                NSForegroundColorAttributeName : self.textColorDefault
             };
         } copy]
     };
@@ -431,7 +428,7 @@ static TrimCharactersType kTrimCharactersTypeDefault = kTrimCharactersAllWhiteSp
             
             //attributes for this tag
             NSDictionary* attributesForTag = [self attributesForTag:tagName tagAttributes:element.attributes];
-            childAttributes = [attributesForTag dictionaryByMergingWith:parentAttributes];
+            childAttributes = [attributesForTag dictionaryByMergingWith:parentAttributes overWriteExistingKeys:NO];
             
             //Actions to prepend for this tag, dot points etc.
             NSString* preTag = [self beforeStringForTag:tagName];

@@ -10,9 +10,9 @@
 @interface ALLinkTextView : UITextView <UIAppearanceContainer>
 
 -(void) setLinkifiedAttributedText:(NSAttributedString *)attributedText;
-@property UIColor *linkColorActive;
+@property (nonatomic) UIColor *linkColorActive;
 -(void) setLinkColorActive:(UIColor *)linkColorActive UI_APPEARANCE_SELECTOR;
-@property UIColor *linkColorDefault;
+@property (nonatomic) UIColor *linkColorDefault;
 -(void) setLinkColorDefault:(UIColor *)linkColorDefault UI_APPEARANCE_SELECTOR;
 @property (unsafe_unretained) id<ALLinkTextViewDelegate> linkDelegate;
 @property BOOL allowInteractionOtherThanLinks;
