@@ -30,7 +30,6 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
         self.textColorDefault = [UIColor blackColor];
         self.textColorLink = [UIColor blueColor];
         self.indentLevelStack = [NSMutableArray array];
-        self.rootAttributes = @{ NSForegroundColorAttributeName : self.textColorDefault };
         [self reloadTagData];
 
     }
@@ -120,6 +119,8 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
             };
         } copy]
     };
+    
+    self.rootAttributes = @{ NSForegroundColorAttributeName : self.textColorDefault };
 }
 
 -(BOOL) htmlDataContainsLinks:(NSData*)data
