@@ -105,33 +105,48 @@ static UIColor *linkColorDefaultAppearance;
     if (rects.count == 0) {
         return NSNotFound;
     }
-    UITextSelectionRect* selectionRect = rects[0];
-//    NSLog(@"%d %@ %d %d",
-//          rects.count,
-//          NSStringFromCGRect(selectionRect.rect),
-//          selectionRect.containsStart,
-//          selectionRect.containsEnd);
-    
-    if (!selectionRect.containsStart || !selectionRect.containsEnd ) {
-        return NSNotFound;
-    }
-    
-    if (textRectStorage) {
-        (*textRectStorage) = selectionRect.rect;
-    }
     
     NSInteger charactersIn = [self offsetFromPosition:self.beginningOfDocument toPosition:textRange.start];
     NSInteger hitLink = NSNotFound;
+    NSRange hitRange = {NSNotFound,0};
     NSInteger index = 0;
     for(NSArray *value in self.linkRanges) {
         NSRange range = [value[0] rangeValue];
         if (range.location<charactersIn &&
             ((range.location+range.length)>=charactersIn)) {
             hitLink = index;
+            hitRange = range;
             break;
         }
         index++;
     }
+    
+    if (hitLink == NSNotFound) {
+        return NSNotFound;
+    }
+    
+    // Check the rect of this link actually contains the touch point, characterRangeAtPoint: returns a selection range
+    // when there is a link at the end of line and it doesn not actually contain the point
+    UITextPosition* linkRangeStart = [self positionFromPosition:self.beginningOfDocument offset:hitRange.location];
+    UITextPosition* linkRangeEnd = [self positionFromPosition:linkRangeStart offset:hitRange.length];
+    UITextRange* linkTextRange = [self textRangeFromPosition:linkRangeStart toPosition:linkRangeEnd];
+    NSArray *selectionRects = [self selectionRectsForRange:linkTextRange];
+    BOOL oneRectContainsPoint = NO;
+    CGRect selectionCGRect;
+    for (UITextSelectionRect *selectionRect in selectionRects) {
+        selectionCGRect = selectionRect.rect;
+        if (CGRectContainsPoint(selectionCGRect, point)) {
+            oneRectContainsPoint = YES;
+            break;
+        }
+    }
+    if (!oneRectContainsPoint) {
+        return NSNotFound;
+    }
+    if (textRectStorage) {
+        (*textRectStorage) = selectionCGRect;
+    }
+    
     return hitLink;
 }
 
