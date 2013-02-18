@@ -62,7 +62,7 @@ static UIColor *linkColorDefaultAppearance;
 - (void)handleTap:(UITapGestureRecognizer *)gesture {
     
     CGPoint point = [gesture locationInView:self];
-    NSInteger linkIndex = [self linkIndexForPoint:point textRect:nil];
+    NSInteger linkIndex = [self linkIndexForPoint:point textRectStorage:nil];
     if(linkIndex != NSNotFound) {
         [self.linkDelegate textView:self didTapLinkWithHref:self.linkRanges[linkIndex][1]];
     }
@@ -96,20 +96,28 @@ static UIColor *linkColorDefaultAppearance;
     }
     [self highlightLink:NO atIndex:self.activeLinkIndex];
     self.activeLinkIndex = NSNotFound;
-    NSLog(@"unHighlightActiveLink");
 }
 
--(NSInteger)linkIndexForPoint:(CGPoint)point textRect:(CGRect*)textRect
+-(NSInteger)linkIndexForPoint:(CGPoint)point textRectStorage:(CGRect*)textRectStorage
 {
     UITextRange *textRange = [self characterRangeAtPoint:point];
     NSArray *rects = [self selectionRectsForRange:textRange];
     if (rects.count == 0) {
         return NSNotFound;
     }
+    UITextSelectionRect* selectionRect = rects[0];
+//    NSLog(@"%d %@ %d %d",
+//          rects.count,
+//          NSStringFromCGRect(selectionRect.rect),
+//          selectionRect.containsStart,
+//          selectionRect.containsEnd);
     
-    if (textRect) {
-        UITextSelectionRect *textSelectionRect = rects[0];
-        (*textRect) = textSelectionRect.rect;
+    if (!selectionRect.containsStart || !selectionRect.containsEnd ) {
+        return NSNotFound;
+    }
+    
+    if (textRectStorage) {
+        (*textRectStorage) = selectionRect.rect;
     }
     
     NSInteger charactersIn = [self offsetFromPosition:self.beginningOfDocument toPosition:textRange.start];
@@ -156,9 +164,8 @@ static UIColor *linkColorDefaultAppearance;
         return hitView;
     }
     
-    NSInteger linkIndex = [self linkIndexForPoint:point textRect:nil];
+    NSInteger linkIndex = [self linkIndexForPoint:point textRectStorage:nil];
     if (linkIndex!= NSNotFound) {
-        NSLog(@"Hit link: %@",self.linkRanges[linkIndex][1]);
         return hitView;
     } else {
         return nil;
@@ -173,7 +180,7 @@ static UIColor *linkColorDefaultAppearance;
     {
         CGPoint point = [touch locationInView:touch.view];
         CGRect textRect;
-        NSInteger linkIndex = [self linkIndexForPoint:point textRect:&textRect];
+        NSInteger linkIndex = [self linkIndexForPoint:point textRectStorage:&textRect];
         if (linkIndex!= NSNotFound) {
             self.activeLinkIndex = linkIndex;
             self.activeTextRect = textRect;
@@ -189,7 +196,7 @@ static UIColor *linkColorDefaultAppearance;
     for (UITouch *touch in allTouches)
     {
         CGPoint point = [touch locationInView:touch.view];
-        NSInteger linkIndex = [self linkIndexForPoint:point textRect:nil];
+        NSInteger linkIndex = [self linkIndexForPoint:point textRectStorage:nil];
         if (linkIndex== NSNotFound && self.activeLinkIndex != NSNotFound) {
             [self unHighlightActiveLink];
         }
