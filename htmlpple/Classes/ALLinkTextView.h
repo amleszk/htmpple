@@ -1,7 +1,6 @@
 
 @class ALLinkTextView;
-@protocol ALLinkTextViewDelegate
-@required
+@protocol ALLinkTextViewDelegate <NSObject>
 -(void) textView:(ALLinkTextView*)textView didTapLinkWithHref:(NSString*)href;
 -(void) textView:(ALLinkTextView*)textView didLongPressLinkWithHref:(NSString*)href textRect:(CGRect)textRect;
 @end

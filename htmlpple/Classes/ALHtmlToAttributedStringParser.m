@@ -6,9 +6,35 @@
 NSString *kALHtmlToAttributedParsedHref = @"ALHtmlToAttributedParsedHref";
 NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 
+typedef NSDictionary* (^AttributesBlock)(NSDictionary* tagAttributes);
+
+// kTrimCharactersAllWhiteSpaceAndLeaveOneSpace: adds a single space when encountering white space on either side of the tag
+// kTrimCharactersAllWhiteSpace: trims everything
+typedef enum {
+    kTrimCharactersNone,
+    kTrimCharactersAllWhiteSpaceAndLeaveOneSpace,
+    kTrimCharactersAllWhiteSpace,
+} TrimCharactersType;
+static TrimCharactersType kTrimCharactersTypeDefault = kTrimCharactersAllWhiteSpace;
+
+// kNewLineCharactersOneNewLineOnly: Prevents adding multiple newlines when certain tags close - block style
+// kNewLineCharactersAlways: always append newline on close of this tag
+// kNewLineCharactersNone: never append newlines - inline styles
+typedef enum {
+    kNewLineCharactersNone,
+    kNewLineCharactersOneNewLineOnly,
+    kNewLineCharactersAlways,
+} NewLineCharactersType;
+static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersNone;
+
+
 @interface ALHtmlToAttributedStringParser ()
-@property NSDictionary* staticAttributesForTag;
-@property NSDictionary* dynamicAttributesForTag;
+@property NSArray* staticAttributesForTag;
+@property NSArray* dynamicAttributesForTag;
+@property NSArray* prependStringForTag;
+@property NSArray* trimActionForTag;
+@property NSArray* newlineActionForTag;
+@property NSRegularExpression* endsInNewlineRegex;
 @property NSDictionary* rootAttributes;
 @property CGFloat currentIndentLevel;
 @property NSMutableArray* indentLevelStack;
@@ -30,6 +56,11 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
         self.textColorDefault = [UIColor blackColor];
         self.textColorLink = [UIColor blueColor];
         self.indentLevelStack = [NSMutableArray array];
+        
+        self.endsInNewlineRegex = [NSRegularExpression regularExpressionWithPattern:@"(\\s*)\\n(\\s*)$"
+                                                                            options:0
+                                                                              error:nil];
+        
         [self reloadTagData];
 
     }
@@ -65,61 +96,71 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 
 -(void) reloadTagData
 {    
-    self.staticAttributesForTag = @{
-        @"p" : @{
-                NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]],
-        },
-        @"i|em" : @{
-                NSFontAttributeName : [UIFont fontWithName:[self italicsFontName] size:14*[self fontSizeModifier]],
-        },
-        @"thead" : @{
-                NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:12*[self fontSizeModifier]],
-        },
-        @"tbody" : @{
-                NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:12*[self fontSizeModifier]],
-        },
-        @"b|strong|thead" : @{
-             NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:14*[self fontSizeModifier]]},
-        @"blockquote" : @{
-             NSBackgroundColorAttributeName : self.backgroundColorQuote
-        },
-        @"pre" : @{
-             NSFontAttributeName : [UIFont fontWithName:[self preFontName] size:12*[self fontSizeModifier]]
-        },
-        @"u|ins" : @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)},
-        @"del" : @{ NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle) },
-        @"h1" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:19*[self fontSizeModifier]]},
-        @"h2" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:16*[self fontSizeModifier]]},
-        @"h3" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:14*[self fontSizeModifier]]},
-        @"h4" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:13*[self fontSizeModifier]]},
-        @"h5" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:12*[self fontSizeModifier]]},
-        @"h6" : @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:11*[self fontSizeModifier]]},
-    };
+    self.staticAttributesForTag = @[
+        @[ @[@"p"] , @{ NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]]} ],
+        @[ @[@"i",@"em"] , @{ NSFontAttributeName : [UIFont fontWithName:[self italicsFontName] size:14*[self fontSizeModifier]]} ],
+        @[ @[@"thead"] , @{ NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:12*[self fontSizeModifier]]} ],
+        @[ @[@"tbody"] , @{ NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:12*[self fontSizeModifier]]} ],
+        @[ @[@"b",@"strong",@"thead"] , @{ NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:14*[self fontSizeModifier]]} ],
+        @[ @[@"blockquote"] , @{ NSBackgroundColorAttributeName : self.backgroundColorQuote } ],
+        @[ @[@"pre"] , @{ NSFontAttributeName : [UIFont fontWithName:[self preFontName] size:12*[self fontSizeModifier]]}],
+        @[ @[@"u",@"ins"] , @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)}],
+        @[ @[@"del"] , @{ NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle) }],
+        @[ @[@"h1"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:19*[self fontSizeModifier]]}],
+        @[ @[@"h2"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:16*[self fontSizeModifier]]}],
+        @[ @[@"h3"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:14*[self fontSizeModifier]]}],
+        @[ @[@"h4"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:13*[self fontSizeModifier]]}],
+        @[ @[@"h5"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:12*[self fontSizeModifier]]}],
+        @[ @[@"h6"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:11*[self fontSizeModifier]]}],
+    ];
     
     __unsafe_unretained ALHtmlToAttributedStringParser *blockSelf = self;
-    self.dynamicAttributesForTag = @{
-        @"a" : [^NSDictionary*(NSDictionary* tagAttributes) {
-            return @{
-                     NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
-                     NSForegroundColorAttributeName : blockSelf.textColorLink,
-                     kALHtmlToAttributedParsedHref : tagAttributes[@"href"],
-                     //Required to uniquely identify the text, otherwise if 2 links are side by side they get combined
-                     kALHtmlToAttributedId : [NSDate date]
-                     };
-        } copy],
-        @"p" : [^NSDictionary*(NSDictionary* tagAttributes) {
-            return @{NSParagraphStyleAttributeName : [blockSelf pParagraphStyle]};
-        } copy],
-        @"blockquote" : [^NSDictionary*(NSDictionary* tagAttributes) {
-            return @{NSParagraphStyleAttributeName : [blockSelf blockQuoteParagraphStyle]};
-        } copy],
-        @"ul|ol" : [^NSDictionary*(NSDictionary* tagAttributes) {
-            return @{
-                NSParagraphStyleAttributeName : [blockSelf listParagraphStyle],
-            };
-        } copy]
+    
+    AttributesBlock aDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
+        return @{
+            NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
+            NSForegroundColorAttributeName : blockSelf.textColorLink,
+            kALHtmlToAttributedParsedHref : tagAttributes[@"href"],
+            //Required to uniquely identify the text, otherwise if 2 links are side by side they get combined
+            kALHtmlToAttributedId : [NSDate date]
+        };
+    };
+
+    AttributesBlock pDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
+        return @{NSParagraphStyleAttributeName : [blockSelf pParagraphStyle]};
+    };    
+
+    AttributesBlock blockquoteDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
+        return @{NSParagraphStyleAttributeName : [blockSelf blockQuoteParagraphStyle]};
+    };
+
+    AttributesBlock listDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
+        return @{ NSParagraphStyleAttributeName : [blockSelf listParagraphStyle]};
     };
     
+    self.dynamicAttributesForTag = @[
+        @[@[@"a"],[aDynamicAction copy]],
+        @[@[@"p"],[pDynamicAction copy]],
+        @[@[@"blockquote"],[blockquoteDynamicAction copy]],
+        @[@[@"ul",@"ol"],[listDynamicAction copy]],
+    ];
+
+    self.prependStringForTag = @[
+        @[@[@"li"],@"• "],
+        @[@[@"td",@"th"],@" | "],
+    ];
+    
+    self.trimActionForTag = @[
+        @[@[@"pre",@"code",@"i",@"em",@"b",@"strong",@"u",@"ins",@"del"] , @(kTrimCharactersNone)],
+        @[@[@"p",@"h1",@"h2",@"h3",@"h4",@"h5",@"h6",@"li",@"br",@"a"] , @(kTrimCharactersAllWhiteSpaceAndLeaveOneSpace)],
+        @[@[@"div",@"blockquote"] , @(kTrimCharactersAllWhiteSpace)],
+    ];    
+
+    self.newlineActionForTag = @[
+        @[@[@"br",@"tr",@"table",@"ul",@"ol"] , @(kNewLineCharactersAlways)],
+        @[@[@"p",@"h1",@"h2",@"h3",@"h4",@"h5",@"h6",@"li",@"blockquote"] , @(kNewLineCharactersOneNewLineOnly)],        
+    ];
+        
     self.rootAttributes = @{ NSForegroundColorAttributeName : self.textColorDefault };
 }
 
@@ -159,21 +200,24 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
 
 #pragma mark - Helpers
 
--(id) matcher:(NSDictionary*)matchers forTag:(NSString*)tag
+-(id) matcher:(NSArray*)tagsAndAttributesArray forTag:(NSString*)tag
 {
-    NSString* tagMatch = nil;
-    for (NSString *tagsToMatchString in matchers) {
-        NSArray * tagsToMatch = [tagsToMatchString componentsSeparatedByString:@"|"];
+    NSInteger i = 0;
+    NSDictionary* matchedAttributes;
+    for (NSArray *tagsAndAttributes in tagsAndAttributesArray) {
+        NSArray * tagsToMatch = tagsAndAttributes[0];
         for (NSString *tagToMatch in tagsToMatch) {
             if([tagToMatch isEqualToString:tag]) {
-                tagMatch = tagsToMatchString;
+                matchedAttributes = tagsAndAttributesArray[i][1];
                 break;
             }
         }
-        if (tagMatch) break;
+        if (matchedAttributes)
+            break;
+        i++;
     }
     
-    return tagMatch ? matchers[tagMatch] : nil;
+    return matchedAttributes;
 }
 
 -(NSAttributedString*) trimmedAttributedString:(NSAttributedString*)attrString
@@ -231,9 +275,6 @@ NSString *kALHtmlToAttributedId = @"kALHtmlToAttributedHrefID";
     return paragraphStyle;
 }
 
-
-typedef NSDictionary* (^AttributesBlock)(NSDictionary* tagAttributes);
-
 -(NSDictionary *) attributesForTag:(NSString*)tag tagAttributes:(NSDictionary*)tagAttributes {
     NSDictionary *attributes = [self matcher:self.staticAttributesForTag forTag:tag];
     if (!attributes) {
@@ -248,45 +289,15 @@ typedef NSDictionary* (^AttributesBlock)(NSDictionary* tagAttributes);
     return attributes;
 }
 
-#pragma mark - String appendage after tags
-// kNewLineCharactersOneNewLineOnly: Prevents adding multiple newlines when certain tags close - block style
-// kNewLineCharactersAlways: always append newline on close of this tag
-// kNewLineCharactersNone: never append newlines - inline styles
-
-typedef enum {
-    kNewLineCharactersNone,
-    kNewLineCharactersOneNewLineOnly,
-    kNewLineCharactersAlways,
-} NewLineCharactersType;
-static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersNone;
-
--(NSDictionary*) newLineActionForTag
-{
-    static NSDictionary* options = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
-        options = @{
-            @"br|tr|table|ul|ol" : @(kNewLineCharactersAlways),
-            @"p|h1|h2|h3|h4|h5|h6|li|blockquote" : @(kNewLineCharactersOneNewLineOnly),
-        };
-    });
-    return options;
-}
-
 -(NSString*) newLineActionForTag:(NSString*)tag  content:(NSString*)content
 {
-    NSNumber* nlTypeNumber = [self matcher:[self newLineActionForTag] forTag:tag];
+    NSNumber* nlTypeNumber = [self matcher:self.newlineActionForTag forTag:tag];
     NewLineCharactersType nlType = nlTypeNumber ?  [nlTypeNumber intValue] : kNewLineCharactersTypeDefault;
     switch (nlType) {
         case kNewLineCharactersNone: return nil;
         case kNewLineCharactersAlways: return @"\n";
         case kNewLineCharactersOneNewLineOnly: {
-            NSRegularExpression *endsInNewLineRegex =
-                [NSRegularExpression regularExpressionWithPattern:@"(\\s*)\\n(\\s*)$"
-                                                          options:0
-                                                            error:nil];
-            NSRange range = [endsInNewLineRegex rangeOfFirstMatchInString:content options:0 range:(NSRange){0,content.length}];
-            
+            NSRange range = [self.endsInNewlineRegex rangeOfFirstMatchInString:content options:0 range:(NSRange){0,content.length}];
             if(range.location == NSNotFound)
                 return @"\n";
             else
@@ -299,52 +310,8 @@ static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersN
     }
 }
 
-#pragma mark - String insertion before tags
-
--(NSDictionary*) beforeStringForTag
-{
-    static NSDictionary* beforeStringForTag = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
-        beforeStringForTag = @{
-            @"li" : @"• ",
-            @"td|th" : @" | "
-        };
-    });
-    return beforeStringForTag;
-}
-
--(NSString*) beforeStringForTag:(NSString*)tag {
-    return [self matcher:[self beforeStringForTag] forTag:tag];
-}
-
-#pragma mark - Trimming whitespace 
-// kTrimCharactersAllWhiteSpaceAndLeaveOneSpace: adds a single space when encountering white space on either side of the tag
-// kTrimCharactersAllWhiteSpace: trims everything
-
-typedef enum {
-    kTrimCharactersNone,
-    kTrimCharactersAllWhiteSpaceAndLeaveOneSpace,
-    kTrimCharactersAllWhiteSpace,
-} TrimCharactersType;
-static TrimCharactersType kTrimCharactersTypeDefault = kTrimCharactersAllWhiteSpace;
-
--(NSDictionary*) trimTagRegex
-{
-    static NSDictionary* trimTagRegex = nil;
-    static dispatch_once_t oncePredicate;
-    dispatch_once(&oncePredicate, ^{
-        trimTagRegex = @{
-            @"pre|code|i|em|b|strong|u|ins|del" : @(kTrimCharactersNone),
-            @"p|h1|h2|h3|h4|h5|h6|li|br|a" : @(kTrimCharactersAllWhiteSpaceAndLeaveOneSpace),
-            @"div|blockquote" : @(kTrimCharactersAllWhiteSpace),
-        };
-    });
-    return trimTagRegex;
-}
-
 -(NSNumber*) trimForTag:(NSString*)tag {
-    return [self matcher:[self trimTagRegex] forTag:tag];
+    return [self matcher:self.trimActionForTag forTag:tag];
 }
 
 -(NSString*) trimmedElementWithTag:(NSString*)tag content:(NSString*)content
@@ -418,7 +385,7 @@ static TrimCharactersType kTrimCharactersTypeDefault = kTrimCharactersAllWhiteSp
              [[NSAttributedString alloc] initWithString:text
                                              attributes:parentAttributes]];
         }
-        NSAssert(element.children.count == 0, @"");
+        NSAssert(element.children.count == 0, @"Expected no children for textnode, most likely an error");
     }
     else {
         [self pushAttributes];
@@ -432,7 +399,7 @@ static TrimCharactersType kTrimCharactersTypeDefault = kTrimCharactersAllWhiteSp
             childAttributes = [attributesForTag dictionaryByMergingWith:parentAttributes overWriteExistingKeys:NO];
             
             //Actions to prepend for this tag, dot points etc.
-            NSString* preTag = [self beforeStringForTag:tagName];
+            NSString* preTag = [self matcher:self.prependStringForTag forTag:tagName];
             if (preTag) {
                 [hppleParsedString appendAttributedString:
                  [[NSAttributedString alloc] initWithString:preTag
