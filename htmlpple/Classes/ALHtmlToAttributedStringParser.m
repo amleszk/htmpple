@@ -127,15 +127,23 @@ static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersN
     };
 
     AttributesBlock pDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
-        return @{NSParagraphStyleAttributeName : [blockSelf pParagraphStyle]};
-    };    
+        return @{
+                 NSParagraphStyleAttributeName : [blockSelf pParagraphStyle]
+         };
+    };
 
     AttributesBlock blockquoteDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
-        return @{NSParagraphStyleAttributeName : [blockSelf blockQuoteParagraphStyle]};
+        return @{
+            NSParagraphStyleAttributeName : [blockSelf blockQuoteParagraphStyle],
+            NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]]
+        };
     };
 
     AttributesBlock listDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
-        return @{ NSParagraphStyleAttributeName : [blockSelf listParagraphStyle]};
+        return @{
+             NSParagraphStyleAttributeName : [blockSelf listParagraphStyle],
+             NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]]
+        };
     };
     
     self.dynamicAttributesForTag = @[
