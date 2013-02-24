@@ -27,6 +27,20 @@ typedef enum {
 } NewLineCharactersType;
 static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersNone;
 
+typedef enum {
+    ALHtmlToAttributedStringParserFontSizeBodySmall,
+    ALHtmlToAttributedStringParserFontSizeBodyMid,
+} ALHtmlToAttributedStringParserFontSizeBody;
+
+typedef enum {
+    ALHtmlToAttributedStringParserFontSizeHeading6,
+    ALHtmlToAttributedStringParserFontSizeHeading5,
+    ALHtmlToAttributedStringParserFontSizeHeading4,
+    ALHtmlToAttributedStringParserFontSizeHeading3,
+    ALHtmlToAttributedStringParserFontSizeHeading2,
+    ALHtmlToAttributedStringParserFontSizeHeading1
+} ALHtmlToAttributedStringParserFontSizeHeading;
+
 
 @interface ALHtmlToAttributedStringParser ()
 @property NSArray* staticAttributesForTag;
@@ -46,12 +60,13 @@ static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersN
 {
     self = [super init];
     if (self) {
-        self.fontSizeModifier = 1.0;
         self.bodyFontName = @"Helvetica";
         self.boldFontName = @"Helvetica-Bold";
         self.italicsFontName = @"Helvetica-Oblique";
         self.headingFontName = @"HelveticaNeue";
         self.preFontName = @"Courier";
+        self.fontSizesHeading = @[@12,@13,@14,@15,@16,@17];
+        self.fontSizesBody = @[@12,@14];
         self.backgroundColorQuote = [UIColor colorWithRed:0 green:0 blue:1. alpha:0.1];
         self.textColorDefault = [UIColor blackColor];
         self.textColorLink = [UIColor blueColor];
@@ -95,23 +110,36 @@ static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersN
 }
 
 -(void) reloadTagData
-{    
+{
+    UIFont *bodyFont1 = [UIFont fontWithName:self.bodyFontName size:[self.fontSizesBody[ALHtmlToAttributedStringParserFontSizeBodyMid] floatValue]];
+    UIFont *bodyFont2 = [UIFont fontWithName:self.bodyFontName size:[self.fontSizesBody[ALHtmlToAttributedStringParserFontSizeBodySmall] floatValue]];
+    UIFont *italicsFont1 = [UIFont fontWithName:self.italicsFontName size:[self.fontSizesBody[ALHtmlToAttributedStringParserFontSizeBodyMid] floatValue]];
+    UIFont *boldFont1 = [UIFont fontWithName:self.boldFontName size:[self.fontSizesBody[ALHtmlToAttributedStringParserFontSizeBodyMid] floatValue]];
+    UIFont *preFont1 = [UIFont fontWithName:self.preFontName size:[self.fontSizesBody[ALHtmlToAttributedStringParserFontSizeBodyMid] floatValue]];
+    
+    UIFont *hFont1 = [UIFont fontWithName:self.headingFontName size:[self.fontSizesHeading[ALHtmlToAttributedStringParserFontSizeHeading1] floatValue]];
+    UIFont *hFont2 = [UIFont fontWithName:self.headingFontName size:[self.fontSizesHeading[ALHtmlToAttributedStringParserFontSizeHeading2] floatValue]];
+    UIFont *hFont3 = [UIFont fontWithName:self.headingFontName size:[self.fontSizesHeading[ALHtmlToAttributedStringParserFontSizeHeading3] floatValue]];
+    UIFont *hFont4 = [UIFont fontWithName:self.headingFontName size:[self.fontSizesHeading[ALHtmlToAttributedStringParserFontSizeHeading4] floatValue]];
+    UIFont *hFont5 = [UIFont fontWithName:self.headingFontName size:[self.fontSizesHeading[ALHtmlToAttributedStringParserFontSizeHeading5] floatValue]];
+    UIFont *hFont6 = [UIFont fontWithName:self.headingFontName size:[self.fontSizesHeading[ALHtmlToAttributedStringParserFontSizeHeading6] floatValue]];
+    
     self.staticAttributesForTag = @[
-        @[ @[@"p"] , @{ NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]]} ],
-        @[ @[@"i",@"em"] , @{ NSFontAttributeName : [UIFont fontWithName:[self italicsFontName] size:14*[self fontSizeModifier]]} ],
-        @[ @[@"thead"] , @{ NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:12*[self fontSizeModifier]]} ],
-        @[ @[@"tbody"] , @{ NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:12*[self fontSizeModifier]]} ],
-        @[ @[@"b",@"strong",@"thead"] , @{ NSFontAttributeName : [UIFont fontWithName:[self boldFontName] size:14*[self fontSizeModifier]]} ],
+        @[ @[@"p"] , @{ NSFontAttributeName : bodyFont1} ],
+        @[ @[@"i",@"em"] , @{ NSFontAttributeName : italicsFont1} ],
+        @[ @[@"thead"] , @{ NSFontAttributeName : boldFont1} ],
+        @[ @[@"tbody"] , @{ NSFontAttributeName : bodyFont2} ],
+        @[ @[@"b",@"strong",@"thead"] , @{ NSFontAttributeName : boldFont1} ],
         @[ @[@"blockquote"] , @{ NSBackgroundColorAttributeName : self.backgroundColorQuote } ],
-        @[ @[@"pre"] , @{ NSFontAttributeName : [UIFont fontWithName:[self preFontName] size:12*[self fontSizeModifier]]}],
+        @[ @[@"pre"] , @{ NSFontAttributeName : preFont1}],
         @[ @[@"u",@"ins"] , @{ NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)}],
         @[ @[@"del"] , @{ NSStrikethroughStyleAttributeName : @(NSUnderlineStyleSingle) }],
-        @[ @[@"h1"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:19*[self fontSizeModifier]]}],
-        @[ @[@"h2"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:16*[self fontSizeModifier]]}],
-        @[ @[@"h3"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:14*[self fontSizeModifier]]}],
-        @[ @[@"h4"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:13*[self fontSizeModifier]]}],
-        @[ @[@"h5"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:12*[self fontSizeModifier]]}],
-        @[ @[@"h6"] , @{ NSFontAttributeName : [UIFont fontWithName:[self headingFontName] size:11*[self fontSizeModifier]]}],
+        @[ @[@"h1"] , @{ NSFontAttributeName : hFont1}],
+        @[ @[@"h2"] , @{ NSFontAttributeName : hFont2}],
+        @[ @[@"h3"] , @{ NSFontAttributeName : hFont3}],
+        @[ @[@"h4"] , @{ NSFontAttributeName : hFont4}],
+        @[ @[@"h5"] , @{ NSFontAttributeName : hFont5}],
+        @[ @[@"h6"] , @{ NSFontAttributeName : hFont6}],
     ];
     
     __unsafe_unretained ALHtmlToAttributedStringParser *blockSelf = self;
@@ -126,23 +154,24 @@ static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersN
         };
     };
 
+    //Need dynamic access to indentation
     AttributesBlock pDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
         return @{
                  NSParagraphStyleAttributeName : [blockSelf pParagraphStyle]
          };
     };
 
+    //Need dynamic access to indentation
     AttributesBlock blockquoteDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
         return @{
             NSParagraphStyleAttributeName : [blockSelf blockQuoteParagraphStyle],
-            NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]]
         };
     };
 
     AttributesBlock listDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
         return @{
              NSParagraphStyleAttributeName : [blockSelf listParagraphStyle],
-             NSFontAttributeName : [UIFont fontWithName:[self bodyFontName] size:14*[self fontSizeModifier]]
+             NSFontAttributeName : bodyFont1
         };
     };
     
@@ -169,7 +198,10 @@ static NewLineCharactersType kNewLineCharactersTypeDefault = kNewLineCharactersN
         @[@[@"p",@"h1",@"h2",@"h3",@"h4",@"h5",@"h6",@"li",@"blockquote"] , @(kNewLineCharactersOneNewLineOnly)],        
     ];
         
-    self.rootAttributes = @{ NSForegroundColorAttributeName : self.textColorDefault };
+    self.rootAttributes = @{
+        NSForegroundColorAttributeName : self.textColorDefault,
+        NSParagraphStyleAttributeName : [blockSelf pParagraphStyle]
+    };
 }
 
 -(BOOL) htmlDataContainsLinks:(NSData*)data

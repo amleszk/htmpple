@@ -6,17 +6,7 @@
 - (NSDictionary *) dictionaryByMergingWith:(NSDictionary *)dict overWriteExistingKeys:(BOOL)overWriteExistingKeys
 {    
     NSMutableDictionary * result = [NSMutableDictionary dictionaryWithDictionary:self];
-    [dict enumerateKeysAndObjectsUsingBlock: ^(id key, id obj, BOOL *stop) {
-        if (self[key] && !overWriteExistingKeys)
-            return;
-        
-        if ([obj isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *newMergedDictionary = [self[key] dictionaryByMergingWith:(NSDictionary *)obj];
-            obj = newMergedDictionary;
-        }
-        result[key] = obj;
-    }];
-    
+    [result mergeWith:dict overWriteExistingKeys:overWriteExistingKeys];
     return (NSDictionary *) [NSDictionary dictionaryWithDictionary:result];
 
 }
@@ -28,3 +18,23 @@
 
 @end
 
+@implementation NSMutableDictionary (Merge)
+
+- (void) mergeWith:(NSDictionary *)dict overWriteExistingKeys:(BOOL)overWriteExistingKeys
+{
+    [dict enumerateKeysAndObjectsUsingBlock: ^(id otherKey, id otherObject, BOOL *stop) {
+        id myObject = self[otherKey];
+        if (myObject) {
+            if (!overWriteExistingKeys) {
+                return;
+            }
+            if ([otherObject isKindOfClass:[NSDictionary class]] && [myObject isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *newMergedDictionary = [myObject dictionaryByMergingWith:(NSDictionary *)otherObject];
+                otherObject = newMergedDictionary;
+            }
+        }
+        self[otherKey] = otherObject;
+    }];
+}
+
+@end

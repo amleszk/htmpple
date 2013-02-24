@@ -6,12 +6,14 @@ extern NSString *kALHtmlToAttributedParsedHref;
 
 +(ALHtmlToAttributedStringParser*) parser;
 
-@property CGFloat fontSizeModifier;
 @property NSString* bodyFontName;
 @property NSString* boldFontName;
 @property NSString* italicsFontName;
 @property NSString* headingFontName;
 @property NSString* preFontName;
+
+@property NSArray* fontSizesHeading;
+@property NSArray* fontSizesBody;
 
 @property UIColor* backgroundColorQuote;
 @property UIColor* textColorDefault;

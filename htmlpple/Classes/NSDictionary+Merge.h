@@ -7,3 +7,7 @@
 
 @end
 
+@interface NSMutableDictionary (Merge)
+- (void) mergeWith:(NSDictionary *)dict overWriteExistingKeys:(BOOL)overWriteExistingKeys;
+@end
+
