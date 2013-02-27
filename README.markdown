@@ -8,7 +8,7 @@ If you still support pre iOS6 (or want more features) you may want [DTCoreText](
 Invoke parser with `[ALHtmlToAttributedStringParser attributedStringWithHTMLData:htmlData];`
 
 The supported html tags are those you would find in a rich text editor. e.g.
-<a href=".."> p i em b strong pre u ins del h1 h2 h3 h4 h5 h6 blockquote
+a p i em b strong pre u ins del h1 h2 h3 h4 h5 h6 blockquote
 
 ![screenshot](screenshot.png)
 
