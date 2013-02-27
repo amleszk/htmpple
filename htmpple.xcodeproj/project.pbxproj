@@ -25,6 +25,14 @@
 		6195EB2D16998AC200995DFF /* test-data-4.html in Resources */ = {isa = PBXBuildFile; fileRef = 6195EB2C16998AC200995DFF /* test-data-4.html */; };
 		6195EB411699A8E900995DFF /* ALDemoLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6195EB401699A8E800995DFF /* ALDemoLabelViewController.m */; };
 		61C84BA816D0573E00D22C05 /* NSDictionary_MergeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C84BA716D0573D00D22C05 /* NSDictionary_MergeTests.m */; };
+		61D2DC4416DD849D0069E6A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4001695C5B600DC5C83 /* Foundation.framework */; };
+		61D2DC4F16DD84AC0069E6A9 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43C1695C81E00DC5C83 /* TFHpple.m */; };
+		61D2DC5016DD84AC0069E6A9 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43E1695C81E00DC5C83 /* TFHppleElement.m */; };
+		61D2DC5116DD84AC0069E6A9 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4401695C81E00DC5C83 /* XPathQuery.m */; };
+		61D2DC5216DD84AC0069E6A9 /* NSDictionary+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4481695C98C00DC5C83 /* NSDictionary+Merge.m */; };
+		61D2DC5316DD84AC0069E6A9 /* ALHtmlToAttributedStringParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4381695C77700DC5C83 /* ALHtmlToAttributedStringParser.m */; };
+		61D2DC5416DD84AC0069E6A9 /* ALLinkTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4601695D16D00DC5C83 /* ALLinkTextView.m */; };
+		61D2DC5516DD85620069E6A9 /* libhtmpple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D2DC4316DD849D0069E6A9 /* libhtmpple.a */; };
 		61E8E3FF1695C5B600DC5C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E3FE1695C5B600DC5C83 /* UIKit.framework */; };
 		61E8E4011695C5B600DC5C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4001695C5B600DC5C83 /* Foundation.framework */; };
 		61E8E4031695C5B600DC5C83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4021695C5B600DC5C83 /* CoreGraphics.framework */; };
@@ -33,14 +41,8 @@
 		61E8E4111695C5B600DC5C83 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4101695C5B600DC5C83 /* Default.png */; };
 		61E8E4131695C5B600DC5C83 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4121695C5B600DC5C83 /* Default@2x.png */; };
 		61E8E4151695C5B600DC5C83 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4141695C5B600DC5C83 /* Default-568h@2x.png */; };
-		61E8E4391695C77700DC5C83 /* ALHtmlToAttributedStringParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4381695C77700DC5C83 /* ALHtmlToAttributedStringParser.m */; };
-		61E8E4411695C81E00DC5C83 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43C1695C81E00DC5C83 /* TFHpple.m */; };
-		61E8E4431695C81E00DC5C83 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43E1695C81E00DC5C83 /* TFHppleElement.m */; };
-		61E8E4451695C81E00DC5C83 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4401695C81E00DC5C83 /* XPathQuery.m */; };
-		61E8E4491695C98C00DC5C83 /* NSDictionary+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4481695C98C00DC5C83 /* NSDictionary+Merge.m */; };
 		61E8E44C1695C9EB00DC5C83 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E44B1695C9EB00DC5C83 /* libxml2.2.dylib */; };
 		61E8E44F1695CA1B00DC5C83 /* test-data-0.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E44D1695CA1B00DC5C83 /* test-data-0.html */; };
-		61E8E4611695D16D00DC5C83 /* ALLinkTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4601695D16D00DC5C83 /* ALLinkTextView.m */; };
 		61E8E47B1696ED1000DC5C83 /* test-data-1.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E47A1696ED1000DC5C83 /* test-data-1.html */; };
 		61E8E4C31697459800DC5C83 /* test-data-2.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4C21697459800DC5C83 /* test-data-2.html */; };
 		61E8E4C61697CF2900DC5C83 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 61E8E4C51697CF2900DC5C83 /* README.markdown */; };
@@ -52,9 +54,28 @@
 			containerPortal = 61E8E3F11695C5B600DC5C83 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 61E8E3F91695C5B600DC5C83;
-			remoteInfo = htmlpple;
+			remoteInfo = htmpple;
+		};
+		61D2DC5616DD85690069E6A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61E8E3F11695C5B600DC5C83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 61D2DC4216DD849D0069E6A9;
+			remoteInfo = htmpple;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		61D2DC4116DD849D0069E6A9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6104D19816B28CD500B5E464 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,13 +92,15 @@
 		6195EB3F1699A8E800995DFF /* ALDemoLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALDemoLabelViewController.h; path = Classes/ALDemoLabelViewController.h; sourceTree = "<group>"; };
 		6195EB401699A8E800995DFF /* ALDemoLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALDemoLabelViewController.m; path = Classes/ALDemoLabelViewController.m; sourceTree = "<group>"; };
 		61C84BA716D0573D00D22C05 /* NSDictionary_MergeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_MergeTests.m; sourceTree = "<group>"; };
-		61E8E3FA1695C5B600DC5C83 /* htmlpple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = htmlpple.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		61D2DC4316DD849D0069E6A9 /* libhtmpple.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhtmpple.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		61D2DC4716DD849D0069E6A9 /* htmpple-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "htmpple-Prefix.pch"; sourceTree = "<group>"; };
+		61D2DC5816DD873E0069E6A9 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = SOURCE_ROOT; };
+		61E8E3FA1695C5B600DC5C83 /* htmppleSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = htmppleSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E8E3FE1695C5B600DC5C83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		61E8E4001695C5B600DC5C83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		61E8E4021695C5B600DC5C83 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		61E8E4061695C5B600DC5C83 /* htmlpple-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "htmlpple-Info.plist"; sourceTree = "<group>"; };
+		61E8E4061695C5B600DC5C83 /* htmpple-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "htmpple-Info.plist"; sourceTree = "<group>"; };
 		61E8E40A1695C5B600DC5C83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		61E8E40C1695C5B600DC5C83 /* htmlpple-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "htmlpple-Prefix.pch"; sourceTree = "<group>"; };
 		61E8E40D1695C5B600DC5C83 /* ALAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALAppDelegate.h; sourceTree = "<group>"; };
 		61E8E40E1695C5B600DC5C83 /* ALAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALAppDelegate.m; sourceTree = "<group>"; };
 		61E8E4101695C5B600DC5C83 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -115,10 +138,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		61D2DC4016DD849D0069E6A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61D2DC4416DD849D0069E6A9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61E8E3F71695C5B600DC5C83 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61D2DC5516DD85620069E6A9 /* libhtmpple.a in Frameworks */,
 				61E8E44C1695C9EB00DC5C83 /* libxml2.2.dylib in Frameworks */,
 				61E8E3FF1695C5B600DC5C83 /* UIKit.framework in Frameworks */,
 				61E8E4011695C5B600DC5C83 /* Foundation.framework in Frameworks */,
@@ -152,7 +184,7 @@
 		61E8E3EF1695C5B600DC5C83 = {
 			isa = PBXGroup;
 			children = (
-				61E8E4041695C5B600DC5C83 /* htmlpple */,
+				61E8E4041695C5B600DC5C83 /* htmpple */,
 				6104D19C16B28CD500B5E464 /* UnitTests */,
 				61E8E3FD1695C5B600DC5C83 /* Frameworks */,
 				61E8E3FB1695C5B600DC5C83 /* Products */,
@@ -162,8 +194,9 @@
 		61E8E3FB1695C5B600DC5C83 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				61E8E3FA1695C5B600DC5C83 /* htmlpple.app */,
+				61E8E3FA1695C5B600DC5C83 /* htmppleSample.app */,
 				6104D19816B28CD500B5E464 /* UnitTests.octest */,
+				61D2DC4316DD849D0069E6A9 /* libhtmpple.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,9 +213,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		61E8E4041695C5B600DC5C83 /* htmlpple */ = {
+		61E8E4041695C5B600DC5C83 /* htmpple */ = {
 			isa = PBXGroup;
 			children = (
+				61D2DC5816DD873E0069E6A9 /* README.markdown */,
 				61E8E43A1695C78B00DC5C83 /* TFHpple */,
 				61E8E4361695C73400DC5C83 /* Parser */,
 				61E8E45F1695D16D00DC5C83 /* ALLinkTextView.h */,
@@ -195,12 +229,13 @@
 				6195EB401699A8E800995DFF /* ALDemoLabelViewController.m */,
 				61E8E4051695C5B600DC5C83 /* Supporting Files */,
 			);
-			path = htmlpple;
+			path = htmpple;
 			sourceTree = "<group>";
 		};
 		61E8E4051695C5B600DC5C83 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				61D2DC4716DD849D0069E6A9 /* htmpple-Prefix.pch */,
 				61E8E4C51697CF2900DC5C83 /* README.markdown */,
 				61E8E44D1695CA1B00DC5C83 /* test-data-0.html */,
 				61E8E47A1696ED1000DC5C83 /* test-data-1.html */,
@@ -209,9 +244,8 @@
 				6195EB2C16998AC200995DFF /* test-data-4.html */,
 				6178FBBA16BD283A00C1BAAC /* test-data-5.html */,
 				6178FBBD16BD2BDA00C1BAAC /* test-data-6.html */,
-				61E8E4061695C5B600DC5C83 /* htmlpple-Info.plist */,
+				61E8E4061695C5B600DC5C83 /* htmpple-Info.plist */,
 				61E8E40A1695C5B600DC5C83 /* main.m */,
-				61E8E40C1695C5B600DC5C83 /* htmlpple-Prefix.pch */,
 				61E8E4101695C5B600DC5C83 /* Default.png */,
 				61E8E4121695C5B600DC5C83 /* Default@2x.png */,
 				61E8E4141695C5B600DC5C83 /* Default-568h@2x.png */,
@@ -265,9 +299,26 @@
 			productReference = 6104D19816B28CD500B5E464 /* UnitTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		61E8E3F91695C5B600DC5C83 /* htmlpple */ = {
+		61D2DC4216DD849D0069E6A9 /* htmpple */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 61E8E42D1695C5B600DC5C83 /* Build configuration list for PBXNativeTarget "htmlpple" */;
+			buildConfigurationList = 61D2DC4E16DD849D0069E6A9 /* Build configuration list for PBXNativeTarget "htmpple" */;
+			buildPhases = (
+				61D2DC3F16DD849D0069E6A9 /* Sources */,
+				61D2DC4016DD849D0069E6A9 /* Frameworks */,
+				61D2DC4116DD849D0069E6A9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = htmpple;
+			productName = htmpple;
+			productReference = 61D2DC4316DD849D0069E6A9 /* libhtmpple.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		61E8E3F91695C5B600DC5C83 /* htmppleSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61E8E42D1695C5B600DC5C83 /* Build configuration list for PBXNativeTarget "htmppleSample" */;
 			buildPhases = (
 				61E8E3F61695C5B600DC5C83 /* Sources */,
 				61E8E3F71695C5B600DC5C83 /* Frameworks */,
@@ -276,10 +327,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				61D2DC5716DD85690069E6A9 /* PBXTargetDependency */,
 			);
-			name = htmlpple;
-			productName = htmlpple;
-			productReference = 61E8E3FA1695C5B600DC5C83 /* htmlpple.app */;
+			name = htmppleSample;
+			productName = htmpple;
+			productReference = 61E8E3FA1695C5B600DC5C83 /* htmppleSample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -292,7 +344,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = au.com.amleszk;
 			};
-			buildConfigurationList = 61E8E3F41695C5B600DC5C83 /* Build configuration list for PBXProject "htmlpple" */;
+			buildConfigurationList = 61E8E3F41695C5B600DC5C83 /* Build configuration list for PBXProject "htmpple" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -304,8 +356,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				61E8E3F91695C5B600DC5C83 /* htmlpple */,
+				61E8E3F91695C5B600DC5C83 /* htmppleSample */,
 				6104D19716B28CD500B5E464 /* UnitTests */,
+				61D2DC4216DD849D0069E6A9 /* htmpple */,
 			);
 		};
 /* End PBXProject section */
@@ -370,18 +423,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		61D2DC3F16DD849D0069E6A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61D2DC4F16DD84AC0069E6A9 /* TFHpple.m in Sources */,
+				61D2DC5016DD84AC0069E6A9 /* TFHppleElement.m in Sources */,
+				61D2DC5116DD84AC0069E6A9 /* XPathQuery.m in Sources */,
+				61D2DC5216DD84AC0069E6A9 /* NSDictionary+Merge.m in Sources */,
+				61D2DC5316DD84AC0069E6A9 /* ALHtmlToAttributedStringParser.m in Sources */,
+				61D2DC5416DD84AC0069E6A9 /* ALLinkTextView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		61E8E3F61695C5B600DC5C83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				61E8E40B1695C5B600DC5C83 /* main.m in Sources */,
 				61E8E40F1695C5B600DC5C83 /* ALAppDelegate.m in Sources */,
-				61E8E4391695C77700DC5C83 /* ALHtmlToAttributedStringParser.m in Sources */,
-				61E8E4411695C81E00DC5C83 /* TFHpple.m in Sources */,
-				61E8E4431695C81E00DC5C83 /* TFHppleElement.m in Sources */,
-				61E8E4451695C81E00DC5C83 /* XPathQuery.m in Sources */,
-				61E8E4491695C98C00DC5C83 /* NSDictionary+Merge.m in Sources */,
-				61E8E4611695D16D00DC5C83 /* ALLinkTextView.m in Sources */,
 				6195EB2B1699849C00995DFF /* ALDemoTextViewController.m in Sources */,
 				6195EB411699A8E900995DFF /* ALDemoLabelViewController.m in Sources */,
 			);
@@ -392,8 +452,13 @@
 /* Begin PBXTargetDependency section */
 		6104D1B116B290BA00B5E464 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 61E8E3F91695C5B600DC5C83 /* htmlpple */;
+			target = 61E8E3F91695C5B600DC5C83 /* htmppleSample */;
 			targetProxy = 6104D1B016B290BA00B5E464 /* PBXContainerItemProxy */;
+		};
+		61D2DC5716DD85690069E6A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 61D2DC4216DD849D0069E6A9 /* htmpple */;
+			targetProxy = 61D2DC5616DD85690069E6A9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -412,7 +477,7 @@
 		6104D1A616B28CD500B5E464 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/htmlpple.app/htmlpple";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/htmpple.app/htmpple";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -430,7 +495,7 @@
 		6104D1A716B28CD500B5E464 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/htmlpple.app/htmlpple";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/htmpple.app/htmpple";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -442,6 +507,40 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		61D2DC4C16DD849D0069E6A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				DSTROOT = /tmp/htmpple.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "htmpple/htmpple-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		61D2DC4D16DD849D0069E6A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				DSTROOT = /tmp/htmpple.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "htmpple/htmpple-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -501,10 +600,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "htmlpple/htmlpple-Prefix.pch";
+				GCC_PREFIX_HEADER = "htmpple/htmpple-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = "htmlpple/htmlpple-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "htmpple/htmpple-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = htmppleSample;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -513,10 +613,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "htmlpple/htmlpple-Prefix.pch";
+				GCC_PREFIX_HEADER = "htmpple/htmpple-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
-				INFOPLIST_FILE = "htmlpple/htmlpple-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "htmpple/htmpple-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = htmppleSample;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -533,7 +634,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		61E8E3F41695C5B600DC5C83 /* Build configuration list for PBXProject "htmlpple" */ = {
+		61D2DC4E16DD849D0069E6A9 /* Build configuration list for PBXNativeTarget "htmpple" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61D2DC4C16DD849D0069E6A9 /* Debug */,
+				61D2DC4D16DD849D0069E6A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		61E8E3F41695C5B600DC5C83 /* Build configuration list for PBXProject "htmpple" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				61E8E42B1695C5B600DC5C83 /* Debug */,
@@ -542,7 +652,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		61E8E42D1695C5B600DC5C83 /* Build configuration list for PBXNativeTarget "htmlpple" */ = {
+		61E8E42D1695C5B600DC5C83 /* Build configuration list for PBXNativeTarget "htmppleSample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				61E8E42E1695C5B600DC5C83 /* Debug */,
