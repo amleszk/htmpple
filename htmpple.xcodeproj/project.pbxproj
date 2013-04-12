@@ -21,9 +21,7 @@
 		6178FBBB16BD283A00C1BAAC /* test-data-5.html in Resources */ = {isa = PBXBuildFile; fileRef = 6178FBBA16BD283A00C1BAAC /* test-data-5.html */; };
 		6178FBBE16BD2BDA00C1BAAC /* test-data-6.html in Resources */ = {isa = PBXBuildFile; fileRef = 6178FBBD16BD2BDA00C1BAAC /* test-data-6.html */; };
 		6195EB251699810400995DFF /* test-data-3.html in Resources */ = {isa = PBXBuildFile; fileRef = 6195EB241699810400995DFF /* test-data-3.html */; };
-		6195EB2B1699849C00995DFF /* ALDemoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6195EB2A1699849C00995DFF /* ALDemoTextViewController.m */; };
 		6195EB2D16998AC200995DFF /* test-data-4.html in Resources */ = {isa = PBXBuildFile; fileRef = 6195EB2C16998AC200995DFF /* test-data-4.html */; };
-		6195EB411699A8E900995DFF /* ALDemoLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6195EB401699A8E800995DFF /* ALDemoLabelViewController.m */; };
 		61C84BA816D0573E00D22C05 /* NSDictionary_MergeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C84BA716D0573D00D22C05 /* NSDictionary_MergeTests.m */; };
 		61D2DC4416DD849D0069E6A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4001695C5B600DC5C83 /* Foundation.framework */; };
 		61D2DC4F16DD84AC0069E6A9 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43C1695C81E00DC5C83 /* TFHpple.m */; };
@@ -33,6 +31,9 @@
 		61D2DC5316DD84AC0069E6A9 /* ALHtmlToAttributedStringParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4381695C77700DC5C83 /* ALHtmlToAttributedStringParser.m */; };
 		61D2DC5416DD84AC0069E6A9 /* ALLinkTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4601695D16D00DC5C83 /* ALLinkTextView.m */; };
 		61D2DC5516DD85620069E6A9 /* libhtmpple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D2DC4316DD849D0069E6A9 /* libhtmpple.a */; };
+		61D67EC016EEC16C007753D5 /* ALDemoLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D67EBD16EEC16C007753D5 /* ALDemoLabelViewController.m */; };
+		61D67EC116EEC16C007753D5 /* ALDemoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D67EBF16EEC16C007753D5 /* ALDemoTextViewController.m */; };
+		61E7BEBD17067DAE00ED2728 /* test-data-7.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E7BEBC17067DAE00ED2728 /* test-data-7.html */; };
 		61E8E3FF1695C5B600DC5C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E3FE1695C5B600DC5C83 /* UIKit.framework */; };
 		61E8E4011695C5B600DC5C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4001695C5B600DC5C83 /* Foundation.framework */; };
 		61E8E4031695C5B600DC5C83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4021695C5B600DC5C83 /* CoreGraphics.framework */; };
@@ -86,15 +87,16 @@
 		6178FBBA16BD283A00C1BAAC /* test-data-5.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-5.html"; sourceTree = "<group>"; };
 		6178FBBD16BD2BDA00C1BAAC /* test-data-6.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-6.html"; sourceTree = "<group>"; };
 		6195EB241699810400995DFF /* test-data-3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-3.html"; sourceTree = "<group>"; };
-		6195EB291699849C00995DFF /* ALDemoTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALDemoTextViewController.h; path = Classes/ALDemoTextViewController.h; sourceTree = "<group>"; };
-		6195EB2A1699849C00995DFF /* ALDemoTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALDemoTextViewController.m; path = Classes/ALDemoTextViewController.m; sourceTree = "<group>"; };
 		6195EB2C16998AC200995DFF /* test-data-4.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-4.html"; sourceTree = "<group>"; };
-		6195EB3F1699A8E800995DFF /* ALDemoLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALDemoLabelViewController.h; path = Classes/ALDemoLabelViewController.h; sourceTree = "<group>"; };
-		6195EB401699A8E800995DFF /* ALDemoLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALDemoLabelViewController.m; path = Classes/ALDemoLabelViewController.m; sourceTree = "<group>"; };
 		61C84BA716D0573D00D22C05 /* NSDictionary_MergeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_MergeTests.m; sourceTree = "<group>"; };
 		61D2DC4316DD849D0069E6A9 /* libhtmpple.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhtmpple.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		61D2DC4716DD849D0069E6A9 /* htmpple-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "htmpple-Prefix.pch"; sourceTree = "<group>"; };
 		61D2DC5816DD873E0069E6A9 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = SOURCE_ROOT; };
+		61D67EBC16EEC16C007753D5 /* ALDemoLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALDemoLabelViewController.h; sourceTree = "<group>"; };
+		61D67EBD16EEC16C007753D5 /* ALDemoLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALDemoLabelViewController.m; sourceTree = "<group>"; };
+		61D67EBE16EEC16C007753D5 /* ALDemoTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALDemoTextViewController.h; sourceTree = "<group>"; };
+		61D67EBF16EEC16C007753D5 /* ALDemoTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALDemoTextViewController.m; sourceTree = "<group>"; };
+		61E7BEBC17067DAE00ED2728 /* test-data-7.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-7.html"; sourceTree = "<group>"; };
 		61E8E3FA1695C5B600DC5C83 /* htmppleSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = htmppleSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E8E3FE1695C5B600DC5C83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		61E8E4001695C5B600DC5C83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -181,6 +183,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		61D67EBB16EEC16C007753D5 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				61D67EBC16EEC16C007753D5 /* ALDemoLabelViewController.h */,
+				61D67EBD16EEC16C007753D5 /* ALDemoLabelViewController.m */,
+				61D67EBE16EEC16C007753D5 /* ALDemoTextViewController.h */,
+				61D67EBF16EEC16C007753D5 /* ALDemoTextViewController.m */,
+			);
+			name = Demo;
+			path = Classes/Demo;
+			sourceTree = "<group>";
+		};
 		61E8E3EF1695C5B600DC5C83 = {
 			isa = PBXGroup;
 			children = (
@@ -223,10 +237,7 @@
 				61E8E4601695D16D00DC5C83 /* ALLinkTextView.m */,
 				61E8E40D1695C5B600DC5C83 /* ALAppDelegate.h */,
 				61E8E40E1695C5B600DC5C83 /* ALAppDelegate.m */,
-				6195EB291699849C00995DFF /* ALDemoTextViewController.h */,
-				6195EB2A1699849C00995DFF /* ALDemoTextViewController.m */,
-				6195EB3F1699A8E800995DFF /* ALDemoLabelViewController.h */,
-				6195EB401699A8E800995DFF /* ALDemoLabelViewController.m */,
+				61D67EBB16EEC16C007753D5 /* Demo */,
 				61E8E4051695C5B600DC5C83 /* Supporting Files */,
 			);
 			path = htmpple;
@@ -244,6 +255,7 @@
 				6195EB2C16998AC200995DFF /* test-data-4.html */,
 				6178FBBA16BD283A00C1BAAC /* test-data-5.html */,
 				6178FBBD16BD2BDA00C1BAAC /* test-data-6.html */,
+				61E7BEBC17067DAE00ED2728 /* test-data-7.html */,
 				61E8E4061695C5B600DC5C83 /* htmpple-Info.plist */,
 				61E8E40A1695C5B600DC5C83 /* main.m */,
 				61E8E4101695C5B600DC5C83 /* Default.png */,
@@ -387,6 +399,7 @@
 				6195EB2D16998AC200995DFF /* test-data-4.html in Resources */,
 				6178FBBB16BD283A00C1BAAC /* test-data-5.html in Resources */,
 				6178FBBE16BD2BDA00C1BAAC /* test-data-6.html in Resources */,
+				61E7BEBD17067DAE00ED2728 /* test-data-7.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,8 +455,8 @@
 			files = (
 				61E8E40B1695C5B600DC5C83 /* main.m in Sources */,
 				61E8E40F1695C5B600DC5C83 /* ALAppDelegate.m in Sources */,
-				6195EB2B1699849C00995DFF /* ALDemoTextViewController.m in Sources */,
-				6195EB411699A8E900995DFF /* ALDemoLabelViewController.m in Sources */,
+				61D67EC016EEC16C007753D5 /* ALDemoLabelViewController.m in Sources */,
+				61D67EC116EEC16C007753D5 /* ALDemoTextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
