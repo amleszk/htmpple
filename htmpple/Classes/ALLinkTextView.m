@@ -32,19 +32,19 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     linkColorDefaultAppearance = [UIColor blueColor];
     
     fuzzyTouchPointOffsets = @[
-       [NSValue valueWithCGPoint:CGPointMake(0, 0)],
-       [NSValue valueWithCGPoint:CGPointMake(0, fuzzyTouchPointBufferY)],
-       [NSValue valueWithCGPoint:CGPointMake(0, -fuzzyTouchPointBufferY)],
-       [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, 0)],
-       [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX,0)],
-       
-       [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, fuzzyTouchPointBufferY)],
-       [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX, -fuzzyTouchPointBufferY)],
-       [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, -fuzzyTouchPointBufferY)],
-       [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX, fuzzyTouchPointBufferY)],
-    ];
+        [NSValue valueWithCGPoint:CGPointMake(0, 0)],
+        [NSValue valueWithCGPoint:CGPointMake(0, fuzzyTouchPointBufferY)],
+        [NSValue valueWithCGPoint:CGPointMake(0, -fuzzyTouchPointBufferY)],
+        [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, 0)],
+        [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX,0)],
 
-
+        [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, fuzzyTouchPointBufferY)],
+        [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX, -fuzzyTouchPointBufferY)],
+        [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, -fuzzyTouchPointBufferY)],
+        [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX, fuzzyTouchPointBufferY)],
+   ];
+    
+    
 }
 
 -(id) initWithFrame:(CGRect)frame
@@ -133,34 +133,8 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     _activeLinkIndex = NSNotFound;
 }
 
--(void)hitLinkForPoint:(CGPoint)point
-       hitLinkStorage:(NSInteger*)hitLinkStorage
-       hitRangeStorage:(NSRange*)hitRangeStorage
-{
-    NSParameterAssert(hitLinkStorage != nil);
-    NSParameterAssert(hitRangeStorage != nil);
-    
-    UITextRange *textRange = [self characterRangeAtPoint:point];
-    NSArray *rects = [self selectionRectsForRange:textRange];
-    
-    if (rects.count != 0) {
-        NSInteger charactersIn = [self offsetFromPosition:self.beginningOfDocument toPosition:textRange.start];
-        NSInteger index = 0;
-        for(NSArray *value in _linkRanges) {
-            NSRange range = [value[0] rangeValue];
-            if (range.location<=charactersIn &&
-                ((range.location+range.length)>=charactersIn)) {
-                (*hitLinkStorage) = index;
-                (*hitRangeStorage) = range;
-                break;
-            }
-            index++;
-        }
-    }
-}
-
 -(NSInteger)linkIndexForPoint:(CGPoint)originalPoint textRectStorage:(CGRect*)textRectStorage
-{    
+{
     CGPoint pointWithOffset;
     NSInteger hitLink = NSNotFound;
     NSRange hitRange = {NSNotFound,0};
@@ -168,9 +142,29 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
         
         CGPoint offsetPoint = [offset CGPointValue];
         pointWithOffset = CGPointMake(originalPoint.x+offsetPoint.x, originalPoint.y+offsetPoint.y);
-        [self hitLinkForPoint:pointWithOffset hitLinkStorage:&hitLink hitRangeStorage:&hitRange];
-        if (hitLink != NSNotFound) {
-            break;
+        UITextRange *textRange = [self characterRangeAtPoint:pointWithOffset];
+        NSArray *rects = [self selectionRectsForRange:textRange];
+        
+        if (rects.count != 0) {
+            
+            NSInteger charactersIn = [self offsetFromPosition:self.beginningOfDocument toPosition:textRange.start];
+            hitLink = NSNotFound;
+            hitRange = (NSRange){NSNotFound,0};
+            NSInteger index = 0;
+            for(NSArray *value in _linkRanges) {
+                NSRange range = [value[0] rangeValue];
+                if (range.location<=charactersIn &&
+                    ((range.location+range.length)>=charactersIn)) {
+                    hitLink = index;
+                    hitRange = range;
+                    break;
+                }
+                index++;
+            }
+            
+            if (hitLink != NSNotFound) {
+                break;
+            }
         }
     }
     
@@ -179,7 +173,7 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     }
     
     // Check the rect of this link actually contains the touch point, characterRangeAtPoint: returns a selection range
-    // when there is a link at the end of line and it does not actually contain the point
+    // when there is a link at the end of line and it doesn not actually contain the point
     UITextPosition* linkRangeStart = [self positionFromPosition:self.beginningOfDocument offset:hitRange.location];
     UITextPosition* linkRangeEnd = [self positionFromPosition:linkRangeStart offset:hitRange.length];
     UITextRange* linkTextRange = [self textRangeFromPosition:linkRangeStart toPosition:linkRangeEnd];
