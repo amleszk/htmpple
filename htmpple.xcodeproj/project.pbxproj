@@ -18,6 +18,7 @@
 		6104D1AD16B28EDC00B5E464 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4401695C81E00DC5C83 /* XPathQuery.m */; };
 		6104D1AE16B28EE100B5E464 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E44B1695C9EB00DC5C83 /* libxml2.2.dylib */; };
 		6104D1AF16B28F8000B5E464 /* NSDictionary+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4481695C98C00DC5C83 /* NSDictionary+Merge.m */; };
+		614CA1F6171898E90057A1E9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614CA1F3171898AC0057A1E9 /* QuartzCore.framework */; };
 		6178FBBB16BD283A00C1BAAC /* test-data-5.html in Resources */ = {isa = PBXBuildFile; fileRef = 6178FBBA16BD283A00C1BAAC /* test-data-5.html */; };
 		6178FBBE16BD2BDA00C1BAAC /* test-data-6.html in Resources */ = {isa = PBXBuildFile; fileRef = 6178FBBD16BD2BDA00C1BAAC /* test-data-6.html */; };
 		6195EB251699810400995DFF /* test-data-3.html in Resources */ = {isa = PBXBuildFile; fileRef = 6195EB241699810400995DFF /* test-data-3.html */; };
@@ -84,6 +85,7 @@
 		6104D1A016B28CD500B5E464 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6104D1A316B28CD500B5E464 /* ALHtmlToAttributedStringParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALHtmlToAttributedStringParserTests.m; sourceTree = "<group>"; };
 		6104D1A516B28CD500B5E464 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
+		614CA1F3171898AC0057A1E9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6178FBBA16BD283A00C1BAAC /* test-data-5.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-5.html"; sourceTree = "<group>"; };
 		6178FBBD16BD2BDA00C1BAAC /* test-data-6.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-6.html"; sourceTree = "<group>"; };
 		6195EB241699810400995DFF /* test-data-3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-3.html"; sourceTree = "<group>"; };
@@ -91,7 +93,6 @@
 		61C84BA716D0573D00D22C05 /* NSDictionary_MergeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_MergeTests.m; sourceTree = "<group>"; };
 		61D2DC4316DD849D0069E6A9 /* libhtmpple.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhtmpple.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		61D2DC4716DD849D0069E6A9 /* htmpple-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "htmpple-Prefix.pch"; sourceTree = "<group>"; };
-		61D2DC5816DD873E0069E6A9 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = SOURCE_ROOT; };
 		61D67EBC16EEC16C007753D5 /* ALDemoLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALDemoLabelViewController.h; sourceTree = "<group>"; };
 		61D67EBD16EEC16C007753D5 /* ALDemoLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALDemoLabelViewController.m; sourceTree = "<group>"; };
 		61D67EBE16EEC16C007753D5 /* ALDemoTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALDemoTextViewController.h; sourceTree = "<group>"; };
@@ -152,11 +153,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				614CA1F6171898E90057A1E9 /* QuartzCore.framework in Frameworks */,
+				61E8E4031695C5B600DC5C83 /* CoreGraphics.framework in Frameworks */,
 				61D2DC5516DD85620069E6A9 /* libhtmpple.a in Frameworks */,
 				61E8E44C1695C9EB00DC5C83 /* libxml2.2.dylib in Frameworks */,
 				61E8E3FF1695C5B600DC5C83 /* UIKit.framework in Frameworks */,
 				61E8E4011695C5B600DC5C83 /* Foundation.framework in Frameworks */,
-				61E8E4031695C5B600DC5C83 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +200,7 @@
 		61E8E3EF1695C5B600DC5C83 = {
 			isa = PBXGroup;
 			children = (
+				614CA1F3171898AC0057A1E9 /* QuartzCore.framework */,
 				61E8E4041695C5B600DC5C83 /* htmpple */,
 				6104D19C16B28CD500B5E464 /* UnitTests */,
 				61E8E3FD1695C5B600DC5C83 /* Frameworks */,
@@ -230,7 +233,6 @@
 		61E8E4041695C5B600DC5C83 /* htmpple */ = {
 			isa = PBXGroup;
 			children = (
-				61D2DC5816DD873E0069E6A9 /* README.markdown */,
 				61E8E43A1695C78B00DC5C83 /* TFHpple */,
 				61E8E4361695C73400DC5C83 /* Parser */,
 				61E8E45F1695D16D00DC5C83 /* ALLinkTextView.h */,

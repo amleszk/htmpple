@@ -91,7 +91,7 @@
 
 #pragma mark - Delegate
 
--(void) textView:(ALLinkTextView *)textView didTapLinkWithHref:(NSString *)href
+-(void) textView:(ALLinkTextView*)textView didTapLinkWithText:(NSString*)text href:(NSString*)href
 {
     [[[UIAlertView alloc] initWithTitle:@"Tapped:"
                                 message:href
@@ -100,7 +100,7 @@
                       otherButtonTitles:nil] show];
 }
 
--(void) textView:(ALLinkTextView*)textView didLongPressLinkWithHref:(NSString*)href textRect:(CGRect)textRect
+-(void) textView:(ALLinkTextView*)textView didLongPressLinkWithText:(NSString*)text href:(NSString*)href textRect:(CGRect)textRect
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Long press"
                                                              delegate:nil
