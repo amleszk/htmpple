@@ -32,17 +32,17 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     linkColorDefaultAppearance = [UIColor blueColor];
     
     fuzzyTouchPointOffsets = @[
-        [NSValue valueWithCGPoint:CGPointMake(0, 0)],
-        [NSValue valueWithCGPoint:CGPointMake(0, fuzzyTouchPointBufferY)],
-        [NSValue valueWithCGPoint:CGPointMake(0, -fuzzyTouchPointBufferY)],
-        [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, 0)],
-        [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX,0)],
-
-        [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, fuzzyTouchPointBufferY)],
-        [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX, -fuzzyTouchPointBufferY)],
-        [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, -fuzzyTouchPointBufferY)],
-        [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX, fuzzyTouchPointBufferY)],
-   ];
+                               [NSValue valueWithCGPoint:CGPointMake(0, 0)],
+                               [NSValue valueWithCGPoint:CGPointMake(0, fuzzyTouchPointBufferY)],
+                               [NSValue valueWithCGPoint:CGPointMake(0, -fuzzyTouchPointBufferY)],
+                               [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, 0)],
+                               [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX,0)],
+                               
+                               [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, fuzzyTouchPointBufferY)],
+                               [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX, -fuzzyTouchPointBufferY)],
+                               [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, -fuzzyTouchPointBufferY)],
+                               [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX, fuzzyTouchPointBufferY)],
+                               ];
     
     
 }
@@ -210,7 +210,7 @@ typedef enum {
     [self setAttributedText:attributedText];
     [_linkRanges removeAllObjects];
     [attributedText enumerateAttribute:kALHtmlToAttributedParsedHref
-                               inRange:(NSRange){0,self.text.length}
+                               inRange:(NSRange){0,attributedText.string.length}
                                options:0
                             usingBlock:^(id value, NSRange range, BOOL *stop) {
                                 if(value) {
