@@ -69,6 +69,7 @@ typedef enum {
         self.fontSizesBody = @[@12,@14];
         self.backgroundColorQuote = [UIColor colorWithRed:0 green:0 blue:1. alpha:0.1];
         self.textColorDefault = [UIColor blackColor];
+        self.backgroundColorDefault = [UIColor clearColor];
         self.textColorLink = [UIColor blueColor];
         self.indentLevelStack = [NSMutableArray array];
         
@@ -142,12 +143,14 @@ typedef enum {
         @[ @[@"h6"] , @{ NSFontAttributeName : hFont6}],
     ];
     
-    __unsafe_unretained ALHtmlToAttributedStringParser *blockSelf = self;
+    __weak typeof(self)weakSelf = self;
     
     AttributesBlock aDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        
         return @{
             NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle),
-            NSForegroundColorAttributeName : blockSelf.textColorLink,
+            NSForegroundColorAttributeName : strongSelf.textColorLink,
             kALHtmlToAttributedParsedHref : tagAttributes[@"href"],
             //Required to uniquely identify the text, otherwise if 2 links are side by side they get combined
             kALHtmlToAttributedId : [NSDate date]
@@ -156,21 +159,24 @@ typedef enum {
 
     //Need dynamic access to indentation
     AttributesBlock pDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
         return @{
-                 NSParagraphStyleAttributeName : [blockSelf pParagraphStyle]
+                 NSParagraphStyleAttributeName : [strongSelf pParagraphStyle]
          };
     };
 
     //Need dynamic access to indentation
     AttributesBlock blockquoteDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
         return @{
-            NSParagraphStyleAttributeName : [blockSelf blockQuoteParagraphStyle],
+            NSParagraphStyleAttributeName : [strongSelf blockQuoteParagraphStyle],
         };
     };
 
     AttributesBlock listDynamicAction = ^NSDictionary*(NSDictionary* tagAttributes) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
         return @{
-             NSParagraphStyleAttributeName : [blockSelf listParagraphStyle],
+             NSParagraphStyleAttributeName : [strongSelf listParagraphStyle],
              NSFontAttributeName : bodyFont1
         };
     };
@@ -199,8 +205,9 @@ typedef enum {
     ];
         
     self.rootAttributes = @{
+        NSBackgroundColorAttributeName : self.backgroundColorDefault,
         NSForegroundColorAttributeName : self.textColorDefault,
-        NSParagraphStyleAttributeName : [blockSelf pParagraphStyle]
+        NSParagraphStyleAttributeName : [self pParagraphStyle]
     };
 }
 

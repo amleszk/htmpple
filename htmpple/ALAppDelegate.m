@@ -1,11 +1,15 @@
 
-#import "ALAppDelegate.h"
 #import "ALDemoTextViewController.h"
 #import "ALDemoLabelViewController.h"
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < __IPHONE_6_0
 #warning "This project uses features only available in iOS SDK 6.0."
 #endif
+
+@interface ALAppDelegate : UIResponder <UIApplicationDelegate>
+@property (strong, nonatomic) UIWindow *window;
+@end
+
 
 @implementation ALAppDelegate
 

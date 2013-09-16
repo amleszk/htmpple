@@ -17,6 +17,7 @@ extern NSString *kALHtmlToAttributedParsedHref;
 
 @property UIColor* backgroundColorQuote;
 @property UIColor* textColorDefault;
+@property UIColor* backgroundColorDefault;
 @property UIColor* textColorLink;
 
 -(BOOL) htmlDataContainsLinks:(NSData*)data;

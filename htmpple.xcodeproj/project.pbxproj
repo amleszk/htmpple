@@ -24,16 +24,21 @@
 		6195EB251699810400995DFF /* test-data-3.html in Resources */ = {isa = PBXBuildFile; fileRef = 6195EB241699810400995DFF /* test-data-3.html */; };
 		6195EB2D16998AC200995DFF /* test-data-4.html in Resources */ = {isa = PBXBuildFile; fileRef = 6195EB2C16998AC200995DFF /* test-data-4.html */; };
 		61C84BA816D0573E00D22C05 /* NSDictionary_MergeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C84BA716D0573D00D22C05 /* NSDictionary_MergeTests.m */; };
+		61D0BBC917E5B77700B1EE14 /* ALLinkTextView6.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D0BBC417E5B77700B1EE14 /* ALLinkTextView6.m */; };
+		61D0BBCA17E5B77700B1EE14 /* ALLinkTextView7.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D0BBC617E5B77700B1EE14 /* ALLinkTextView7.m */; };
+		61D0BBCB17E5B77700B1EE14 /* ALLinkTextViewShared.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D0BBC817E5B77700B1EE14 /* ALLinkTextViewShared.m */; };
+		61D0BBCE17E5BC6300B1EE14 /* ALPrefix.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D0BBCD17E5BC6300B1EE14 /* ALPrefix.m */; };
+		61D0BBD117E5BE5400B1EE14 /* ALDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D0BBD017E5BE5400B1EE14 /* ALDemoViewController.m */; };
 		61D2DC4416DD849D0069E6A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4001695C5B600DC5C83 /* Foundation.framework */; };
 		61D2DC4F16DD84AC0069E6A9 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43C1695C81E00DC5C83 /* TFHpple.m */; };
 		61D2DC5016DD84AC0069E6A9 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E43E1695C81E00DC5C83 /* TFHppleElement.m */; };
 		61D2DC5116DD84AC0069E6A9 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4401695C81E00DC5C83 /* XPathQuery.m */; };
 		61D2DC5216DD84AC0069E6A9 /* NSDictionary+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4481695C98C00DC5C83 /* NSDictionary+Merge.m */; };
 		61D2DC5316DD84AC0069E6A9 /* ALHtmlToAttributedStringParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4381695C77700DC5C83 /* ALHtmlToAttributedStringParser.m */; };
-		61D2DC5416DD84AC0069E6A9 /* ALLinkTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E8E4601695D16D00DC5C83 /* ALLinkTextView.m */; };
 		61D2DC5516DD85620069E6A9 /* libhtmpple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D2DC4316DD849D0069E6A9 /* libhtmpple.a */; };
 		61D67EC016EEC16C007753D5 /* ALDemoLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D67EBD16EEC16C007753D5 /* ALDemoLabelViewController.m */; };
 		61D67EC116EEC16C007753D5 /* ALDemoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61D67EBF16EEC16C007753D5 /* ALDemoTextViewController.m */; };
+		61DFAF4817251318005C568A /* libhtmpple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D2DC4316DD849D0069E6A9 /* libhtmpple.a */; };
 		61E7BEBD17067DAE00ED2728 /* test-data-7.html in Resources */ = {isa = PBXBuildFile; fileRef = 61E7BEBC17067DAE00ED2728 /* test-data-7.html */; };
 		61E8E3FF1695C5B600DC5C83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E3FE1695C5B600DC5C83 /* UIKit.framework */; };
 		61E8E4011695C5B600DC5C83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E8E4001695C5B600DC5C83 /* Foundation.framework */; };
@@ -51,14 +56,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6104D1B016B290BA00B5E464 /* PBXContainerItemProxy */ = {
+		61D2DC5616DD85690069E6A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 61E8E3F11695C5B600DC5C83 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 61E8E3F91695C5B600DC5C83;
+			remoteGlobalIDString = 61D2DC4216DD849D0069E6A9;
 			remoteInfo = htmpple;
 		};
-		61D2DC5616DD85690069E6A9 /* PBXContainerItemProxy */ = {
+		61DFAF4617251311005C568A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 61E8E3F11695C5B600DC5C83 /* Project object */;
 			proxyType = 1;
@@ -91,6 +96,15 @@
 		6195EB241699810400995DFF /* test-data-3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-3.html"; sourceTree = "<group>"; };
 		6195EB2C16998AC200995DFF /* test-data-4.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-4.html"; sourceTree = "<group>"; };
 		61C84BA716D0573D00D22C05 /* NSDictionary_MergeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_MergeTests.m; sourceTree = "<group>"; };
+		61D0BBC317E5B77700B1EE14 /* ALLinkTextView6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALLinkTextView6.h; path = Classes/ALLinkTextView6.h; sourceTree = "<group>"; };
+		61D0BBC417E5B77700B1EE14 /* ALLinkTextView6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALLinkTextView6.m; path = Classes/ALLinkTextView6.m; sourceTree = "<group>"; };
+		61D0BBC517E5B77700B1EE14 /* ALLinkTextView7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALLinkTextView7.h; path = Classes/ALLinkTextView7.h; sourceTree = "<group>"; };
+		61D0BBC617E5B77700B1EE14 /* ALLinkTextView7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALLinkTextView7.m; path = Classes/ALLinkTextView7.m; sourceTree = "<group>"; };
+		61D0BBC717E5B77700B1EE14 /* ALLinkTextViewShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALLinkTextViewShared.h; path = Classes/ALLinkTextViewShared.h; sourceTree = "<group>"; };
+		61D0BBC817E5B77700B1EE14 /* ALLinkTextViewShared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALLinkTextViewShared.m; path = Classes/ALLinkTextViewShared.m; sourceTree = "<group>"; };
+		61D0BBCD17E5BC6300B1EE14 /* ALPrefix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALPrefix.m; sourceTree = "<group>"; };
+		61D0BBCF17E5BE5400B1EE14 /* ALDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALDemoViewController.h; sourceTree = "<group>"; };
+		61D0BBD017E5BE5400B1EE14 /* ALDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALDemoViewController.m; sourceTree = "<group>"; };
 		61D2DC4316DD849D0069E6A9 /* libhtmpple.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhtmpple.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		61D2DC4716DD849D0069E6A9 /* htmpple-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "htmpple-Prefix.pch"; sourceTree = "<group>"; };
 		61D67EBC16EEC16C007753D5 /* ALDemoLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALDemoLabelViewController.h; sourceTree = "<group>"; };
@@ -104,7 +118,6 @@
 		61E8E4021695C5B600DC5C83 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		61E8E4061695C5B600DC5C83 /* htmpple-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "htmpple-Info.plist"; sourceTree = "<group>"; };
 		61E8E40A1695C5B600DC5C83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		61E8E40D1695C5B600DC5C83 /* ALAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ALAppDelegate.h; sourceTree = "<group>"; };
 		61E8E40E1695C5B600DC5C83 /* ALAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ALAppDelegate.m; sourceTree = "<group>"; };
 		61E8E4101695C5B600DC5C83 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		61E8E4121695C5B600DC5C83 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -122,8 +135,6 @@
 		61E8E4481695C98C00DC5C83 /* NSDictionary+Merge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Merge.m"; path = "Classes/NSDictionary+Merge.m"; sourceTree = "<group>"; };
 		61E8E44B1695C9EB00DC5C83 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		61E8E44D1695CA1B00DC5C83 /* test-data-0.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-0.html"; sourceTree = "<group>"; };
-		61E8E45F1695D16D00DC5C83 /* ALLinkTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ALLinkTextView.h; path = Classes/ALLinkTextView.h; sourceTree = "<group>"; };
-		61E8E4601695D16D00DC5C83 /* ALLinkTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ALLinkTextView.m; path = Classes/ALLinkTextView.m; sourceTree = "<group>"; };
 		61E8E47A1696ED1000DC5C83 /* test-data-1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-1.html"; sourceTree = "<group>"; };
 		61E8E4C21697459800DC5C83 /* test-data-2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "test-data-2.html"; sourceTree = "<group>"; };
 		61E8E4C51697CF2900DC5C83 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = SOURCE_ROOT; };
@@ -134,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61DFAF4817251318005C568A /* libhtmpple.a in Frameworks */,
 				6104D19916B28CD500B5E464 /* SenTestingKit.framework in Frameworks */,
 				6104D19A16B28CD500B5E464 /* UIKit.framework in Frameworks */,
 				6104D19B16B28CD500B5E464 /* Foundation.framework in Frameworks */,
@@ -185,6 +197,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		61D0BBBF17E59C6800B1EE14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				61D0BBC317E5B77700B1EE14 /* ALLinkTextView6.h */,
+				61D0BBC417E5B77700B1EE14 /* ALLinkTextView6.m */,
+				61D0BBC517E5B77700B1EE14 /* ALLinkTextView7.h */,
+				61D0BBC617E5B77700B1EE14 /* ALLinkTextView7.m */,
+				61D0BBC717E5B77700B1EE14 /* ALLinkTextViewShared.h */,
+				61D0BBC817E5B77700B1EE14 /* ALLinkTextViewShared.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		61D67EBB16EEC16C007753D5 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +217,8 @@
 				61D67EBD16EEC16C007753D5 /* ALDemoLabelViewController.m */,
 				61D67EBE16EEC16C007753D5 /* ALDemoTextViewController.h */,
 				61D67EBF16EEC16C007753D5 /* ALDemoTextViewController.m */,
+				61D0BBCF17E5BE5400B1EE14 /* ALDemoViewController.h */,
+				61D0BBD017E5BE5400B1EE14 /* ALDemoViewController.m */,
 			);
 			name = Demo;
 			path = Classes/Demo;
@@ -200,7 +227,6 @@
 		61E8E3EF1695C5B600DC5C83 = {
 			isa = PBXGroup;
 			children = (
-				614CA1F3171898AC0057A1E9 /* QuartzCore.framework */,
 				61E8E4041695C5B600DC5C83 /* htmpple */,
 				6104D19C16B28CD500B5E464 /* UnitTests */,
 				61E8E3FD1695C5B600DC5C83 /* Frameworks */,
@@ -221,6 +247,7 @@
 		61E8E3FD1695C5B600DC5C83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				614CA1F3171898AC0057A1E9 /* QuartzCore.framework */,
 				61E8E44B1695C9EB00DC5C83 /* libxml2.2.dylib */,
 				61E8E3FE1695C5B600DC5C83 /* UIKit.framework */,
 				61E8E4001695C5B600DC5C83 /* Foundation.framework */,
@@ -235,9 +262,7 @@
 			children = (
 				61E8E43A1695C78B00DC5C83 /* TFHpple */,
 				61E8E4361695C73400DC5C83 /* Parser */,
-				61E8E45F1695D16D00DC5C83 /* ALLinkTextView.h */,
-				61E8E4601695D16D00DC5C83 /* ALLinkTextView.m */,
-				61E8E40D1695C5B600DC5C83 /* ALAppDelegate.h */,
+				61D0BBBF17E59C6800B1EE14 /* Views */,
 				61E8E40E1695C5B600DC5C83 /* ALAppDelegate.m */,
 				61D67EBB16EEC16C007753D5 /* Demo */,
 				61E8E4051695C5B600DC5C83 /* Supporting Files */,
@@ -248,6 +273,7 @@
 		61E8E4051695C5B600DC5C83 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				61D0BBCD17E5BC6300B1EE14 /* ALPrefix.m */,
 				61D2DC4716DD849D0069E6A9 /* htmpple-Prefix.pch */,
 				61E8E4C51697CF2900DC5C83 /* README.markdown */,
 				61E8E44D1695CA1B00DC5C83 /* test-data-0.html */,
@@ -306,7 +332,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				6104D1B116B290BA00B5E464 /* PBXTargetDependency */,
+				61DFAF4717251311005C568A /* PBXTargetDependency */,
 			);
 			name = UnitTests;
 			productName = UnitTests;
@@ -444,10 +470,14 @@
 			files = (
 				61D2DC4F16DD84AC0069E6A9 /* TFHpple.m in Sources */,
 				61D2DC5016DD84AC0069E6A9 /* TFHppleElement.m in Sources */,
+				61D0BBCE17E5BC6300B1EE14 /* ALPrefix.m in Sources */,
 				61D2DC5116DD84AC0069E6A9 /* XPathQuery.m in Sources */,
+				61D0BBD117E5BE5400B1EE14 /* ALDemoViewController.m in Sources */,
 				61D2DC5216DD84AC0069E6A9 /* NSDictionary+Merge.m in Sources */,
+				61D0BBCA17E5B77700B1EE14 /* ALLinkTextView7.m in Sources */,
+				61D0BBC917E5B77700B1EE14 /* ALLinkTextView6.m in Sources */,
 				61D2DC5316DD84AC0069E6A9 /* ALHtmlToAttributedStringParser.m in Sources */,
-				61D2DC5416DD84AC0069E6A9 /* ALLinkTextView.m in Sources */,
+				61D0BBCB17E5B77700B1EE14 /* ALLinkTextViewShared.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,15 +495,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6104D1B116B290BA00B5E464 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 61E8E3F91695C5B600DC5C83 /* htmppleSample */;
-			targetProxy = 6104D1B016B290BA00B5E464 /* PBXContainerItemProxy */;
-		};
 		61D2DC5716DD85690069E6A9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 61D2DC4216DD849D0069E6A9 /* htmpple */;
 			targetProxy = 61D2DC5616DD85690069E6A9 /* PBXContainerItemProxy */;
+		};
+		61DFAF4717251311005C568A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 61D2DC4216DD849D0069E6A9 /* htmpple */;
+			targetProxy = 61DFAF4617251311005C568A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -492,7 +522,6 @@
 		6104D1A616B28CD500B5E464 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/htmpple.app/htmpple";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -510,7 +539,6 @@
 		6104D1A716B28CD500B5E464 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/htmpple.app/htmpple";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -532,6 +560,10 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				DSTROOT = /tmp/htmpple.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/al/dev/ios/htmlpple,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "htmpple/htmpple-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -549,6 +581,10 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				DSTROOT = /tmp/htmpple.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/al/dev/ios/htmlpple,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "htmpple/htmpple-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
@@ -614,6 +650,10 @@
 		61E8E42E1695C5B600DC5C83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/al/dev/ios/htmlpple,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "htmpple/htmpple-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -627,6 +667,10 @@
 		61E8E42F1695C5B600DC5C83 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/al/dev/ios/htmlpple,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "htmpple/htmpple-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";

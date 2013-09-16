@@ -16,3 +16,10 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+Reveal.framework/Versions/Current
+Reveal.framework/Headers
+Reveal.framework/Versions/A/Headers/IBARevealLoader.h
+Reveal.framework/Versions/A/Headers/IBARevealLogger.h
+Reveal.framework/Reveal
+Reveal.framework/Versions/A/Reveal
+Reveal.framework/Versions/A/Headers/Reveal.h

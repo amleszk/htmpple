@@ -1,4 +1,6 @@
 
-@interface ALDemoTextViewController : UIViewController
+#import "ALDemoViewController.h"
+
+@interface ALDemoTextViewController : ALDemoViewController
 
 @end

@@ -12,3 +12,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+extern NSUInteger DeviceSystemMajorVersion();
+#define isiOS7 (DeviceSystemMajorVersion() >= 7)

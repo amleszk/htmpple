@@ -1,10 +1,11 @@
 
 #import "ALHtmlToAttributedStringParser.h"
-#import "ALLinkTextView.h"
-#import <QuartzCore/QuartzCore.h>
+#import "ALDemoTextViewController.h"
+#import "ALLinkTextView6.h"
+#import "ALLinkTextView7.h"
 
-@interface ALDemoTextViewController : UIViewController <ALLinkTextViewDelegate>
-@property (retain) ALLinkTextView *exampleTextView;
+@interface ALDemoTextViewController () <ALLinkTextViewDelegate>
+@property (retain) ALLinkTextViewShared *exampleTextView;
 @property NSInteger nextDataset;
 @property (retain) UIButton *nextDataButton;
 
@@ -12,86 +13,35 @@
 
 @implementation ALDemoTextViewController
 
--(void) nextDataSetFileIndex
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"test-data-%d",self.nextDataset+1] ofType:@"html"];
-    if (path) {
-        self.nextDataset = self.nextDataset+1;
-    } else {
-        self.nextDataset = 0;
-    }
-}
-
--(void) newDataSet
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"test-data-%d",self.nextDataset] ofType:@"html"];
-    NSData* data = [[NSData alloc] initWithContentsOfFile:path];
-    NSAttributedString* newString = [[ALHtmlToAttributedStringParser parser] attributedStringWithHTMLData:data trim:YES];
-    [self.exampleTextView setLinkifiedAttributedText:newString];
-
-    CGSize size = [self.exampleTextView sizeThatFits:self.view.frame.size];
-//    NSLog(@"size: %@",NSStringFromCGSize(size));
-    self.exampleTextView.frame = (CGRect){.origin=CGPointZero,size=size};
-    [self nextDataSetFileIndex];
-}
-
--(void) dealloc
-{
-    self.exampleTextView.linkDelegate = nil;
-}
-
--(void) viewDidLayoutSubviews
-{
-    CGRect bounds = self.view.bounds;
-    CGRect boundsWithInset = CGRectInset(bounds, 20, 20);
-    
-    CGSize size = [self.exampleTextView sizeThatFits:boundsWithInset.size];
-    self.exampleTextView.frame = (CGRect){.origin=boundsWithInset.origin,size=size};
-    
-    self.nextDataButton.frame = (CGRect){.origin={0,bounds.size.height-50},.size={bounds.size.width,50}};
-}
-
 -(NSString*) title { return @"ALLinkTextView"; };
 
 -(void) loadView
 {
-    self.view = [[UIView alloc] initWithFrame:CGRectZero];
+    [super loadView];
     
-    self.exampleTextView = [[ALLinkTextView alloc] initWithFrame:CGRectZero];
+    if (isiOS7)
+        self.exampleTextView = [[ALLinkTextView7 alloc] initWithFrame:CGRectZero];
+    else
+        self.exampleTextView = [[ALLinkTextView6 alloc] initWithFrame:CGRectZero];
+    
     [self.view addSubview:self.exampleTextView];
     self.exampleTextView.editable = NO;
     self.exampleTextView.linkDelegate = self;
 	self.exampleTextView.layer.cornerRadius = 5.0f;
 	self.exampleTextView.layer.borderColor = [[UIColor darkGrayColor] CGColor];
 	self.exampleTextView.layer.borderWidth = 1.0f;
-    
-    
-    self.nextDataset = 0;
-    
-    self.nextDataButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.nextDataButton addTarget:self action:@selector(newDataSet) forControlEvents:UIControlEventTouchUpInside];
-    [self.nextDataButton setTitle:@"Next" forState:UIControlStateNormal];
-    [self.view addSubview:self.nextDataButton];
+    self.demoView = self.exampleTextView;
 }
 
--(void) viewDidLoad
-{
-    [self newDataSet];
-}
-
--(void) runPerformanceTest
-{
-    NSDate* startTime = [NSDate date];
-    for (int i=0; i<200; i++) {
-        [self newDataSet];
-    }
-    NSLog(@"Time %.2f",[[NSDate date] timeIntervalSinceDate:startTime]);
+-(void) didGetNewAttributedString:(NSAttributedString*)string {
+    [self.exampleTextView setLinkifiedAttributedText:string];
 }
 
 
 #pragma mark - Delegate
 
--(void) textView:(ALLinkTextView*)textView didTapLinkWithText:(NSString*)text href:(NSString*)href
+-(void)     textView:(ALLinkTextViewShared*)textView
+  didTapLinkWithText:(NSString*)text href:(NSString*)href
 {
     [[[UIAlertView alloc] initWithTitle:@"Tapped:"
                                 message:href
@@ -100,7 +50,8 @@
                       otherButtonTitles:nil] show];
 }
 
--(void) textView:(ALLinkTextView*)textView didLongPressLinkWithText:(NSString*)text href:(NSString*)href textRect:(CGRect)textRect
+-(void)             textView:(ALLinkTextViewShared*)textView
+    didLongPressLinkWithText:(NSString*)text href:(NSString*)href textRect:(CGRect)textRect
 {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Long press"
                                                              delegate:nil

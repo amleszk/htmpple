@@ -1,4 +1,6 @@
 
-@interface ALDemoLabelViewController : UIViewController
+#import "ALDemoViewController.h"
+
+@interface ALDemoLabelViewController : ALDemoViewController
 
 @end

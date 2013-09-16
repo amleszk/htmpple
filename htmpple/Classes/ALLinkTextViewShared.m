@@ -1,22 +1,20 @@
 
-#import "ALLinkTextView.h"
+#import "ALLinkTextViewShared.h"
 #import "ALHtmlToAttributedStringParser.h"
-#import "ALLinkTextView.h"
-#import <QuartzCore/QuartzCore.h>
 
-@interface ALLinkTextView ()
+@interface ALLinkTextViewShared ()
 
 @property NSInteger activeLinkIndex;
 @property CGRect activeTextRect;
 @property CALayer *activeLinkLayer;
 
-@property NSMutableArray* linkRanges;
 @property UIView* touchInterceptView;
 @property UILongPressGestureRecognizer* longPress;
 @property UITapGestureRecognizer* tap;
+
 @end
 
-@implementation ALLinkTextView : UITextView
+@implementation ALLinkTextViewShared : UITextView
 
 static UIColor *linkColorActiveAppearance;
 static UIColor *linkColorDefaultAppearance;
@@ -47,38 +45,49 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     
 }
 
--(id) initWithFrame:(CGRect)frame
+-(void) commonInit
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        _linkRanges = [NSMutableArray array];
-        _activeLinkIndex = NSNotFound;
-        self.backgroundColor = [UIColor clearColor];
-        _allowInteractionOtherThanLinks = YES;
-        self.multipleTouchEnabled = NO;
-        self.delaysContentTouches = NO;
-        _touchInterceptView = [[UIView alloc] initWithFrame:frame];
-        _touchInterceptView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [self addSubview:_touchInterceptView];
-        
-        _tap =
-        [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-        _tap.numberOfTapsRequired = 1;
-        [_touchInterceptView addGestureRecognizer:_tap];
-        
-        _longPress =
-        [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-        [_longPress setMinimumPressDuration:0.5];
-        [_touchInterceptView addGestureRecognizer:_longPress];
-        
-    }
-    return self;
+    _allowInteractionOtherThanLinks = NO;
+    self.multipleTouchEnabled = NO;
+    self.delaysContentTouches = NO;
+    self.scrollEnabled = NO;
+    _touchInterceptView = [[UIView alloc] initWithFrame:self.frame];
+    _touchInterceptView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self addSubview:_touchInterceptView];
+    
+    _tap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    _tap.numberOfTapsRequired = 1;
+    [_touchInterceptView addGestureRecognizer:_tap];
+    
+    _longPress =
+    [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    [_longPress setMinimumPressDuration:0.5];
+    [_touchInterceptView addGestureRecognizer:_longPress];
+    
+    _linkRanges = [NSMutableArray array];
+    _activeLinkIndex = NSNotFound;
+    self.backgroundColor = [UIColor clearColor];
 }
 
--(void) layoutSubviews {
-    [super layoutSubviews];
-    _touchInterceptView.frame = self.bounds;
-}
+//-(id) initWithFrame:(CGRect)frame
+//{
+//    NSTextContainer *textContainer = [[NSTextContainer alloc] init];
+//    textContainer.widthTracksTextView = YES;
+//    self = [super initWithFrame:frame textContainer:textContainer];
+//    if (self) {
+//        
+//        self.textContainerInset = UIEdgeInsetsZero;
+//        
+//        self.al_layoutManager = [[NSLayoutManager alloc] init];
+//        [self.al_layoutManager addTextContainer:textContainer];
+//        
+//        self.al_textStorage = [[NSTextStorage alloc] init];
+//        [self.al_textStorage addLayoutManager:self.al_layoutManager];
+//        
+//    }
+//    return self;
+//}
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gesture {
     
@@ -135,67 +144,8 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
 
 -(NSInteger)linkIndexForPoint:(CGPoint)originalPoint textRectStorage:(CGRect*)textRectStorage
 {
-    CGPoint pointWithOffset;
-    NSInteger hitLink = NSNotFound;
-    NSRange hitRange = {NSNotFound,0};
-    for (NSValue *offset in fuzzyTouchPointOffsets) {
-        
-        CGPoint offsetPoint = [offset CGPointValue];
-        pointWithOffset = CGPointMake(originalPoint.x+offsetPoint.x, originalPoint.y+offsetPoint.y);
-        UITextRange *textRange = [self characterRangeAtPoint:pointWithOffset];
-        NSArray *rects = [self selectionRectsForRange:textRange];
-        
-        if (rects.count != 0) {
-            
-            NSInteger charactersIn = [self offsetFromPosition:self.beginningOfDocument toPosition:textRange.start];
-            hitLink = NSNotFound;
-            hitRange = (NSRange){NSNotFound,0};
-            NSInteger index = 0;
-            for(NSArray *value in _linkRanges) {
-                NSRange range = [value[0] rangeValue];
-                if (range.location<=charactersIn &&
-                    ((range.location+range.length)>=charactersIn)) {
-                    hitLink = index;
-                    hitRange = range;
-                    break;
-                }
-                index++;
-            }
-            
-            if (hitLink != NSNotFound) {
-                break;
-            }
-        }
-    }
-    
-    if (hitLink == NSNotFound) {
-        return NSNotFound;
-    }
-    
-    // Check the rect of this link actually contains the touch point, characterRangeAtPoint: returns a selection range
-    // when there is a link at the end of line and it doesn not actually contain the point
-    UITextPosition* linkRangeStart = [self positionFromPosition:self.beginningOfDocument offset:hitRange.location];
-    UITextPosition* linkRangeEnd = [self positionFromPosition:linkRangeStart offset:hitRange.length];
-    UITextRange* linkTextRange = [self textRangeFromPosition:linkRangeStart toPosition:linkRangeEnd];
-    NSArray *selectionRects = [self selectionRectsForRange:linkTextRange];
-    BOOL oneRectContainsPoint = NO;
-    CGRect selectionCGRect = CGRectZero;
-    for (UITextSelectionRect *selectionRect in selectionRects) {
-        selectionCGRect = selectionRect.rect;
-        if (CGRectContainsPoint(selectionCGRect, pointWithOffset)) {
-            oneRectContainsPoint = YES;
-            break;
-        }
-    }
-    
-    if (!oneRectContainsPoint) {
-        return NSNotFound;
-    }
-    if (textRectStorage) {
-        (*textRectStorage) = selectionCGRect;
-    }
-    
-    return hitLink;
+    NSAssert(NO, @"Override");
+    return 0;
 }
 
 #pragma mark - Public
@@ -208,6 +158,11 @@ typedef enum {
 -(void) setLinkifiedAttributedText:(NSAttributedString *)attributedText
 {
     [self setAttributedText:attributedText];
+    [self updateLinkRangesWithAttributedText:attributedText];
+}
+
+-(void) updateLinkRangesWithAttributedText:(NSAttributedString *)attributedText
+{
     [_linkRanges removeAllObjects];
     [attributedText enumerateAttribute:kALHtmlToAttributedParsedHref
                                inRange:(NSRange){0,attributedText.string.length}
