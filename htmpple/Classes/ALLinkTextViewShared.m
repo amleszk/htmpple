@@ -2,47 +2,30 @@
 #import "ALLinkTextViewShared.h"
 #import "ALHtmlToAttributedStringParser.h"
 
-@interface ALLinkTextViewShared ()
-
-@property NSInteger activeLinkIndex;
-@property CGRect activeTextRect;
-@property CALayer *activeLinkLayer;
-
-@property UIView* touchInterceptView;
-@property UILongPressGestureRecognizer* longPress;
-@property UITapGestureRecognizer* tap;
-
+@implementation ALLinkHitData
 @end
 
-@implementation ALLinkTextViewShared : UITextView
+@interface ALLinkTextViewShared ()
+@end
 
+@implementation ALLinkTextViewShared
+{
+    NSInteger _activeLinkIndex;
+    CGRect _activeTextRect;
+    CALayer *_activeLinkLayer;
+    
+    UIView* _touchInterceptView;
+    UILongPressGestureRecognizer* _longPress;
+    UITapGestureRecognizer* _tap;
+    CALayer *_activeLinkHighlightLayer;
+}
 static UIColor *linkColorActiveAppearance;
 static UIColor *linkColorDefaultAppearance;
 
-static NSArray *fuzzyTouchPointOffsets;
-
-static CGFloat fuzzyTouchPointBufferY = 5.;
-static CGFloat fuzzyTouchPointBufferX = 7.;
-
 +(void) initialize
 {
-    linkColorActiveAppearance = [[UIColor blueColor] colorWithAlphaComponent:0.3];
+    linkColorActiveAppearance = [UIColor blueColor];
     linkColorDefaultAppearance = [UIColor blueColor];
-    
-    fuzzyTouchPointOffsets = @[
-                               [NSValue valueWithCGPoint:CGPointMake(0, 0)],
-                               [NSValue valueWithCGPoint:CGPointMake(0, fuzzyTouchPointBufferY)],
-                               [NSValue valueWithCGPoint:CGPointMake(0, -fuzzyTouchPointBufferY)],
-                               [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, 0)],
-                               [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX,0)],
-                               
-                               [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, fuzzyTouchPointBufferY)],
-                               [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX, -fuzzyTouchPointBufferY)],
-                               [NSValue valueWithCGPoint:CGPointMake(fuzzyTouchPointBufferX, -fuzzyTouchPointBufferY)],
-                               [NSValue valueWithCGPoint:CGPointMake(-fuzzyTouchPointBufferX, fuzzyTouchPointBufferY)],
-                               ];
-    
-    
 }
 
 -(void) commonInit
@@ -51,6 +34,7 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     self.multipleTouchEnabled = NO;
     self.delaysContentTouches = NO;
     self.scrollEnabled = NO;
+    
     _touchInterceptView = [[UIView alloc] initWithFrame:self.frame];
     _touchInterceptView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview:_touchInterceptView];
@@ -69,25 +53,6 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     _activeLinkIndex = NSNotFound;
     self.backgroundColor = [UIColor clearColor];
 }
-
-//-(id) initWithFrame:(CGRect)frame
-//{
-//    NSTextContainer *textContainer = [[NSTextContainer alloc] init];
-//    textContainer.widthTracksTextView = YES;
-//    self = [super initWithFrame:frame textContainer:textContainer];
-//    if (self) {
-//        
-//        self.textContainerInset = UIEdgeInsetsZero;
-//        
-//        self.al_layoutManager = [[NSLayoutManager alloc] init];
-//        [self.al_layoutManager addTextContainer:textContainer];
-//        
-//        self.al_textStorage = [[NSTextStorage alloc] init];
-//        [self.al_textStorage addLayoutManager:self.al_layoutManager];
-//        
-//    }
-//    return self;
-//}
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gesture {
     
@@ -108,10 +73,9 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
 - (void)handleTap:(UITapGestureRecognizer *)gesture {
     
     CGPoint point = [gesture locationInView:self];
-    NSInteger linkIndex = [self linkIndexForPoint:point textRectStorage:nil];
-    if(linkIndex != NSNotFound) {
-        
-        NSArray *items = _linkRanges[linkIndex];
+    ALLinkHitData *hit = [self linkIndexForPoint:point];
+    if(hit) {
+        NSArray *items = _linkRanges[hit.hitIndex];
         NSRange range = [items[ALLinkTextViewLinkRangeItem] rangeValue];
         NSString* text = [self.text substringWithRange:range];
         NSString* href = items[ALLinkTextViewLinkHrefItem];
@@ -137,12 +101,12 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     if (_activeLinkIndex == NSNotFound) {
         return;
     }
-    [_activeLinkLayer removeFromSuperlayer];
-    _activeLinkLayer = nil;
+    [_activeLinkHighlightLayer removeFromSuperlayer];
     _activeLinkIndex = NSNotFound;
+
 }
 
--(NSInteger)linkIndexForPoint:(CGPoint)originalPoint textRectStorage:(CGRect*)textRectStorage
+-(ALLinkHitData*)linkIndexForPoint:(CGPoint)originalPoint
 {
     NSAssert(NO, @"Override");
     return 0;
@@ -187,8 +151,8 @@ typedef enum {
         return hitView;
     }
     
-    NSInteger linkIndex = [self linkIndexForPoint:point textRectStorage:nil];
-    if (linkIndex!= NSNotFound) {
+    ALLinkHitData *hit = [self linkIndexForPoint:point];
+    if (hit) {
         return hitView;
     } else {
         return nil;
@@ -202,25 +166,33 @@ typedef enum {
     for (UITouch *touch in allTouches)
     {
         CGPoint point = [touch locationInView:touch.view];
-        CGRect textRect;
-        NSInteger linkIndex = [self linkIndexForPoint:point textRectStorage:&textRect];
+        ALLinkHitData *hit = [self linkIndexForPoint:point];
         
-        if (linkIndex!= NSNotFound) {
+        if (hit) {
             //NSRange range = [_linkRanges[linkIndex][ALLinkTextViewLinkRangeItem] rangeValue];
             if ([_linkDelegate respondsToSelector:@selector(textView:shouldHighlightLinkWithHref:)]) {
-                NSString* href = _linkRanges[linkIndex][ALLinkTextViewLinkHrefItem];
+                NSString* href = _linkRanges[hit.hitIndex][ALLinkTextViewLinkHrefItem];
                 if(![_linkDelegate textView:self shouldHighlightLinkWithHref:href]) {
                     continue;
                 }
             }
             
-            _activeLinkIndex = linkIndex;
-            _activeTextRect = textRect;
-            _activeLinkLayer = [CALayer layer];
-            _activeLinkLayer.backgroundColor = [[self linkColorActive] CGColor];
-            _activeLinkLayer.cornerRadius = 4;
-            _activeLinkLayer.frame = CGRectInset(_activeTextRect, -2, -2);
-            [self.layer addSublayer:_activeLinkLayer];
+            _activeLinkIndex = hit.hitIndex;
+            CALayer *alphaLayer = [[CALayer alloc] init];
+            alphaLayer.frame = self.bounds;
+            alphaLayer.opacity = 0.3;
+
+            for (NSValue *valeRect in hit.hitRects) {
+                CALayer *activeLinkLayer = [CALayer layer];
+                activeLinkLayer.backgroundColor = [[self linkColorActive] CGColor];
+                activeLinkLayer.cornerRadius = 0;
+                activeLinkLayer.frame = CGRectInset([valeRect CGRectValue], 0, 0);
+                [alphaLayer addSublayer:activeLinkLayer];
+            }
+            [self.layer addSublayer:alphaLayer];
+            _activeLinkHighlightLayer = alphaLayer;
+            
+            _activeTextRect = [hit.hitRects[0] CGRectValue];
         }
     }
 }
@@ -232,8 +204,8 @@ typedef enum {
     for (UITouch *touch in allTouches)
     {
         CGPoint point = [touch locationInView:touch.view];
-        NSInteger linkIndex = [self linkIndexForPoint:point textRectStorage:nil];
-        if (linkIndex== NSNotFound && _activeLinkIndex != NSNotFound) {
+        ALLinkHitData *hit = [self linkIndexForPoint:point];
+        if (hit && _activeLinkIndex != NSNotFound) {
             [self unHighlightActiveLink];
         }
     }

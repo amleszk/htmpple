@@ -7,6 +7,10 @@
 -(void) textView:(ALLinkTextViewShared*)textView didLongPressLinkWithText:(NSString*)text href:(NSString*)href textRect:(CGRect)textRect;
 @end
 
+@interface ALLinkHitData : NSObject
+@property NSArray *hitRects;
+@property NSUInteger hitIndex;
+@end
 
 @interface ALLinkTextViewShared : UITextView <UIAppearanceContainer>
 
@@ -14,7 +18,7 @@
 -(void) updateLinkRangesWithAttributedText:(NSAttributedString *)attributedText;
 -(void) commonInit;
 
--(NSInteger)linkIndexForPoint:(CGPoint)originalPoint textRectStorage:(CGRect*)textRectStorage;
+-(ALLinkHitData*)linkIndexForPoint:(CGPoint)originalPoint;
 @property (nonatomic) NSMutableArray* linkRanges;
 
 @property (nonatomic) UIColor *linkColorActive;

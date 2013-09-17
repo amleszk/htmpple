@@ -46,7 +46,7 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
 
 #pragma mark - Hyperlink Management
 
--(NSInteger)linkIndexForPoint:(CGPoint)originalPoint textRectStorage:(CGRect*)textRectStorage
+-(ALLinkHitData*)linkIndexForPoint:(CGPoint)originalPoint
 {
     CGPoint pointWithOffset;
     NSInteger hitLink = NSNotFound;
@@ -55,9 +55,6 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
         
         CGPoint offsetPoint = [offset CGPointValue];
         pointWithOffset = CGPointMake(originalPoint.x+offsetPoint.x, originalPoint.y+offsetPoint.y);
-        
-        
-        
         UITextRange *textRange = [self characterRangeAtPoint:pointWithOffset];
         NSArray *rects = [self selectionRectsForRange:textRange];
         
@@ -85,7 +82,7 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     }
     
     if (hitLink == NSNotFound) {
-        return NSNotFound;
+        return nil;
     }
     
     // Check the rect of this link actually contains the touch point, characterRangeAtPoint: returns a selection range
@@ -95,24 +92,27 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     UITextRange* linkTextRange = [self textRangeFromPosition:linkRangeStart toPosition:linkRangeEnd];
     NSArray *selectionRects = [self selectionRectsForRange:linkTextRange];
     BOOL oneRectContainsPoint = NO;
-    CGRect selectionCGRect = CGRectZero;
+    NSMutableArray *textRects = [NSMutableArray arrayWithCapacity:selectionRects.count];
     for (UITextSelectionRect *selectionRect in selectionRects) {
-        selectionCGRect = selectionRect.rect;
-        if (CGRectContainsPoint(selectionCGRect, pointWithOffset)) {
+        [textRects addObject:[NSValue valueWithCGRect:selectionRect.rect]];
+    }
+    for (NSValue *rectValue in textRects) {
+        CGRect rect = [rectValue CGRectValue];
+        if (CGRectContainsPoint(rect, pointWithOffset)) {
             oneRectContainsPoint = YES;
             break;
         }
     }
     
     if (!oneRectContainsPoint) {
-        return NSNotFound;
+        return nil;
     }
-    if (textRectStorage) {
-        (*textRectStorage) = selectionCGRect;
-    }
-    
-    return hitLink;
+    ALLinkHitData *hitData = [[ALLinkHitData alloc] init];
+    hitData.hitIndex = hitLink;
+    hitData.hitRects = textRects;
+    return hitData;
 }
+
 
 
 @end
