@@ -92,9 +92,11 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
     UITextRange* linkTextRange = [self textRangeFromPosition:linkRangeStart toPosition:linkRangeEnd];
     NSArray *selectionRects = [self selectionRectsForRange:linkTextRange];
     BOOL oneRectContainsPoint = NO;
+    UIEdgeInsets insets = self.contentInset;
     NSMutableArray *textRects = [NSMutableArray arrayWithCapacity:selectionRects.count];
     for (UITextSelectionRect *selectionRect in selectionRects) {
-        [textRects addObject:[NSValue valueWithCGRect:selectionRect.rect]];
+        CGRect offsettedRect = CGRectOffset(selectionRect.rect, insets.left, insets.top);
+        [textRects addObject:[NSValue valueWithCGRect:offsettedRect]];
     }
     for (NSValue *rectValue in textRects) {
         CGRect rect = [rectValue CGRectValue];
