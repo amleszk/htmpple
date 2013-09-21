@@ -11,6 +11,17 @@ a p i em b strong pre u ins del h1 h2 h3 h4 h5 h6 blockquote
 
 ![screenshot](screenshot.png)
 
+
+iOS7
+--------
+New TextKit framework adds convenience method that does this exact translation, This project gives more control over how links are translated and allows you to switch between using UILabel for faster rendering.
+
+The existing method of translation is:
+```
+NSDictionary * htmlAtt = @{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType};
+NSAttributedString * htmlString = [[NSAttributedString alloc] initWithData:htmlData options:nil documentAttributes:&htmlAtt error:&error];
+```
+
 Performance
 --------
 
