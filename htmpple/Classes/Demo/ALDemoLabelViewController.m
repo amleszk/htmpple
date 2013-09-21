@@ -15,6 +15,7 @@
     [super loadView];
     
     self.exampleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.exampleLabel.backgroundColor = [UIColor clearColor];
     self.exampleLabel.numberOfLines = 0;
     [self.view addSubview:self.exampleLabel];
 	self.exampleLabel.layer.cornerRadius = 5.0f;
