@@ -114,11 +114,6 @@ static UIColor *linkColorDefaultAppearance;
 
 #pragma mark - Public
 
-typedef enum {
-    ALLinkTextViewLinkRangeItem,
-    ALLinkTextViewLinkHrefItem
-} ALLinkTextViewLink;
-
 -(void) setLinkifiedAttributedText:(NSAttributedString *)attributedText
 {
     [self setAttributedText:attributedText];

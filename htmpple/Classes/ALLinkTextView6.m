@@ -65,7 +65,7 @@ static CGFloat fuzzyTouchPointBufferX = 7.;
             hitRange = (NSRange){NSNotFound,0};
             NSInteger index = 0;
             for(NSArray *value in self.linkRanges) {
-                NSRange range = [value[0] rangeValue];
+                NSRange range = [value[ALLinkTextViewLinkRangeItem] rangeValue];
                 if (range.location<=charactersIn &&
                     ((range.location+range.length)>=charactersIn)) {
                     hitLink = index;

@@ -32,3 +32,8 @@
 @property BOOL allowInteractionOtherThanLinks;
 
 @end
+
+typedef enum {
+    ALLinkTextViewLinkRangeItem = 0,
+    ALLinkTextViewLinkHrefItem
+} ALLinkTextViewLink;

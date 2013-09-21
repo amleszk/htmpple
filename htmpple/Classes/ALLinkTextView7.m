@@ -27,7 +27,7 @@
     UIEdgeInsets insets = self.textContainerInset;
     
     for(NSArray *value in self.linkRanges) {
-        NSRange range = [value[0] rangeValue];
+        NSRange range = [value[ALLinkTextViewLinkRangeItem] rangeValue];
         if (range.location<=charactersIn &&
             ((range.location+range.length)>=charactersIn)) {
             
